@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Responsive Table with DataTables</title>
+        <link
+            rel="stylesheet"
+            href="https://cdn.datatables.net/1.10.22/css/jquery.dataTables.min.css"
+        />
+        <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+        <script src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js"></script>
+        <script>
+            $(document).ready(function () {
+                $("#example").DataTable();
+            });
+        </script>
+    </head>
+    <body>
+        <table id="example" class="display" style="width: 100%">
+            <thead>
+                <tr>
+                    <th>Country</th>
+                    <th>Languages</th>
+                    <th>Area (Km²)</th>
+                    <th>Population</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Argentina</td>
+                    <td>
+                        Spanish (official), English, Italian, German, French
+                    </td>
+                    <td>2,780,400</td>
+                    <td>43,600,000</td>
+                </tr>
+                <tr>
+                    <td>Australia</td>
+                    <td>English 79%, native and other languages</td>
+                    <td>7,692,024</td>
+                    <td>25,499,884</td>
+                </tr>
+                <tr>
+                    <td>Greece</td>
+                    <td>Greek 99% (official), English, French</td>
+                    <td>131,957</td>
+                    <td>10,423,054</td>
+                </tr>
+                <tr>
+                    <td>Luxembourg</td>
+                    <td>
+                        Luxembourgish (national), French, German (both
+                        administrative)
+                    </td>
+                    <td>2,586</td>
+                    <td>634,814</td>
+                </tr>
+                <tr>
+                    <td>Russia</td>
+                    <td>Russian, others</td>
+                    <td>17,098,242</td>
+                    <td>144,373,535</td>
+                </tr>
+            </tbody>
+        </table>
+    </body>
+</html>
