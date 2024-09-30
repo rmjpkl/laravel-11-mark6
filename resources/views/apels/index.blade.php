@@ -1,7 +1,7 @@
-@extends('master')
-
-@section('konten')
 <head>
+  @extends('master')
+  
+  @section('konten')
  <style>
     body {
       padding: 20px;

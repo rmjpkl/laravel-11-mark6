@@ -1,6 +1,9 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Kamar</title>
     <!-- Include Bootstrap CSS -->
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
@@ -50,6 +53,7 @@
 <body>
     <div class="container mt-12">
         <div class="menu text-right">
+            <br>
             <a href="{{ route('apel') }}" class="btn btn-info">
                 <i class="fas fa-home"></i> | Apel Blok Hunian
             </a>
@@ -60,6 +64,7 @@
         <form action="{{ route('points.store') }}" method="POST">
             @csrf
             <input type="hidden" name="rupam" value="{{ Auth::user()->rupam }}">
+            <input type="hidden" name="filter" value="{{ $filter }}">
             <table class="table table-bordered table-striped">
                 <thead class="thead-dark">
                     <tr>
