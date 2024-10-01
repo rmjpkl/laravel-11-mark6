@@ -3,63 +3,30 @@
 @extends('master')
 
 @section('konten')
-    <div class="container mt-8">
+    <div class="container mt-5">
         <div>
-            <h2 class="text-center my-5">Tabel user</h2>
-            <hr>
-
+            <h2 class="text-center my-5">Tabel Trolling</h2>
         </div>
-
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card border-0 shadow-sm rounded">
+                    <div class="card-body">
                         <head>
                             <meta charset="UTF-8">
                             <meta name="viewport" content="width=device-width, initial-scale=1.0">
-                            <title>Responsive Table with Search and Sort</title>
+                            {{-- mengimport cdn - cdn --}}
 
-
-
-                                <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-
-                                <!-- DataTables CSS -->
-                                <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.css">
-
-                                <!-- jQuery -->
-                                <script type="text/javascript" charset="utf8" src="https://code.jquery.com/jquery-3.5.1.js"></script>
-
-                                <!-- DataTables JS -->
-                                <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.js"></script>
-
-                                <!-- SheetJS -->
-                                <script src="https://cdn.sheetjs.com/xlsx-0.19.3/package/dist/xlsx.full.min.js"></script>
-
-                                <script>
-                                    $(document).ready(function() {
-                                        // Inisialisasi DataTables
-                                        $('.table').DataTable();
-
-                                        // Fungsi untuk ekspor ke Excel
-                                        $('#export-button').click(function() {
-                                            var table = document.querySelector('.table');
-                                            var wb = XLSX.utils.table_to_book(table, {sheet: "Sheet1"});
-                                            XLSX.writeFile(wb, 'TabelData.xlsx');
-                                        });
-                                    });
-                                </script>
-
-
-
-
+                           @include('cdntable')
                         </head>
 
                             <div style="overflow-x:auto;">
-                                <table class="table table-bordered" style="width: 100%;">
-                                    <a href="{{ route('users.create') }}" class="btn btn-md btn-success mb-5 btn-block">ADD USER</a>
-                                    <br>
-                                    <button id="export-button" class="btn btn-md btn-primary mb-5 " style="margin-bottom: 10px;">
-                                        <i class="fas fa-file-excel"></i> Export Excel <!-- FontAwesome icon with label -->
-                                    </button>
-
-
-
+                                <table
+                                        id="example"
+                                        class="table table-striped table-bordered dt-responsive nowrap"
+                                        cellspacing="0"
+                                        width="100%"
+                                    >
+                                    <a href="{{ route('users.create') }}" class="btn btn-md btn-dark mb-5 btn-block"><i class="fa fa-id-card" ></i> ADD LAPORAN</a>
                                     <thead>
                                         <tr>
                                             <th scope="col">NAMA</th>
@@ -107,12 +74,19 @@
                                 </table>
                             </div>
                             <script>
-                                $(document).ready(function() {
-                                    $('.table').DataTable();
+                                $(document).ready(function () {
+                                  new DataTable("#example", {
+                                    responsive: true,
+                                    rowReorder: {
+                                      selector: "td:nth-child(2)",
+                                    },
+                                    // order: [[2, "desc"]],
+                                    // order: [[2, "asc"]],
+                                    dom: "Blfrtip", // Add 'l' to include the length change control
+                                    buttons: ["copy", "csv", "excel", "pdf", "print", "colvis"],
+                                  });
                                 });
-                            </script>
-
-                        {{-- {{ $users->links() }} --}}
+                              </script>
                     </div>
 
 
