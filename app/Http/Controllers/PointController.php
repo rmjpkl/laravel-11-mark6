@@ -26,7 +26,7 @@ class PointController extends Controller
         $points = Point::all();
 
         //render view with products
-        return view('point.home', compact('points'));
+        return view('point.index    ', compact('points'));
     }
 
 
