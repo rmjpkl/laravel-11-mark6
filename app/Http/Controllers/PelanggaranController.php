@@ -53,12 +53,8 @@ class PelanggaranController extends Controller
     {
         // validate form
         $request->validate([
-            'nama_lokasi'        => 'required|min:5',
-            'tanggal'            => 'required|min:5',
-            'jam'                => 'required|min:5',
-            'rupam'              => 'required|min:5',
-            'petugas'            => 'required|min:5',
-            'koordinat'          => 'required|min:5'
+            'name'        => 'required|min:5',
+            'point'       => 'required|min:1'
         ]);
 
         // //upload image
@@ -67,13 +63,8 @@ class PelanggaranController extends Controller
         // dd($request);
         //create product
         pelanggaran::create([
-            'nama_lokasi' => $request->nama_lokasi,
-            'tanggal'     => $request->tanggal,
-            'tanggal'     => $request->tanggal,
-            'jam'         => $request->jam,
-            'rupam'       => $request->rupam,
-            'petugas'     => $request->petugas,
-            'koordinat'   => $request->koordinat
+            'name'  => $request->name,
+            'point' => $request->point
         ]);
 
         //redirect to index
@@ -95,75 +86,53 @@ class PelanggaranController extends Controller
         return view('pelanggaran.show', compact('pelanggaran'));
     }
 
-    // /**
-    //  * edit
-    //  *
-    //  * @param  mixed $id
-    //  * @return View
-    //  */
-    // public function edit(string $id): View
-    // {
-    //     //get product by ID
-    //     $product = Product::findOrFail($id);
+    /**
+     * edit
+     *
+     * @param  mixed $id
+     * @return View
+     */
+    public function edit(string $id): View
+    {
+        //get pelanggaran by ID
+        $pelanggaran = pelanggaran::findOrFail($id);
 
-    //     //render view with product
-    //     return view('products.edit', compact('product'));
-    // }
+        //render view with pelanggaran
+        return view('pelanggaran.edit', compact('pelanggaran'));
+    }
 
-    // /**
-    //  * update
-    //  *
-    //  * @param  mixed $request
-    //  * @param  mixed $id
-    //  * @return RedirectResponse
-    //  */
-    // public function update(Request $request, $id): RedirectResponse
-    // {
-    //     //validate form
-    //     $request->validate([
-    //         'image'         => 'image|mimes:jpeg,jpg,png|max:2048',
-    //         'title'         => 'required|min:5',
-    //         'description'   => 'required|min:10',
-    //         'price'         => 'required|numeric',
-    //         'stock'         => 'required|numeric'
-    //     ]);
+    /**
+     * update
+     *
+     * @param  mixed $request
+     * @param  mixed $id
+     * @return RedirectResponse
+     */
+    public function update(Request $request, $id): RedirectResponse
+    {
+        //validate form
+        $request->validate([
+            'name'        => 'required|min:5',
+            'point'       => 'required|min:1'
+        ]);
 
-    //     //get product by ID
-    //     $product = Product::findOrFail($id);
+        //get pelanggaran by ID
+        $pelanggaran = pelanggaran::findOrFail($id);
 
-    //     //check if image is uploaded
-    //     if ($request->hasFile('image')) {
+        //check if image is uploaded
+       
 
-    //         //upload new image
-    //         $image = $request->file('image');
-    //         $image->storeAs('public/products', $image->hashName());
+            //update pelanggaran with new image
+            $pelanggaran->update([
+                'name'  => $request->name,
+                'point' => $request->point
+            ]);
 
-    //         //delete old image
-    //         Storage::delete('public/products/'.$product->image);
+      
 
-    //         //update product with new image
-    //         $product->update([
-    //             'image'         => $image->hashName(),
-    //             'title'         => $request->title,
-    //             'description'   => $request->description,
-    //             'price'         => $request->price,
-    //             'stock'         => $request->stock
-    //         ]);
-
-    //     } else {
-
-    //         //update product without image
-    //         $product->update([
-    //             'title'         => $request->title,
-    //             'description'   => $request->description,
-    //             'price'         => $request->price,
-    //             'stock'         => $request->stock
-    //         ]);
-    //     }
-
-    //     //redirect to index
-    //     return redirect()->route('products.index')->with(['success' => 'Data Berhasil Diubah!']);
-    // }
+        //redirect to index
+        return redirect()->route('pelanggarans.index')->with(['success' => 'Data Berhasil Diubah!']);
+    }
 
     /**
      * destroy

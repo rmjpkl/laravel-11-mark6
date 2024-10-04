@@ -76,6 +76,8 @@ Route::controller(ApelController::class)->group(function () {
     Route::get('/apels/blokf', 'blokf')->name('blokf');
 });
 
+Route::resource('/pelanggarans', \App\Http\Controllers\PelanggaranController::class);
+
 
 
 
