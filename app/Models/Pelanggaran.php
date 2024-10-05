@@ -8,8 +8,14 @@ use Illuminate\Database\Eloquent\Model;
 class Pelanggaran extends Model
 {
     use HasFactory;
+
     protected $fillable = [
         'name',
         'point',
     ];
-} 
+
+    public function points()
+    {
+        return $this->hasMany(Point::class);
+    }
+}

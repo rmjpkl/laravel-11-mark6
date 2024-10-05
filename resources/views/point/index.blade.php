@@ -39,8 +39,8 @@
                                         @forelse ($points as $point)
                                             <tr>
                                                 <td>{{ $point->nama }}</td>
-                                                <td>{{ $point->point }}</td>
-                                                <td>{{ $point->tanggal }}</td>
+                                                <td>{{ $point->pelanggaran->point }}</td>
+                                                <td>{{ $point->created_at }}</td>
                                                 <td>{{ $point->rupam }}</td>
                                                 <td class="text-center">
                                                     <form onsubmit="return confirm('Apakah Anda Yakin ?');" action="{{ route('points.destroy', $point->id) }}" method="POST">

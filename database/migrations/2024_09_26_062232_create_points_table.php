@@ -14,8 +14,7 @@ return new class extends Migration
         Schema::create('points', function (Blueprint $table) {
             $table->id();
             $table->string('nama');
-            $table->integer('point');
-            $table->date('tanggal');
+            $table->foreignId('pelanggaran_id')->constrained('pelanggarans')->onDelete('cascade');
             $table->string('rupam');
             $table->timestamps();
         });

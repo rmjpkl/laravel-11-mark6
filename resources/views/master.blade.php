@@ -46,31 +46,35 @@
                             <a class="nav-link" href="{{route('home')}}">
                                 <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
                                 Dashboard
-                            </a>                            
+                            </a>
                             <a class="nav-link" href="{{route('trolling')}}">
                                 <div class="sb-nav-link-icon"><i class="fas fa-list-alt "></i></div>
                                 Trolling
-                            </a>                            
+                            </a>
                             <a class="nav-link" href="{{route('users.index')}}">
                                 <div class="sb-nav-link-icon"><i class="fas fa-id-card"></i></div>
                                 Managemen User
-                            </a>                            
+                            </a>
                             <a class="nav-link" href="{{route('spreadsheets.updatepenghuni')}}">
                                 <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
                                 Update isi Penghuni
-                            </a>                            
+                            </a>
                             <a class="nav-link" href="{{route('spreadsheets.lokasi')}}">
                                 <div class="sb-nav-link-icon"><i class="fas fa-male"></i></div>
                                 Kamar WBP
-                            </a>                            
+                            </a>
                             <a class="nav-link" href="{{route('points.index')}}">
                                 <div class="sb-nav-link-icon"><i class="fa fa-file"></i></div>
                                 Managemen Point
-                            </a>                            
+                            </a>
                             <a class="nav-link" href="{{route('apel')}}">
                                 <div class="sb-nav-link-icon"><i class="fas fa-check-square"></i></div>
                                 Apel Penghuni
-                            </a>                            
+                            </a>
+                            <a class="nav-link" href="{{route('pelanggarans.index')}}">
+                                <div class="sb-nav-link-icon"><i class="fas fa fa-tasks"></i></div>
+                                Pelanggaran
+                            </a>
                         </div>
                     <div class="sb-sidenav-footer">
                         <div class="small">Logged in as:</div>

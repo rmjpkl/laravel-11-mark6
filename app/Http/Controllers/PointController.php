@@ -35,6 +35,7 @@ class PointController extends Controller
     {
         $selectedData = $request->input('selected_data', []);
         $rupam = $request->input('rupam');
+        $pelanggaran_id = $request->input('pelanggaran_id');
 
         $filter = $request->input('filter');
         $parts = explode('.', $filter);
@@ -43,8 +44,7 @@ class PointController extends Controller
         foreach ($selectedData as $nama) {
             DB::table('points')->insert([
                 'nama' => $nama,
-                'point' => 1, // Misalnya, setiap data yang ditambahkan mendapatkan 10 poin
-                'tanggal' => now(),
+                'pelanggaran_id' => $pelanggaran_id,
                 'rupam' => $rupam,
                 'created_at' => now(),
                 'updated_at' => now(),

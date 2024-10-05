@@ -10,9 +10,10 @@ use App\Models\Point;
 use Illuminate\View\View;
 
 //import Http Request
-use Illuminate\Http\Request;
+use App\Models\Pelanggaran;
 
 //import Facades Storage
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Http\RedirectResponse;
@@ -31,6 +32,7 @@ class ApelController extends Controller
 
     public function index() : View
     {
+
         //render view with products
         return view('apels.index');
     }
