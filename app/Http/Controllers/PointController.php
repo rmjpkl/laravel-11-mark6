@@ -17,6 +17,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Storage;
+use Carbon\Carbon;
 
 class PointController extends Controller
 {
@@ -76,15 +77,25 @@ class PointController extends Controller
     }
 
     public function show(string $nama): View
-{
+    {
     //get product by name
     $points = Point::where('nama', $nama)->get();
+     // Mendapatkan tanggal dua bulan yang lalu
+     $startDate = Carbon::now()->subMonths(2)->startOfDay();
+     // Mendapatkan tanggal hari ini
+     $endDate = Carbon::now()->endOfDay();
+ 
+     // Mendapatkan data berdasarkan nama dan rentang tanggal
+     $points = Point::where('nama', $nama)
+                    ->whereBetween('created_at', [$startDate, $endDate])
+                    ->get();
+ 
     // var_dump($points);
     // die();
 
-    //render view with product
+    
     return view('point.show', compact('points'));
-}
+    }
 
 
 
