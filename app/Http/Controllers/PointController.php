@@ -75,6 +75,18 @@ class PointController extends Controller
         return redirect()->route('points.index')->with(['success' => 'Data Berhasil Disimpan!']);
     }
 
+    public function show(string $nama): View
+{
+    //get product by name
+    $points = Point::where('nama', $nama)->get();
+    // var_dump($points);
+    // die();
+
+    //render view with product
+    return view('point.show', compact('points'));
+}
+
+
 
 
     public function destroy($id): RedirectResponse
