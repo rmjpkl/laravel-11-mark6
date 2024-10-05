@@ -28,7 +28,7 @@
                         <h1>Blok {{ $filter }}</h1>
 
                             <div id="data-count" class="mb-3"></div>
-                            <form action="{{ route('points.store') }}" method="POST">
+                            <form action="{{ route('apels.store') }}" method="POST">
                                 <input type="hidden" name="rupam" value="{{ Auth::user()->rupam }}">
                                 <input type="hidden" name="filter" value="{{ $filter }}">
                                 <input type="hidden" name="pelanggaran_id" value="1">

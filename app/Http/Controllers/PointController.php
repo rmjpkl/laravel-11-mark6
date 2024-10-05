@@ -23,7 +23,7 @@ class PointController extends Controller
     public function index() : View
     {
         //get all products
-        $points = Point::all();
+        $points = Point::orderBy('created_at', 'desc')->get();
 
         //render view with products
         return view('point.index', compact('points'));
@@ -56,25 +56,23 @@ class PointController extends Controller
 
     public function store(Request $request)
     {
-        $selectedData = $request->input('selected_data', []);
-        $rupam = $request->input('rupam');
-        $pelanggaran_id = $request->input('pelanggaran_id');
+        // dd($request);
+         // validate form
+         $request->validate([
+            'nama'           => 'required',
+            'pelanggaran_id' => 'required',
+            'rupam'          => 'required'
+        ]);
 
-        $filter = $request->input('filter');
-        $parts = explode('.', $filter);
-        $newFilterRight = $parts[0] . '.' . ($parts[1] + 1);
 
-        foreach ($selectedData as $nama) {
-            DB::table('points')->insert([
-                'nama' => $nama,
-                'pelanggaran_id' => $pelanggaran_id,
-                'rupam' => $rupam,
-                'created_at' => now(),
-                'updated_at' => now(),
-            ]);
-        }
+        Point::create([
+            'nama'           => $request->nama,
+            'pelanggaran_id' => $request->pelanggaran_id,
+            'rupam'          => $request->rupam
+        ]);
 
-        return redirect()->route('kamar', ['filter' => $newFilterRight])->with('success', 'Data berhasil ditambahkan!');
+        //redirect to index
+        return redirect()->route('points.index')->with(['success' => 'Data Berhasil Disimpan!']);
     }
 
 

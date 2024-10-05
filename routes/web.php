@@ -65,6 +65,7 @@ Route::resource('/points', \App\Http\Controllers\PointController::class);
 // Route::post('/points', [PointController::class, 'store'])->name('points.store');
 
 Route::get('/apels', [ApelController::class, 'index'])->name('apel');
+Route::post('/apels/store', [ApelController::class, 'store'])->name('apels.store');
 
 Route::controller(ApelController::class)->group(function () {
     Route::get('/apels', 'index')->name('apel');

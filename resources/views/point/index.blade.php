@@ -19,7 +19,7 @@
                         </head>
 
                             <div style="overflow-x:auto;">
-                                <a href="{{ route('points.create') }}" class="btn btn-md btn-success mb-5 btn-block">ADD LAPORAN</a>
+                                <a href="{{ route('points.create') }}" class="btn btn-md btn-danger mb-5 btn-block">ADD DATA PELANGGARAN</a>
                                 <table
                                         id="example"
                                         class="table table-striped table-bordered dt-responsive nowrap"
@@ -73,7 +73,7 @@
                                     rowReorder: {
                                       selector: "td:nth-child(2)",
                                     },
-                                    // order: [[2, "desc"]],
+                                    order: [[2, "desc"]],
                                     // order: [[2, "asc"]],
                                     dom: "Blfrtip", // Add 'l' to include the length change control
                                     buttons: ["copy", "csv", "excel", "pdf", "print", "colvis"],

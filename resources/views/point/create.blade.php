@@ -50,6 +50,7 @@
                             </div>
                         @enderror
                     </div>
+                    <input type="hidden" name="rupam" value="{{ Auth::user()->rupam }}">
 
                 <button type="submit" class="btn btn-md btn-primary me-3">SAVE</button>
                 <button type="reset" class="btn btn-md btn-warning">RESET</button>
