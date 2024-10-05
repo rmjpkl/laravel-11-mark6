@@ -15,6 +15,7 @@ use App\Http\Controllers\PointController;
 use App\Http\Controllers\TrollingController;
 use App\Http\Controllers\SpreadsheetController;
 use App\Http\Controllers\GoogleSheetsController;
+use App\Http\Controllers\PelanggaranController;
 
 /*
 |--------------------------------------------------------------------------

@@ -19,7 +19,7 @@
                         </head>
 
                             <div style="overflow-x:auto;">
-                                <a href="{{ route('trollings.create') }}" class="btn btn-md btn-success mb-5 btn-block">ADD LAPORAN</a>
+                                <a href="{{ route('points.create') }}" class="btn btn-md btn-success mb-5 btn-block">ADD LAPORAN</a>
                                 <table
                                         id="example"
                                         class="table table-striped table-bordered dt-responsive nowrap"

@@ -4,15 +4,15 @@ namespace App\Http\Controllers;
 
 //import model product
 use App\Models\Point;
-
-
-//import return type redirectResponse
 use Illuminate\View\View;
+//import return type redirectResponse
+use App\Models\Pelanggaran;
 
 //import Http Request
 use Illuminate\Http\Request;
 
 //import Facades Storage
+use GuzzleHttp\Promise\Create;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Http\RedirectResponse;
@@ -26,7 +26,17 @@ class PointController extends Controller
         $points = Point::all();
 
         //render view with products
-        return view('point.index    ', compact('points'));
+        return view('point.index', compact('points'));
+    }
+
+    public function create(): View
+    {
+
+
+    $points = Point::all();
+
+    $pelanggarans = Pelanggaran::all();
+    return view('point.create', compact('pelanggarans' , 'points')) ;
     }
 
 
