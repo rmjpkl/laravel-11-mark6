@@ -3,10 +3,8 @@
 @section('konten')
     <div class="container mt-5">
         <div>
-            <h2 class="text-center my-5">Tabel Managemen Point</h2>
-            <hr>
-
-        </div>
+            <h2 class="text-center my-5">Hasil Perhitungan Pelanggaran</h2>
+       </div>
         <div class="row">
             <div class="col-md-12">
                 <div class="card border-0 shadow-sm rounded">
@@ -19,6 +17,33 @@
                         </head>
 
                             <div style="overflow-x:auto;">
+
+
+
+                                <h2>Hasil Perhitungan Pelanggaran</h2>
+                                    <table id="hasilTable" class="table table-striped table-bordered dt-responsive nowrap">
+                                        <thead>
+                                            <tr>
+                                                <th>PELANGGARAN</th>
+                                                <th>JUMLAH</th>
+                                                <th>POINT</th>
+                                                <th>TOTAL</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <!-- Hasil perhitungan akan ditambahkan di sini -->
+                                        </tbody>
+                                        <tfoot>
+                                            <tr>
+                                                <th colspan="3">Grand Total</th>
+                                                <th id="grandTotal"></th>
+                                            </tr>
+                                        </tfoot>
+                                    </table>
+
+                                
+
+
                                <table
                                         id="example"
                                         class="table table-striped table-bordered dt-responsive nowrap"
@@ -28,7 +53,9 @@
                                     <thead>
                                         <tr>
                                             <th scope="col">NAMA</th>
+                                            <th scope="col">PELANGGARAN</th>
                                             <th scope="col">POINT</th>
+                                            {{-- <th scope="col">TOTAL</th> --}}
                                             <th scope="col">TANGGAL</th>
                                             <th scope="col">RUPAM</th>
                                             <th scope="col" style="width: 20%">ACTIONS</th>
@@ -38,7 +65,9 @@
                                         @forelse ($points as $point)
                                             <tr>
                                                 <td>{{ $point->nama }}</td>
+                                                <td>{{ $point->pelanggaran->name }}</td>
                                                 <td>{{ $point->pelanggaran->point }}</td>
+                                                {{-- <td>{{ $point->total }}</td> --}}
                                                 <td>{{ $point->created_at }}</td>
                                                 <td>{{ $point->rupam }}</td>
                                                 <td class="text-center">
@@ -65,17 +94,83 @@
                                     </tbody>
                                 </table>
                             </div>
+
+
+                            {{-- MENGHITUNG PENILAIAN --}}
+                            <script>
+                                // Ambil data dari tabel
+                                const table = document.getElementById('example');
+                                const rows = table.getElementsByTagName('tbody')[0].getElementsByTagName('tr');
+                                const violations = [];
+                        
+                                for (let i = 0; i < rows.length; i++) {
+                                    const cells = rows[i].getElementsByTagName('td');
+                                    const violation = {
+                                        nama: cells[0].innerText,
+                                        pelanggaran: cells[1].innerText,
+                                        point: parseInt(cells[2].innerText),
+                                        tanggal: cells[3].innerText,
+                                        rupam: cells[4].innerText
+                                    };
+                                    violations.push(violation);
+                                }
+                        
+                                // Hitung jumlah pelanggaran
+                                const counts = {};
+                                let grandTotal = 0;
+                        
+                                violations.forEach(function (violation) {
+                                    const type = violation.pelanggaran;
+                                    const points = violation.point;
+                        
+                                    if (!counts[type]) {
+                                        counts[type] = { jumlah: 0, point: points, total: 0 };
+                                    }
+                        
+                                    counts[type].jumlah += 1;
+                                    counts[type].total += points;
+                                    grandTotal += points;
+                                });
+                        
+                                // Tampilkan hasil dalam tabel HTML
+                                const hasilTable = document.getElementById('hasilTable').getElementsByTagName('tbody')[0];
+                        
+                                for (const [pelanggaran, data] of Object.entries(counts)) {
+                                    const row = document.createElement('tr');
+                                    const pelanggaranCell = document.createElement('td');
+                                    const jumlahCell = document.createElement('td');
+                                    const pointCell = document.createElement('td');
+                                    const totalCell = document.createElement('td');
+                        
+                                    pelanggaranCell.innerText = pelanggaran;
+                                    jumlahCell.innerText = data.jumlah;
+                                    pointCell.innerText = data.point;
+                                    totalCell.innerText = data.total;
+                        
+                                    row.appendChild(pelanggaranCell);
+                                    row.appendChild(jumlahCell);
+                                    row.appendChild(pointCell);
+                                    row.appendChild(totalCell);
+                                    hasilTable.appendChild(row);
+                                }
+                        
+                                // Tampilkan grand total
+                                document.getElementById('grandTotal').innerText = grandTotal;
+                            </script>
+                    
+                
+
                             <script>
                                 $(document).ready(function () {
                                   new DataTable("#example", {
                                     responsive: true,
-                                    rowReorder: {
-                                      selector: "td:nth-child(2)",
-                                    },
+                                    // rowReorder: {
+                                    //   selector: "td:nth-child(2)",
+                                    // },
                                     order: [[2, "desc"]],
                                     // order: [[2, "asc"]],
-                                    dom: "Blfrtip", // Add 'l' to include the length change control
-                                    buttons: ["copy", "csv", "excel", "pdf", "print", "colvis"],
+                                    // dom: "Blfrtip", // Add 'l' to include the length change control
+                                    // buttons: ["copy", "csv", "excel", "pdf", "print"],
                                   });
                                 });
                               </script>

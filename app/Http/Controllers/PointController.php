@@ -77,25 +77,19 @@ class PointController extends Controller
     }
 
     public function show(string $nama): View
-    {
-    //get product by name
-    $points = Point::where('nama', $nama)->get();
-     // Mendapatkan tanggal dua bulan yang lalu
-     $startDate = Carbon::now()->subMonths(2)->startOfDay();
-     // Mendapatkan tanggal hari ini
-     $endDate = Carbon::now()->endOfDay();
- 
-     // Mendapatkan data berdasarkan nama dan rentang tanggal
-     $points = Point::where('nama', $nama)
-                    ->whereBetween('created_at', [$startDate, $endDate])
-                    ->get();
- 
-    // var_dump($points);
-    // die();
+{
+    // Mendapatkan tanggal dua bulan yang lalu
+    $startDate = Carbon::now()->subMonths(2)->startOfDay();
+    // Mendapatkan tanggal hari ini
+    $endDate = Carbon::now()->endOfDay();
 
-    
+    // Mendapatkan data berdasarkan nama dan rentang tanggal
+    $points = Point::where('nama', $nama)
+                   ->whereBetween('created_at', [$startDate, $endDate])
+                   ->get();
+
     return view('point.show', compact('points'));
-    }
+}
 
 
 
