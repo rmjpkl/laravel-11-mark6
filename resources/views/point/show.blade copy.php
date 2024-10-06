@@ -1,24 +1,9 @@
 @extends('master')
 
 @section('konten')
-        {{-- untuk mengatur sekala PRINT --}}
-          <script>
-            window.onbeforeprint = function() {
-                document.body.style.zoom = '0.66'; // Sesuaikan skala sesuai kebutuhan
-            };
-
-            window.onafterprint = function() {
-                document.body.style.zoom = '1'; // Kembalikan skala setelah mencetak
-            };
-
-        </script>
-        
-
-  
     <div class="container mt-5">
-        <div id="printableArea">
         <div>
-            <h2 class="text-center my-5">Hasil Perhitungan Pelanggaran <a href="#" class="fa fa-print" onclick="printSection()"> Print Section</a></h2> 
+            <h2 class="text-center my-5">Hasil Perhitungan Pelanggaran</h2>
        </div>
         <div class="row">
             <div class="col-md-12">
@@ -31,10 +16,10 @@
                             @include('cdntable')
                         </head>
 
-                            
+                            <div style="overflow-x:auto;">
 
                                 <h2 id="namaPelanggar"></h2>
-                                    <table id="hasilTable" class="table table-striped table-bordered dt-responsive nowrap">  
+                                    <table id="hasilTable" class="table table-striped table-bordered dt-responsive nowrap">
                                         <thead>
                                             <tr>
                                                 <th>PELANGGARAN</th>
@@ -50,10 +35,6 @@
                                             <tr>
                                                 <th colspan="3">Grand Total</th>
                                                 <th id="grandTotal"></th>
-                                            </tr>
-                                            <tr>
-                                                <th colspan="3">Kesimpulan</th>
-                                                <th id="penilaian"></th>
                                             </tr>
                                         </tfoot>
                                     </table>
@@ -110,8 +91,7 @@
                                         @endforelse
                                     </tbody>
                                 </table>
-                            
-                        </div>
+                            </div>
 
 
                             {{-- MENGHITUNG PENILAIAN --}}
@@ -178,25 +158,9 @@
                                 document.getElementById('grandTotal').innerText = grandTotal;
                         
                                 // Tampilkan nama pelanggar
-                                document.getElementById('namaPelanggar').innerText = `Nama :  ${namaPelanggar}`;
-                        
-                                // Tambahkan kondisi untuk menilai grand total
-                                let penilaian = '';
-                                if (grandTotal > 100) {
-                                    penilaian = 'Sangat Buruk';
-                                } else if (grandTotal > 70) {
-                                    penilaian = 'Buruk';
-                                } else if (grandTotal > 40) {
-                                    penilaian = 'Baik';
-                                } else if (grandTotal > 0) {
-                                    penilaian = 'Sangat Baik';
-                                } else {
-                                    penilaian = 'Tidak Ada Pelanggaran';
-                                }
-                        
-                                // Tampilkan penilaian
-                                document.getElementById('penilaian').innerText = penilaian;
+                                document.getElementById('namaPelanggar').innerText = `Nama: ${namaPelanggar}`;
                             </script>
+                    
                 
 
                             <script>
@@ -213,21 +177,6 @@
                                   });
                                 });
                               </script>
-
-                              
-                            
-
-                            <script>
-                                function printSection() {
-                                    var printContents = document.getElementById('printableArea').innerHTML;
-                                    var originalContents = document.body.innerHTML;
-                            
-                                    document.body.innerHTML = printContents;
-                                    window.print();
-                                    document.body.innerHTML = originalContents;
-                                }
-                            </script>
-        
 
                         {{-- {{ $trollings->links() }} --}}
                     </div>
@@ -258,7 +207,6 @@
                 timer: 2000
             });
         @endif
-
 
     </script>
 
