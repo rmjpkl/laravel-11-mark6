@@ -43,7 +43,6 @@
           <!-- Menghubungkan Bootstrap Datepicker untuk tanggal -->
           <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>
           <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/locales/bootstrap-datepicker.id.min.js"></script>
-          <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
 
           <!-- script untuk map -->
             <script>
@@ -81,76 +80,66 @@
                                 <div class="col-md-6">
                                     <div class="form-group mb-3">
                                         <div id="qr-reader"></div>
-                                        <a href="#" id="switch-camera" class="btn btn-primary">
-                                            <i class="fa-solid fa-camera-rotate"></i>
-                                        </a><br>
                                         <label class="font-weight-bold">Nama Lokasi</label>
                                         <input type="text" class="form-control @error('nama_lokasi') is-invalid @enderror" name="nama_lokasi" id="nama_lokasi" value="{{ old('nama_lokasi') }}" placeholder="Masukkan nama_lokasi Product">
-                                        
-                                        
+
+                                        <!-- error message untuk nama_lokasi -->
+                                        @error('nama_lokasi')
+                                            <div class="alert alert-danger mt-2">
+                                                {{ $message }}
+                                            </div>
+                                        @enderror
                                         <script src="https://unpkg.com/html5-qrcode"></script>
                                         <script>
                                         let html5QrCode;
-                                        let currentCameraId;
-                                        let cameras = [];
-                                        let cameraIndex = 1;
-                                        
+
                                         function onScanSuccess(decodedText, decodedResult) {
+                                            // Update the 'lokasi' field with the scanned QR code data
                                             document.getElementById("nama_lokasi").value = decodedText;
+                                            // mengambil koordinat
                                             getLocation();
+                                            // Stop the QR code scanner and hide the video element
                                             html5QrCode.stop().then(ignore => {
-                                                document.getElementById("qr-reader").style.display = 'none';
+                                            document.getElementById("qr-reader").style.display = 'none';
                                             }).catch(err => {
-                                                console.error("Unable to stop scanning:", err);
+                                            console.error("Unable to stop scanning:", err);
                                             });
                                         }
-                                        
+
+                                        function onCameraScanSuccess(qrCodeMessage) {
+                                            // Update the 'nama_lokasi' field with the scanned QR code data
+                                            document.getElementById("nama_lokasi").value = qrCodeMessage;
+                                            // Stop the QR code scanner and hide the video element
+                                            html5QrCode.stop().then(ignore => {
+                                            document.getElementById("qr-reader").style.display = 'none';
+                                            }).catch(err => {
+                                            console.error("Unable to stop scanning:", err);
+                                            });
+                                        }
+
                                         function onCameraScanError(errorMessage) {
+                                            // Handle error, display a message or log the error
                                             console.error("Error scanning QR Code:", errorMessage);
                                         }
-                                        
-                                        function switchCamera() {
-                                            cameraIndex = (cameraIndex + 1) % cameras.length;
-                                            currentCameraId = cameras[cameraIndex].id;
-                                            html5QrCode.stop().then(ignore => {
-                                                html5QrCode.start(
-                                                    currentCameraId,
-                                                    { fps: 10, qrbox: { width: 260, height: 260 } },
-                                                    onScanSuccess,
-                                                    onCameraScanError
-                                                ).catch(err => {
-                                                    console.error("Unable to start scanning:", err);
-                                                });
-                                            }).catch(err => {
-                                                console.error("Unable to stop scanning:", err);
-                                            });
-                                        }
-                                        
+
                                         Html5Qrcode.getCameras().then(devices => {
                                             if (devices && devices.length) {
-                                                cameras = devices;
-                                                currentCameraId = cameras[cameraIndex].id;
-                                                html5QrCode = new Html5Qrcode("qr-reader");
-                                                html5QrCode.start(
-                                                    currentCameraId,
-                                                    { fps: 10, qrbox: { width: 260, height: 260 } },
-                                                    onScanSuccess,
-                                                    onCameraScanError
-                                                ).catch(err => {
-                                                    console.error("Unable to start scanning:", err);
-                                                });
+                                            var cameraId = devices[1].id; // Choose the first camera 1 untuk kamera belakng, 0 untuk kamera depan
+
+                                            html5QrCode = new Html5Qrcode("qr-reader");
+                                            html5QrCode.start(
+                                                cameraId,
+                                                { fps: 10, qrbox: { width: 260, height: 260 } }, // Frame per second and QR code box size
+                                                onScanSuccess,
+                                                onCameraScanError
+                                            ).catch(err => {
+                                                console.error("Unable to start scanning:", err);
+                                            });
                                             }
                                         }).catch(err => {
                                             console.error("Unable to get cameras:", err);
                                         });
-                                        
-                                        document.getElementById("switch-camera").addEventListener("click", function(event) {
-                                            event.preventDefault();
-                                            switchCamera();
-                                        });
                                         </script>
-                                        
-                                        
 
 
                                     </div>

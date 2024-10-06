@@ -12,9 +12,10 @@ use Illuminate\View\View;
 use Illuminate\Http\Request;
 
 //import Http Request
-use Illuminate\Http\RedirectResponse;
+use Illuminate\Support\Facades\Auth;
 
 //import Facades Storage
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Storage;
 
 class TrollingController extends Controller
@@ -25,13 +26,23 @@ class TrollingController extends Controller
      * @return void
      */
     public function index() : View
-    {
-        //get all trolling
-        $trollings = Trolling::orderBy('created_at', 'desc')->get();
+{
+    // Dapatkan pengguna yang sedang login
+    $user = Auth::user();
 
-        //render view with trolling
-        return view('trolling.index', compact('trollings'));
+    // Periksa apakah pengguna adalah admin
+    if ($user->is_admin) {
+        // Jika admin, ambil semua data
+        $trollings = Trolling::orderBy('created_at', 'desc')->get();
+    } else {
+        // Jika bukan admin, ambil data yang memiliki nilai rupam
+        $trollings = Trolling::where('rupam', $user->rupam)->orderBy('created_at', 'desc')->get();
     }
+
+    // Render view dengan data trolling
+    return view('trolling.index', compact('trollings'));
+}
+
 
     /**
      * create
