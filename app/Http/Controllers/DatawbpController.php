@@ -40,7 +40,7 @@ class DatawbpController extends Controller
         // Impor data baru
         Excel::import(new DatawbpsImport, $request->file('file'));
 
-        return back()->with('success', 'Data berhasil diimpor dan data lama telah dihapus.');
+        return redirect()->route('datawbps.index')->with(['success' => 'Data Berhasil Update!']);
     }
 
 

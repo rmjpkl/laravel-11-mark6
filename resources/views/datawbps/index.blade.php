@@ -33,6 +33,7 @@
                                             <th scope="col">T/N</th>
                                             <th scope="col">TANGGAL MASUK</th>
                                             <th scope="col">STATUS</th>
+                                            <th scope="col">crated_at</th>
                                             {{-- <th scope="col" style="width: 20%">ACTIONS</th> --}}
                                         </tr>
                                     </thead>
@@ -44,6 +45,7 @@
                                                 <td>{{ $datawbp->tn }}</td>
                                                 <td>{{ $datawbp->tanggal_masuk }}</td>
                                                 <td>{{ $datawbp->status }}</td>
+                                                <td>{{ $datawbp->created_at }}</td>
                                                 {{-- <td class="text-center">
                                                     <form onsubmit="return confirm('Apakah Anda Yakin ?');" action="{{ route('datawbps.destroy', $datawbp->id) }}" method="POST">
                                                         <a href="{{ route('datawbps.show', $datawbp->id) }}" class="btn btn-sm btn-primary">
