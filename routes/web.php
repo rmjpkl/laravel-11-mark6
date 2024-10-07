@@ -60,6 +60,7 @@ Route::middleware('auth')->group(function () {
 
     Route::resource('/pelanggarans', PelanggaranController::class);
     Route::resource('/datawbps', DatawbpController::class);
+    Route::post('/datawbps/import', [DatawbpController::class, 'import'])->name('datawbps.import');
 });
 
 Route::get('/hash-passwords', function () {

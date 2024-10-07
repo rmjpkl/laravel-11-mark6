@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('nama');
             $table->string('lokasi');
             $table->string('tn');
-            $table->date('tanggal_masuk');
+            $table->string('tanggal_masuk');
             $table->boolean('status');
             $table->timestamps();
         });

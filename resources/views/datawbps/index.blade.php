@@ -25,7 +25,7 @@
                                         cellspacing="0"
                                         width="100%"
                                     >
-                                    <a href="{{ route('trollings.create') }}" class="btn btn-md btn-success mb-5 btn-block">ADD LAPORAN</a>
+                                    <a href="{{ route('datawbps.create') }}" class="btn btn-md btn-success mb-5 btn-block">UPLOAD DATA WBP</a>
                                     <thead>
                                         <tr>
                                             <th scope="col">NAMA</th>

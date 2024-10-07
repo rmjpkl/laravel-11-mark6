@@ -75,6 +75,10 @@
                                 <div class="sb-nav-link-icon"><i class="fas fa fa-tasks"></i></div>
                                 Pelanggaran
                             </a>
+                            <a class="nav-link" href="{{route('datawbps.index')}}">
+                                <div class="sb-nav-link-icon"><i class="fas fa fa-database"></i></div>
+                                Database WBP
+                            </a>
                         </div>
                     <div class="sb-sidenav-footer">
                         <div class="small">Logged in as:</div>
