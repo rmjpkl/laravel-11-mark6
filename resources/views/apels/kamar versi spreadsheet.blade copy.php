@@ -51,7 +51,7 @@
                                         @foreach ($data as $row)
                                             <tr>
                                                 <td>{{ $row['nama'] }}</td>
-                                                <td>{{ $row['lokasi'] }}</td>
+                                                <td>{{ $row['kamar'] }}</td>
                                                 <td><input type="checkbox" name="selected_data[]" value="{{ $row['nama'] }}"></td>
                                             </tr>
                                         @endforeach

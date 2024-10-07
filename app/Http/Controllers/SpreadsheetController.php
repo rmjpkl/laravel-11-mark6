@@ -3,18 +3,19 @@
 namespace App\Http\Controllers;
 
 //import model product
-use App\Models\Trolling;
+use App\Models\Datawbp;
 
 //import return type View
-use Illuminate\View\View;
+use App\Models\Trolling;
 
 //import return type redirectResponse
-use Illuminate\Http\Request;
+use Illuminate\View\View;
 
 //import Http Request
-use Illuminate\Http\RedirectResponse;
+use Illuminate\Http\Request;
 
 //import Facades Storage
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Storage;
 
 class SpreadsheetController extends Controller
@@ -30,7 +31,8 @@ class SpreadsheetController extends Controller
     public function lokasi() : View
     {
         //render view
-        return view('spreadsheet.lokasi');
+        $datawbps = Datawbp::get();
+        return view('spreadsheet.lokasi', compact('datawbps'));
     }
 
 

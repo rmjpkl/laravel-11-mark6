@@ -3,21 +3,22 @@
 namespace App\Http\Controllers;
 
 //import model product
+use Carbon\Carbon;
 use App\Models\Point;
-use Illuminate\View\View;
 //import return type redirectResponse
-use App\Models\Pelanggaran;
+use App\Models\Datawbp;
 
 //import Http Request
-use Illuminate\Http\Request;
+use Illuminate\View\View;
 
 //import Facades Storage
+use App\Models\Pelanggaran;
+use Illuminate\Http\Request;
 use GuzzleHttp\Promise\Create;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Storage;
-use Carbon\Carbon;
 
 class PointController extends Controller
 {
@@ -33,21 +34,22 @@ class PointController extends Controller
     public function create(): View
     {
 
-        $spreadsheetId = '1JuiFZuixecGygvTi1NUZ5p_BkvKluov31g9z26gitJ0';
-        $apiKey = 'AIzaSyD8yvaiWF3p4ohg2040C4xrwMDqc_cfiI0';
-        $url = "https://sheets.googleapis.com/v4/spreadsheets/{$spreadsheetId}/?key={$apiKey}&includeGridData=true";
+        // $spreadsheetId = '1JuiFZuixecGygvTi1NUZ5p_BkvKluov31g9z26gitJ0';
+        // $apiKey = 'AIzaSyD8yvaiWF3p4ohg2040C4xrwMDqc_cfiI0';
+        // $url = "https://sheets.googleapis.com/v4/spreadsheets/{$spreadsheetId}/?key={$apiKey}&includeGridData=true";
 
-        $response = Http::get($url);
-        $sheets = $response->json()['sheets'];
-        $firstSheet = $sheets[0];
-        $datas = collect($firstSheet['data'][0]['rowData'])
-            ->skip(1) // Skip the first row (column names)
-            ->map(function ($row) {
-                return [
-                    'nama' => $row['values'][0]['formattedValue'] ?? null,
-                    'kamar' => $row['values'][1]['formattedValue'] ?? null,
-                ];
-            });
+        // $response = Http::get($url);
+        // $sheets = $response->json()['sheets'];
+        // $firstSheet = $sheets[0];
+        // $datas = collect($firstSheet['data'][0]['rowData'])
+        //     ->skip(1) // Skip the first row (column names)
+        //     ->map(function ($row) {
+        //         return [
+        //             'nama' => $row['values'][0]['formattedValue'] ?? null,
+        //             'lokasi' => $row['values'][1]['formattedValue'] ?? null,
+        //         ];
+        //     });
+    $datas = Datawbp::get();
 
     $pelanggarans = Pelanggaran::all();
     return view('point.create', compact('pelanggarans' , 'datas')) ;

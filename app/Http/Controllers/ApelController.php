@@ -7,12 +7,13 @@ use App\Models\Point;
 
 
 //import return type redirectResponse
-use Illuminate\View\View;
+use App\Models\Datawbp;
 
 //import Http Request
-use App\Models\Pelanggaran;
+use Illuminate\View\View;
 
 //import Facades Storage
+use App\Models\Pelanggaran;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Http;
@@ -74,32 +75,39 @@ class ApelController extends Controller
 
 
 
-
-
+    
+    
     public function kamar(Request $request) : View
     {
-    $spreadsheetId = '1JuiFZuixecGygvTi1NUZ5p_BkvKluov31g9z26gitJ0';
-    $apiKey = 'AIzaSyD8yvaiWF3p4ohg2040C4xrwMDqc_cfiI0';
-    $url = "https://sheets.googleapis.com/v4/spreadsheets/{$spreadsheetId}/?key={$apiKey}&includeGridData=true";
+        $filter = $request->input('filter', 'A.1'); // Default filter is 'A.1'
+       
+    //    mengambil data dari spreadsheet
+    //     $spreadsheetId = '1JuiFZuixecGygvTi1NUZ5p_BkvKluov31g9z26gitJ0';
+    //     $apiKey = 'AIzaSyD8yvaiWF3p4ohg2040C4xrwMDqc_cfiI0';
+    //     $url = "https://sheets.googleapis.com/v4/spreadsheets/{$spreadsheetId}/?key={$apiKey}&includeGridData=true";
 
-    $response = Http::get($url);
-    $sheets = $response->json()['sheets'];
-    $firstSheet = $sheets[0];
-    $data = collect($firstSheet['data'][0]['rowData'])
-        ->skip(1) // Skip the first row (column names)
-        ->map(function ($row) {
-            return [
-                'nama' => $row['values'][0]['formattedValue'] ?? null,
-                'kamar' => $row['values'][1]['formattedValue'] ?? null,
-            ];
-        });
+    //     $response = Http::get($url);
+    //     $sheets = $response->json()['sheets'];
+    //     $firstSheet = $sheets[0];
+    //     $data = collect($firstSheet['data'][0]['rowData'])
+    //         ->skip(1) // Skip the first row (column names)
+    //         ->map(function ($row) {
+    //             return [
+    //                 'nama' => $row['values'][0]['formattedValue'] ?? null,
+    //                 'lokasi' => $row['values'][1]['formattedValue'] ?? null,
+    //             ];
+    //         }); 
 
-    $filter = $request->input('filter', 'A.1'); // Default filter is 'A.1'
-    $filteredData = $data->filter(function ($row) use ($filter) {
-        return $row['kamar'] === $filter;
-    });
+    //  $filteredData = $data->filter(function ($row) use ($filter) {
+    //             return $row['lokasi'] === $filter;
+    //         });
 
-    return view('apels.kamar', ['data' => $filteredData, 'filter' => $filter]);
+     $data = Datawbp::get();
+
+     $data = Datawbp::where('lokasi', $filter)->orderBy('created_at', 'desc')->get();
+
+
+    return view('apels.kamar', ['data' => $data, 'filter' => $filter]);
 }
 
 public function store(Request $request)
