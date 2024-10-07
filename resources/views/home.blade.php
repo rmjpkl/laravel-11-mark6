@@ -59,6 +59,15 @@
               <div class="card-footer d-flex justify-content-center"><a class="small text-white stretched-link text-decoration-none fs-7 text-center" href="{{ route('pelanggarans.index') }}">Pelanggaran</a></div>
             </div>
           </div>
+
+
+          <div class="col-6 col-sm-3">
+            <div class="card bg-primary text-white mb-4 text-center">
+              <div class="card-body"><i class="fa fa-database fa-4x" ></i></div>
+              <div class="card-footer d-flex justify-content-center"><a class="small text-white stretched-link text-decoration-none fs-7 text-center" href="{{ route('datawbps.index') }}">Database WBP</a></div>
+            </div>
+          </div>
+         
         
         
         </div>

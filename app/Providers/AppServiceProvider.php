@@ -20,7 +20,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        //
+        // diisi ketika hosting di ngrok atau local
         // if (env('APP_ENV') !== 'local') {
         //     URL::forceScheme('https');
         // }

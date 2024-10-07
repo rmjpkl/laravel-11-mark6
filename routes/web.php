@@ -7,12 +7,13 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ApelController;
 use App\Http\Controllers\HomeController;
 use App\Http\Middleware\AdminMiddleware;
-use App\Http\Middleware\LogoutPreviousSessions;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\PointController;
+use App\Http\Controllers\DatawbpController;
 use App\Http\Controllers\TrollingController;
-use App\Http\Controllers\SpreadsheetController;
 use App\Http\Controllers\PelanggaranController;
+use App\Http\Controllers\SpreadsheetController;
+use App\Http\Middleware\LogoutPreviousSessions;
 
 /*
 |--------------------------------------------------------------------------
@@ -44,7 +45,7 @@ Route::middleware('auth')->group(function () {
     });
 
     Route::resource('/points', PointController::class);
-
+ 
     Route::controller(ApelController::class)->group(function () {
         Route::get('/apels', 'index')->name('apel');
         Route::post('/apels/store', 'store')->name('apels.store');
@@ -58,6 +59,7 @@ Route::middleware('auth')->group(function () {
     });
 
     Route::resource('/pelanggarans', PelanggaranController::class);
+    Route::resource('/datawbps', DatawbpController::class);
 });
 
 Route::get('/hash-passwords', function () {
