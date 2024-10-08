@@ -21,7 +21,7 @@
                     <div class="card-body">
                         <a href="{{ route('products.create') }}" class="btn btn-md btn-success mb-3">ADD PRODUCT</a>
                         <table class="table table-bordered">
-                            <thead>
+                            <thead class="table-dark">
                                 <tr>
                                     <th scope="col">IMAGE</th>
                                     <th scope="col">TITLE</th>

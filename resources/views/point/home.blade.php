@@ -59,7 +59,7 @@
                                         <i class="fas fa-file-excel"></i> Export Excel <!-- FontAwesome icon with label -->
                                     </button>
 
-                                    <thead>
+                                    <thead class="table-dark">
                                         <tr>
                                             <th scope="col">NAMA</th>
                                             <th scope="col">POINT</th>

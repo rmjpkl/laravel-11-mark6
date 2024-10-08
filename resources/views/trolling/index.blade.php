@@ -25,7 +25,7 @@
                                     >
                                     <a href="{{ route('trollings.create') }}" class="btn btn-md btn-success mb-5 btn-block"><i class="fa fa-map-marker"></i>
                                         ADD LAPORAN</a>
-                                    <thead>
+                                        <thead class="table-dark">
                                         <tr>
                                             <th scope="col">NAMA LOKASI</th>
                                             <th scope="col">TANGGAL</th>

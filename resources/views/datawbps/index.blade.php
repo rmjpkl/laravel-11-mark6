@@ -26,7 +26,7 @@
                                         width="100%"
                                     >
                                     <a href="{{ route('datawbps.create') }}" class="btn btn-md btn-success mb-5 btn-block">UPLOAD DATA WBP</a>
-                                    <thead>
+                                    <thead class="table-dark">
                                         <tr>
                                             <th scope="col">NAMA</th>
                                             <th scope="col">LOKASI</th>

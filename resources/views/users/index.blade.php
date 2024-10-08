@@ -27,7 +27,7 @@
                                         width="100%"
                                     >
                                     <a href="{{ route('users.create') }}" class="btn btn-md btn-dark mb-5 btn-block"><i class="fa fa-id-card" ></i> ADD LAPORAN</a>
-                                    <thead>
+                                    <thead class="table-dark">
                                         <tr>
                                             <th scope="col">NAMA</th>
                                             <th scope="col">USERNAME</th>

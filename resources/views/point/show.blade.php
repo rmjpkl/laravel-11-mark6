@@ -42,7 +42,7 @@
                             
 
                                     <table id="hasilTable" class="table table-striped table-bordered dt-responsive nowrap" >  
-                                        <thead>
+                                        <thead class="table-dark">
                                             <tr>
                                                 <th>PELANGGARAN</th>
                                                 <th>JUMLAH</th>
@@ -75,7 +75,7 @@
                                         cellspacing="0"
                                         width="100%"
                                     >
-                                    <thead>
+                                    <thead class="table-dark">
                                         <tr>
                                             <th scope="col">NAMA</th>
                                             <th scope="col">PELANGGARAN</th>

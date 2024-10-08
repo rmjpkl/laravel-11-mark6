@@ -27,7 +27,7 @@
                                         width="100%"
                                     >
                                     <a href="{{ route('pelanggarans.create') }}" class="btn btn-md btn-success mb-5 btn-block">ADD PELANGGARAN</a>
-                                    <thead>
+                                    <thead class="table-dark">
                                         <tr>
                                             <th scope="col">NAMA</th>
                                             <th scope="col">POINT</th>
