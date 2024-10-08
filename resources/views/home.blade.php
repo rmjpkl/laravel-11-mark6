@@ -15,14 +15,14 @@
             </div>
           </div>
 
-          {{-- @if (Auth::check() && Auth::user()->is_admin == 1) --}}
+          @if (Auth::check() && Auth::user()->is_admin == 1)
           <div class="col-6 col-sm-3">
             <div class="card bg-info text-white mb-4 text-center">
               <div class="card-body"><i class="fa fa-id-card fa-4x" ></i></div>
               <div class="card-footer d-flex justify-content-center"><a class="small text-white stretched-link text-decoration-none fs-7 text-center" href="{{ route('users.index') }}">Managemen User</a></div>
             </div>
           </div>
-          {{-- @endif --}}
+          @endif
 
 
           <div class="col-6 col-sm-3">
@@ -52,7 +52,9 @@
               <div class="card-footer d-flex justify-content-center"><a class="small text-white stretched-link text-decoration-none fs-7 text-center" href="{{ route('apel') }}">Apel Penghuni</a></div>
             </div>
           </div>
-        
+          
+
+          @if (Auth::check() && Auth::user()->is_admin == 1)
           <div class="col-6 col-sm-3">
             <div class="card bg-warning text-white mb-4 text-center">
               <div class="card-body"><i class="fa fa-tasks fa-4x" ></i></div>
@@ -67,6 +69,7 @@
               <div class="card-footer d-flex justify-content-center"><a class="small text-white stretched-link text-decoration-none fs-7 text-center" href="{{ route('datawbps.index') }}">Database WBP</a></div>
             </div>
           </div>
+          @endif
          
         
         
