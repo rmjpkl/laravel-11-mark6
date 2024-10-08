@@ -3,19 +3,16 @@
 @extends('master')
 
 @section('konten')
-    <div class="container mt-5">
+    <div class="container-fluid">
         <div>
             <h2 class="text-center my-5">Tabel Trolling</h2>
         </div>
-        <div class="row">
-            <div class="col-md-12">
                 <div class="card border-0 shadow-sm rounded">
                     <div class="card-body">
                         <head>
                             <meta charset="UTF-8">
                             <meta name="viewport" content="width=device-width, initial-scale=1.0">
                             {{-- mengimport cdn - cdn --}}
-
                            @include('cdntable')
                         </head>
 
@@ -26,7 +23,8 @@
                                         cellspacing="0"
                                         width="100%"
                                     >
-                                    <a href="{{ route('trollings.create') }}" class="btn btn-md btn-success mb-5 btn-block">ADD LAPORAN</a>
+                                    <a href="{{ route('trollings.create') }}" class="btn btn-md btn-success mb-5 btn-block"><i class="fa fa-map-marker-alt"></i>
+                                        ADD LAPORAN</a>
                                     <thead>
                                         <tr>
                                             <th scope="col">NAMA LOKASI</th>
@@ -90,11 +88,8 @@
                     </div>
                 </div>
             </div>
-        </div>
-    </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    
 
     <script>
         //message with sweetalert
