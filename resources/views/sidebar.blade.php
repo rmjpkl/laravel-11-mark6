@@ -43,6 +43,11 @@
                     Database WBP
                 </a>
                 @endif
+
+                <a class="nav-link" href="https://rmjpkl.github.io/astekpam2.github.io/">
+                    <div class="sb-nav-link-icon"><i class="fas fa-check-square"></i></div>
+                    Laporan Umum Ke Whatsapp
+                </a>
             </div>
         <div class="sb-sidenav-footer">
             <div class="small">Logged in as:</div>

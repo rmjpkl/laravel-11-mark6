@@ -70,6 +70,13 @@
             </div>
           </div>
           @endif
+
+          <div class="col-6 col-sm-3">
+            <div class="card bg-success text-white mb-4 text-center">
+              <div class="card-body"><i class="fa-brands fa-whatsapp fa-4x" ></i></div>
+              <div class="card-footer d-flex justify-content-center"><a class="small text-white stretched-link text-decoration-none fs-7 text-center" href="https://rmjpkl.github.io/astekpam2.github.io/">Laporan Umum Ke Whatsapp</a></div>
+            </div>
+          </div>
          
         
         
