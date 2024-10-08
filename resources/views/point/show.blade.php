@@ -18,7 +18,7 @@
     <div class="container mt-5">
         <div id="printableArea">
         <div>
-            <h2 class="text-center my-5">Hasil Perhitungan Pelanggaran <a href="#" class="fa fa-print" onclick="printSection()"> Print Section</a></h2> 
+            <h2 class="text-center my-5">Hasil Perhitungan Pelanggaran dua bulan terkahir <a href="#" class="fa fa-print" onclick="printSection()"> Print Section</a></h2> 
        </div>
         <div class="row">
             <div class="col-md-12">
@@ -34,7 +34,14 @@
                             
 
                                 <h2 id="namaPelanggar"></h2>
-                                    <table id="hasilTable" class="table table-striped table-bordered dt-responsive nowrap">  
+                                
+
+                                <div class="progress mb-4">
+                                    <div id="progressBar" class="progress-bar bg-danger" style="width:0%"><div id="textprogressBar"></div></div>
+                                </div>
+                            
+
+                                    <table id="hasilTable" class="table table-striped table-bordered dt-responsive nowrap" >  
                                         <thead>
                                             <tr>
                                                 <th>PELANGGARAN</th>
@@ -57,6 +64,7 @@
                                             </tr>
                                         </tfoot>
                                     </table>
+                                    
 
                                 
 
@@ -196,6 +204,14 @@
                         
                                 // Tampilkan penilaian
                                 document.getElementById('penilaian').innerText = penilaian;
+
+                                //progress bar
+                                let progressValue = grandTotal;
+                                // let progressValue = 150;
+                                document.getElementById('progressBar').style.width = progressValue + '%';
+
+                                //keterangan progress bar
+                                document.getElementById('textprogressBar').innerText = progressValue + '%';
                             </script>
                 
 

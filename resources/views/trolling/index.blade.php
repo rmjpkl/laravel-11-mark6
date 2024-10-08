@@ -23,7 +23,7 @@
                                         cellspacing="0"
                                         width="100%"
                                     >
-                                    <a href="{{ route('trollings.create') }}" class="btn btn-md btn-success mb-5 btn-block"><i class="fa fa-map-marker-alt"></i>
+                                    <a href="{{ route('trollings.create') }}" class="btn btn-md btn-success mb-5 btn-block"><i class="fa fa-map-marker"></i>
                                         ADD LAPORAN</a>
                                     <thead>
                                         <tr>
