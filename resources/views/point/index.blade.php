@@ -26,7 +26,7 @@
                                         cellspacing="0"
                                         width="100%"
                                     >
-                                    <thead>
+                                    <thead class="table-dark">
                                         <tr>
                                             <th scope="col">NAMA</th>
                                             <th scope="col">POINT</th>

@@ -80,10 +80,8 @@
                                             <th scope="col">NAMA</th>
                                             <th scope="col">PELANGGARAN</th>
                                             <th scope="col">POINT</th>
-                                            {{-- <th scope="col">TOTAL</th> --}}
                                             <th scope="col">TANGGAL</th>
                                             <th scope="col">RUPAM</th>
-                                            <th scope="col" style="width: 20%">ACTIONS</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -92,24 +90,9 @@
                                                 <td>{{ $point->nama }}</td>
                                                 <td>{{ $point->pelanggaran->name }}</td>
                                                 <td>{{ $point->pelanggaran->point }}</td>
-                                                {{-- <td>{{ $point->total }}</td> --}}
                                                 <td>{{ $point->created_at }}</td>
                                                 <td>{{ $point->rupam }}</td>
-                                                <td class="text-center">
-                                                    <form onsubmit="return confirm('Apakah Anda Yakin ?');" action="{{ route('points.destroy', $point->id) }}" method="POST">
-                                                        <a href="{{ route('points.show', $point->nama) }}" class="btn btn-sm btn-primary">
-                                                            <i class="fas fa-eye"></i> <!-- FontAwesome icon for 'show' -->
-                                                        </a>
-                                                        @csrf
-                                                        @method('DELETE')
-                                                        {{-- @if (Auth::check() && Auth::user()->is_admin == 1) --}}
-                                                        <button type="submit" class="btn btn-sm btn-danger">
-                                                            <i class="fas fa-trash-alt"></i> <!-- FontAwesome icon for 'delete' -->
-                                                        </button>
-                                                        {{-- @endif --}}
-                                                    </form>
-
-                                                </td>
+                                                
                                             </tr>
                                         @empty
                                             <div class="alert alert-danger">
@@ -222,9 +205,11 @@
                                     // rowReorder: {
                                     //   selector: "td:nth-child(2)",
                                     // },
-                                    order: [[2, "desc"]],
+                                    order: [[3, "desc"]],
+                                    pageLength: 50,
                                     // order: [[2, "asc"]],
                                     // dom: "Blfrtip", // Add 'l' to include the length change control
+                                    dom: "s"
                                     // buttons: ["copy", "csv", "excel", "pdf", "print"],
                                   });
                                 });
