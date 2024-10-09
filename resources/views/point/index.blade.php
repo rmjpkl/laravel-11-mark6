@@ -22,7 +22,7 @@
                                 <a href="{{ route('points.create') }}" class="btn btn-md btn-danger mb-5 btn-block">ADD DATA PELANGGARAN</a>
                                 <table
                                         id="example"
-                                        class="table table-striped table-bordered dt-responsive nowrap"
+                                        class="table table-striped table-bordered dt-responsive wrap"
                                         cellspacing="0"
                                         width="100%"
                                     >
