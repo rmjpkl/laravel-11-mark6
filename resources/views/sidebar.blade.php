@@ -48,6 +48,11 @@
                     <div class="sb-nav-link-icon"><i class="fas fa-check-square"></i></div>
                     Laporan Umum Ke Whatsapp
                 </a>
+
+                <a class="nav-link" href="{{route('penggeledahans.index')}}">
+                    <div class="sb-nav-link-icon"><i class="fas fa-search"></i></div>
+                    Penggeledahan
+                </a>
             </div>
         <div class="sb-sidenav-footer">
             <div class="small">Logged in as:</div>

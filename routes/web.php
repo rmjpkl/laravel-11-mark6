@@ -12,6 +12,7 @@ use App\Http\Controllers\PointController;
 use App\Http\Controllers\DatawbpController;
 use App\Http\Controllers\TrollingController;
 use App\Http\Controllers\PelanggaranController;
+use App\Http\Controllers\PenggeledahanController;
 use App\Http\Controllers\SpreadsheetController;
 use App\Http\Middleware\LogoutPreviousSessions;
 
@@ -45,6 +46,7 @@ Route::middleware('auth')->group(function () {
     });
 
     Route::resource('/points', PointController::class);
+    Route::resource('/penggeledahans', PenggeledahanController::class);
  
     Route::controller(ApelController::class)->group(function () {
         Route::get('/apels', 'index')->name('apel');

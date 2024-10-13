@@ -1,10 +1,9 @@
-
 @extends('master')
 
 @section('konten')
     <div class="container-fluid">
         <div>
-            <h2 class="text-center my-5">Tabel Trolling</h2>
+            <h2 class="text-center my-5">Tabel penggeledahan</h2>
         </div>
                 <div class="card border-0 shadow-sm rounded">
                     <div class="card-body">
@@ -18,35 +17,42 @@
                             <div style="overflow-x:auto;">
                                 <table
                                         id="example"
-                                        class="table table-striped table-bordered dt-responsive nowrap"
+                                        class="table table-striped table-bordered dt-responsive"
                                         cellspacing="0"
                                         width="100%"
                                     >
-                                    <a href="{{ route('trollings.create') }}" class="btn btn-md btn-success mb-5 btn-block"><i class="fa fa-map-marker"></i>
-                                        ADD LAPORAN</a>
+                                    <a href="{{ route('penggeledahans.create') }}" class="btn btn-md btn-success mb-5 btn-block"><i class="fa fa-search"></i>
+                                        ADD LAPORAN PENGGELEDAHAN</a>
                                         <thead class="table-dark">
                                         <tr>
-                                            <th scope="col">NAMA LOKASI</th>
-                                            <th scope="col">TANGGAL</th>
-                                            <th scope="col">JAM</th>
-                                            <th scope="col">RUPAM</th>
-                                            <th scope="col">PETUGAS</th>
-                                            {{-- <th scope="col">KOORDINAT</th> --}}
+                                            <th scope="col">Blok</th>
+                                            <th scope="col">Kamar</th>
+                                            <th scope="col">Tanggal</th>
+                                            <th scope="col">Jam</th>
+                                            <th scope="col">Rupam</th>
+                                            <th scope="col">Sajam</th></th>
+                                            <th scope="col">Hp</th>
+                                            <th scope="col">Narkoba</th>
+                                            <th scope="col">Hasil_razia</th>
                                             <th scope="col" style="width: 20%">ACTIONS</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @forelse ($trollings as $trolling)
+                                        @forelse ($Penggeledahans as $penggeledahan)
                                             <tr>
-                                                <td>{{ $trolling->nama_lokasi }}</td>
-                                                <td>{{ $trolling->tanggal }}</td>
-                                                <td>{{ $trolling->jam }}</td>
-                                                <td>{{ $trolling->rupam }}</td>
-                                                <td>{{ $trolling->petugas }}</td>
-                                                {{-- <td>{{ $trolling->koordinat }}</td> --}}
+                                                <td>{{ $penggeledahan->blok }}</td>
+                                                <td>{{ $penggeledahan->kamar }}</td>
+                                                <td>{{ $penggeledahan->tanggal }}</td>
+                                                <td>{{ $penggeledahan->jam_mualia }} s/d {{ $penggeledahan->jam_akhir }} </td>
+                                                <td>{{ $penggeledahan->rupam }}</td>
+                                                <td>{{ $penggeledahan->sajam }}</td>
+                                                <td>{{ $penggeledahan->hp }}</td>
+                                                <td>{{ $penggeledahan->narkoba }}</td>
+                                                <td>{{ $penggeledahan->hasil_razia }}</td>
+                                                {{-- <td>{{ $penggeledahan->koordinat }}</td> --}}
                                                 <td class="text-center">
-                                                    <form onsubmit="return confirm('Apakah Anda Yakin ?');" action="{{ route('trollings.destroy', $trolling->id) }}" method="POST">
-                                                        <a href="{{ route('trollings.show', $trolling->id) }}" class="btn btn-sm btn-primary">
+                                                    <form onsubmit="return confirm('Apakah Anda Yakin ?');" action="{{ route('penggeledahans.destroy', $penggeledahan->id) }}" method="POST">
+                                                        <a href="{{ route('penggeledahans.show', $penggeledahan->id) }}" class="btn btn-sm btn-primary">
                                                             <i class="fas fa-eye"></i> <!-- FontAwesome icon for 'show' -->
                                                         </a>
                                                         @csrf
@@ -62,7 +68,7 @@
                                             </tr>
                                         @empty
                                             <div class="alert alert-danger">
-                                                Data trollings belum Tersedia.
+                                                Data penggeledahans belum Tersedia.
                                             </div>
                                         @endforelse
                                     </tbody>
@@ -83,7 +89,7 @@
                                 });
                               </script>
 
-                        {{-- {{ $trollings->links() }} --}}
+                        {{-- {{ $penggeledahans->links() }} --}}
                     </div>
                 </div>
             </div>
