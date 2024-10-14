@@ -1,7 +1,7 @@
-{{-- @dd($datas) --}}
 @extends('master')
 
 @section('konten')
+
 <head>
     <script src='https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js'></script>
 
@@ -14,13 +14,12 @@
 
 <div class="container mt-5">
     <div>
-        <h2 class="text-center my-5">Tabel Data WBP</h2>
+        <h2 class="text-center my-4">Tambah Laporan Penggelehan</h2>
     </div>
     <div class="row">
         <div class="col-md-12">
             <div class="card border-0 shadow-sm rounded">
                 <div class="card-body">
-           <h1 class="mt-4">Tambah Laporan Penggelehan</h1>
                 <form action="{{ route('points.store') }}" method="POST" enctype="multipart/form-data">
 
                     @csrf
@@ -53,9 +52,9 @@
                             </div>
                         @enderror
                     </div>
-                    
 
-                   
+
+
                     <div class="form-group mb-3">
                         <label class="font-weight-bold">kamar</label>
                         <input type="text" class="form-control @error('kamar') is-invalid @enderror" name="kamar" value="{{ old('kamar') }}" placeholder="ex: Kamar 1 dan 2">
@@ -87,7 +86,7 @@
                                             var year = date.getFullYear();
                                             return `${day} ${month} ${year}`;
                                         }
-                    
+
                                         $('#hari').datepicker({
                                             format: 'DD',
                                             language: 'id',
@@ -114,49 +113,62 @@
                             </div>
                         </div>
                     </div>
-                    
-                    
-                    
-                    
-                    
 
-                   
+
+
+
+
+
+
                     <div class="row">
                         <div class="col-md-6">
-                    <div class="form-group mb-3">
-                        <label class="font-weight-bold">jam_mulai</label>
-                        <input type="time" class="form-control @error('jam_mulai') is-invalid @enderror" name="jam_mulai" value="{{ old('jam_mulai') }}" placeholder="Masukkan Judul Product">
-
-                        <!-- error message untuk jam_mulai -->
-                        @error('jam_mulai')
-                            <div class="alert alert-danger mt-2">
-                                {{ $message }}
+                            <div class="form-group mb-3">
+                                <label class="font-weight-bold">jam_mulai</label>
+                                <input type="time" id="jam_mulai" class="form-control @error('jam_mulai') is-invalid @enderror" name="jam_mulai" value="{{ old('jam_mulai') }}" placeholder="Masukkan Judul Product">
+                                <!-- error message untuk jam_mulai -->
+                                @error('jam_mulai')
+                                    <div class="alert alert-danger mt-2">
+                                        {{ $message }}
+                                    </div>
+                                @enderror
                             </div>
-                        @enderror
-                    </div>
-                </div>
-                <div class="col-md-6">
-
-                   
-                    <div class="form-group mb-3">
-                        <label class="font-weight-bold">jam_akhir</label>
-                        <input type="time" class="form-control @error('jam_akhir') is-invalid @enderror" name="jam_akhir" value="{{ old('jam_akhir') }}" placeholder="Masukkan Judul Product">
-
-                        <!-- error message untuk jam_akhir -->
-                        @error('jam_akhir')
-                            <div class="alert alert-danger mt-2">
-                                {{ $message }}
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group mb-3">
+                                <label class="font-weight-bold">jam_akhir</label>
+                                <input type="time" id="jam_akhir" class="form-control @error('jam_akhir') is-invalid @enderror" name="jam_akhir" value="{{ old('jam_akhir') }}" placeholder="Masukkan Judul Product">
+                                <!-- error message untuk jam_akhir -->
+                                @error('jam_akhir')
+                                    <div class="alert alert-danger mt-2">
+                                        {{ $message }}
+                                    </div>
+                                @enderror
                             </div>
-                        @enderror
+                        </div>
                     </div>
 
-                </div>
-            </div>
+                    <script>
+                        window.onload = function() {
+                            const now = new Date();
 
-                   
+                            const offset = now.getTimezoneOffset();
+                            now.setMinutes(now.getMinutes() - offset);
+
+                            const jamAkhir = now.toISOString().substring(11, 16);
+
+                            now.setMinutes(now.getMinutes() - 18);
+                            const jamMulai = now.toISOString().substring(11, 16);
+
+                            document.getElementById('jam_mulai').value = jamMulai;
+                            document.getElementById('jam_akhir').value = jamAkhir;
+                        }
+                    </script>
+
+
+
                     <div class="form-group mb-3">
                         <label class="font-weight-bold">petugas</label>
-                        <input type="text" class="form-control @error('petugas') is-invalid @enderror" name="petugas" value="{{ old('petugas') }}" placeholder="Masukkan Judul Product">
+                        <input type="text" class="form-control @error('petugas') is-invalid @enderror" name="petugas" value="Ka.Rupam , Waka.Rupam, Anggota Jaga" placeholder="Masukkan Judul Product">
 
                         <!-- error message untuk petugas -->
                         @error('petugas')
@@ -166,10 +178,10 @@
                         @enderror
                     </div>
 
-                   
+
                     <div class="form-group mb-3">
                         <label class="font-weight-bold">sajam</label>
-                        <input type="text" class="form-control @error('sajam') is-invalid @enderror" name="sajam" value="{{ old('sajam') }}" placeholder="Masukkan Judul Product">
+                        <input type="text" class="form-control @error('sajam') is-invalid @enderror" id="sajam" name="sajam" value="NIHIL" placeholder="Masukkan Judul Product">
 
                         <!-- error message untuk sajam -->
                         @error('sajam')
@@ -179,10 +191,10 @@
                         @enderror
                     </div>
 
-                   
+
                     <div class="form-group mb-3">
                         <label class="font-weight-bold">hp</label>
-                        <input type="text" class="form-control @error('hp') is-invalid @enderror" name="hp" value="{{ old('hp') }}" placeholder="Masukkan Judul Product">
+                        <input type="text" class="form-control @error('hp') is-invalid @enderror" id="hp" name="hp" value="NIHIL" placeholder="Masukkan Judul Product">
 
                         <!-- error message untuk hp -->
                         @error('hp')
@@ -192,10 +204,10 @@
                         @enderror
                     </div>
 
-                   
+
                     <div class="form-group mb-3">
                         <label class="font-weight-bold">narkoba</label>
-                        <input type="text" class="form-control @error('narkoba') is-invalid @enderror" name="narkoba" value="{{ old('narkoba') }}" placeholder="Masukkan Judul Product">
+                        <input type="text" class="form-control @error('narkoba') is-invalid @enderror" id="narkoba" name="narkoba" value="NIHIL" placeholder="Masukkan Judul Product">
 
                         <!-- error message untuk narkoba -->
                         @error('narkoba')
@@ -205,20 +217,32 @@
                         @enderror
                     </div>
 
-                   
+
                     <div class="form-group mb-3">
                         <label class="font-weight-bold">hasil_razia</label>
-                        <input type="text" class="form-control @error('hasil_razia') is-invalid @enderror" name="hasil_razia" value="{{ old('hasil_razia') }}" placeholder="Masukkan Judul Product">
-
+                        <textarea class="form-control @error('hasil_razia') is-invalid @enderror" name="hasil_razia" placeholder="Masukkan hasil razia">{{ old('hasil_razia') }}</textarea>
                         <!-- error message untuk hasil_razia -->
                         @error('hasil_razia')
                             <div class="alert alert-danger mt-2">
                                 {{ $message }}
                             </div>
                         @enderror
+
+                        <script>
+                            function getKeterangan() {
+                            var inputNilai = document.getElementById("narkoba").value;
+                            if (sajam == "NIHIL" || hp == "NIHIL" || narkoba == "NIHIL") {
+                                document.getElementById("hasil_razia").innerHTML = "1 Tidak ada barang bukti hasil razia/ sidak dan pemeriksaan instalasi listrik diinventarisir dan didata. 2. Tidak ada barang bukti hasil razia/ sidak dan pemeriksaan instalasi listrik diamankan / dimusnahkan.";
+                            } else {
+                                document.getElementById("hasil_razia").innerHTML =  "1.Barang bukti hasil razia/ sidak dan pemeriksaan instalasi listrik diinventarisir dan didata. 2. Barang bukti hasil razia/ sidak dan pemeriksaan instalasi listrik diamankan / dimusnahkan.";
+                            }
+                            }
+                        </script>
+
                     </div>
 
-                  
+
+
                     <div class="form-group mb-3">
                         <label class="font-weight-bold">image_1</label>
                         <input type="file" class="form-control @error('image_1') is-invalid @enderror" name="image_1">
@@ -262,7 +286,7 @@
                                 {{ $message }}
                             </div>
                         @enderror
- 
+
                 <button type="submit" class="btn btn-md btn-primary me-3 mt-3">SAVE</button>
                 <button type="reset" class="btn btn-md btn-warning mt-3">RESET</button>
         </form>
