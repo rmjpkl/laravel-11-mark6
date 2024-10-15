@@ -51,30 +51,66 @@ class PenggeledahanController extends Controller
      */
     public function store(Request $request): RedirectResponse
     {
+        // dd($request);
         //validate form
         $request->validate([
-            'image'         => 'required|image|mimes:jpeg,jpg,png|max:2048',
-            'title'         => 'required|min:5',
-            'description'   => 'required|min:10',
-            'price'         => 'required|numeric',
-            'stock'         => 'required|numeric'
+            'rupam'                      => 'required',
+            'blok'                       => 'required',
+            'kamar'                      => 'required',
+            'hari'                       => 'required',
+            'tanggal'                    => 'required',
+            'jam_mulai'                  => 'required',
+            'jam_akhir'                  => 'required',
+            'petugas'                    => 'required',
+            'sajam'                      => 'required',
+            'hp'                         => 'required',
+            'narkoba'                    => 'required',
+            'hasil_razia'                => 'required',
+            'image_1_compressed'         => 'required|string',
+            'image_2_compressed'         => 'required|string',
+            'image_3_compressed'         => 'required|string',
+            'image_4_compressed'         => 'required|string',
         ]);
 
-        //upload image
-        $image = $request->file('image');
-        $image->storeAs('public/Penggeledahans', $image->hashName());
+        // Function to store the base64 image
+        function storeBase64Image($base64Image, $path) {
+            $image_parts = explode(";base64,", $base64Image);
+            $image_type_aux = explode("image/", $image_parts[0]);
+            $image_type = $image_type_aux[1];
+            $image_base64 = base64_decode($image_parts[1]);
+            $fileName = uniqid() . '.'.$image_type;
+            Storage::put($path . '/' . $fileName, $image_base64);
+            return $fileName;
+        }
 
-        //create Penggeledahan
+        // Save compressed images
+        $image1 = storeBase64Image($request->input('image_1_compressed'), 'public/Penggeledahans');
+        $image2 = storeBase64Image($request->input('image_2_compressed'), 'public/Penggeledahans');
+        $image3 = storeBase64Image($request->input('image_3_compressed'), 'public/Penggeledahans');
+        $image4 = storeBase64Image($request->input('image_4_compressed'), 'public/Penggeledahans');
+
+        // Create Penggeledahan
         Penggeledahan::create([
-            'image'         => $image->hashName(),
-            'title'         => $request->title,
-            'description'   => $request->description,
-            'price'         => $request->price,
-            'stock'         => $request->stock
+            'image_1'         => $image1,
+            'image_2'         => $image2,
+            'image_3'         => $image3,
+            'image_4'         => $image4,
+            'rupam'           => $request->rupam,
+            'blok'            => $request->blok,
+            'kamar'           => $request->kamar,
+            'hari'            => $request->hari,
+            'tanggal'         => $request->tanggal,
+            'jam_mulai'       => $request->jam_mulai,
+            'jam_akhir'       => $request->jam_akhir,
+            'petugas'         => $request->petugas,
+            'sajam'           => $request->sajam,
+            'hp'              => $request->hp,
+            'narkoba'         => $request->narkoba,
+            'hasil_razia'     => $request->hasil_razia
         ]);
 
-        //redirect to index
-        return redirect()->route('Penggeledahans.index')->with(['success' => 'Data Berhasil Disimpan!']);
+        // Redirect to index
+        return redirect()->route('penggeledahans.index')->with(['success' => 'Data Berhasil Disimpan!']);
     }
 
     /**

@@ -20,7 +20,7 @@
         <div class="col-md-12">
             <div class="card border-0 shadow-sm rounded">
                 <div class="card-body">
-                <form action="{{ route('points.store') }}" method="POST" enctype="multipart/form-data">
+                <form action="{{ route('penggeledahans.store') }}" method="POST" enctype="multipart/form-data">
 
                     @csrf
                     <div class="form-group mb-3">
