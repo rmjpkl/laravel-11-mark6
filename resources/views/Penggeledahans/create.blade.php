@@ -36,7 +36,7 @@
                     </div>
 
                     <div class="form-group mb-3">
-                        <label class="font-weight-bold">blok</label>
+                        <label class="font-weight-bold">Blok</label>
                         <select class="form-control @error('blok') is-invalid @enderror" name="blok" id="blok">
                             <option value="">Pilih Blok</option>
                             <option value="Wisma Anggrek" {{ old('blok') == 'Wisma Anggrek' ? 'selected' : '' }}>Wisma Anggrek</option>
@@ -56,7 +56,7 @@
 
 
                     <div class="form-group mb-3">
-                        <label class="font-weight-bold">kamar</label>
+                        <label class="font-weight-bold">Kamar</label>
                         <input type="text" class="form-control @error('kamar') is-invalid @enderror" name="kamar" value="{{ old('kamar') }}" placeholder="ex: Kamar 1 dan 2">
 
                         <!-- error message untuk kamar -->
@@ -71,7 +71,7 @@
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group mb-3">
-                                <label class="font-weight-bold">hari</label>
+                                <label class="font-weight-bold">Hari</label>
                                 <input type="text" class="form-control @error('hari') is-invalid @enderror" id="hari" name="hari" value="{{ old('hari') }}" placeholder="Masukkan Judul Product">
                                 @error('hari')
                                     <div class="alert alert-danger mt-2">
@@ -103,7 +103,7 @@
                         </div>
                         <div class="col-md-6">
                             <div class="form-group mb-3">
-                                <label class="font-weight-bold">tanggal</label>
+                                <label class="font-weight-bold">Tanggal</label>
                                 <input type="text" class="form-control @error('tanggal') is-invalid @enderror" id="tanggal" name="tanggal" value="{{ old('tanggal') }}" placeholder="Masukkan Judul Product" readonly>
                                 @error('tanggal')
                                     <div class="alert alert-danger mt-2">
@@ -123,7 +123,7 @@
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group mb-3">
-                                <label class="font-weight-bold">jam_mulai</label>
+                                <label class="font-weight-bold">Jam Mulai</label>
                                 <input type="time" id="jam_mulai" class="form-control @error('jam_mulai') is-invalid @enderror" name="jam_mulai" value="{{ old('jam_mulai') }}" placeholder="Masukkan Judul Product">
                                 <!-- error message untuk jam_mulai -->
                                 @error('jam_mulai')
@@ -135,7 +135,7 @@
                         </div>
                         <div class="col-md-6">
                             <div class="form-group mb-3">
-                                <label class="font-weight-bold">jam_akhir</label>
+                                <label class="font-weight-bold">Jam Akhir</label>
                                 <input type="time" id="jam_akhir" class="form-control @error('jam_akhir') is-invalid @enderror" name="jam_akhir" value="{{ old('jam_akhir') }}" placeholder="Masukkan Judul Product">
                                 <!-- error message untuk jam_akhir -->
                                 @error('jam_akhir')
@@ -167,7 +167,7 @@
 
 
                     <div class="form-group mb-3">
-                        <label class="font-weight-bold">petugas</label>
+                        <label class="font-weight-bold">Petugas</label>
                         <input type="text" class="form-control @error('petugas') is-invalid @enderror" name="petugas" value="Ka.Rupam , Waka.Rupam, Anggota Jaga" placeholder="Masukkan Judul Product">
 
                         <!-- error message untuk petugas -->
@@ -180,7 +180,7 @@
 
 
                     <div class="form-group mb-3">
-                        <label class="font-weight-bold">sajam</label>
+                        <label class="font-weight-bold">Sajam</label>
                         <input type="text" class="form-control @error('sajam') is-invalid @enderror" id="sajam" name="sajam" value="NIHIL" placeholder="Masukkan Judul Product">
 
                         <!-- error message untuk sajam -->
@@ -193,7 +193,7 @@
 
 
                     <div class="form-group mb-3">
-                        <label class="font-weight-bold">hp</label>
+                        <label class="font-weight-bold">HP</label>
                         <input type="text" class="form-control @error('hp') is-invalid @enderror" id="hp" name="hp" value="NIHIL" placeholder="Masukkan Judul Product">
 
                         <!-- error message untuk hp -->
@@ -206,7 +206,7 @@
 
 
                     <div class="form-group mb-3">
-                        <label class="font-weight-bold">narkoba</label>
+                        <label class="font-weight-bold">Narkoba</label>
                         <input type="text" class="form-control @error('narkoba') is-invalid @enderror" id="narkoba" name="narkoba" value="NIHIL" placeholder="Masukkan Judul Product">
 
                         <!-- error message untuk narkoba -->
@@ -219,7 +219,7 @@
 
 
                     <div class="form-group mb-3">
-                        <label class="font-weight-bold">hasil_razia</label>
+                        <label class="font-weight-bold">Hasil Razia</label>
                         <textarea class="form-control @error('hasil_razia') is-invalid @enderror" name="hasil_razia" placeholder="Masukkan hasil razia">{{ old('hasil_razia') }}</textarea>
                         <!-- error message untuk hasil_razia -->
                         @error('hasil_razia')
@@ -244,7 +244,7 @@
 
 
                     <div class="form-group mb-3">
-                        <label class="font-weight-bold">image_1</label>
+                        <label class="font-weight-bold">Foto 1</label>
                         <input type="file" class="form-control @error('image_1') is-invalid @enderror" name="image_1">
 
                         <!-- error message untuk image_1 -->
@@ -255,7 +255,7 @@
                         @enderror
                     </div>
                     <div class="form-group mb-3">
-                        <label class="font-weight-bold">image_2</label>
+                        <label class="font-weight-bold">Foto 2</label>
                         <input type="file" class="form-control @error('image_2') is-invalid @enderror" name="image_2">
 
                         <!-- error message untuk image_2 -->
@@ -266,7 +266,7 @@
                         @enderror
                     </div>
                     <div class="form-group mb-3">
-                        <label class="font-weight-bold">image_3</label>
+                        <label class="font-weight-bold">Foto 3</label>
                         <input type="file" class="form-control @error('image_3') is-invalid @enderror" name="image_3">
 
                         <!-- error message untuk image_3 -->
@@ -277,7 +277,7 @@
                         @enderror
                     </div>
                     <div class="form-group mb-3">
-                        <label class="font-weight-bold">image_4</label>
+                        <label class="font-weight-bold">Foto 4</label>
                         <input type="file" class="form-control @error('image_4') is-invalid @enderror" name="image_4">
 
                         <!-- error message untuk image_4 -->
