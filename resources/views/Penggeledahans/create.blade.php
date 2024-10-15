@@ -220,7 +220,7 @@
 
                     <div class="form-group mb-3">
                         <label class="font-weight-bold">Hasil Razia</label>
-                        <textarea class="form-control @error('hasil_razia') is-invalid @enderror" name="hasil_razia" placeholder="Masukkan hasil razia">{{ old('hasil_razia') }}</textarea>
+                        <textarea class="form-control @error('hasil_razia') is-invalid @enderror" name="hasil_razia" placeholder="Masukkan hasil razia">NIHIL</textarea>
                         <!-- error message untuk hasil_razia -->
                         @error('hasil_razia')
                             <div class="alert alert-danger mt-2">
@@ -243,49 +243,93 @@
 
 
 
-                    <div class="form-group mb-3">
-                        <label class="font-weight-bold">Foto 1</label>
-                        <input type="file" class="form-control @error('image_1') is-invalid @enderror" name="image_1">
+                        <div class="form-group mb-3">
+                            <label class="font-weight-bold">Foto 1</label>
+                            <input type="file" class="form-control @error('image_1') is-invalid @enderror" name="image_1" id="image_1">
+                            <div id="imagePreview1" class="mt-3"></div>
+                            @error('image_1')
+                                <div class="alert alert-danger mt-2">
+                                    {{ $message }}
+                                </div>
+                            @enderror
+                        </div>
+                        <div class="form-group mb-3">
+                            <label class="font-weight-bold">Foto 2</label>
+                            <input type="file" class="form-control @error('image_2') is-invalid @enderror" name="image_2" id="image_2">
+                            <div id="imagePreview2" class="mt-3"></div>
+                            @error('image_2')
+                                <div class="alert alert-danger mt-2">
+                                    {{ $message }}
+                                </div>
+                            @enderror
+                        </div>
+                        <div class="form-group mb-3">
+                            <label class="font-weight-bold">Foto 3</label>
+                            <input type="file" class="form-control @error('image_3') is-invalid @enderror" name="image_3" id="image_3">
+                            <div id="imagePreview3" class="mt-3"></div>
+                            @error('image_3')
+                                <div class="alert alert-danger mt-2">
+                                    {{ $message }}
+                                </div>
+                            @enderror
+                        </div>
+                        <div class="form-group mb-3">
+                            <label class="font-weight-bold">Foto 4</label>
+                            <input type="file" class="form-control @error('image_4') is-invalid @enderror" name="image_4" id="image_4">
+                            <div id="imagePreview4" class="mt-3"></div>
+                            @error('image_4')
+                                <div class="alert alert-danger mt-2">
+                                    {{ $message }}
+                                </div>
+                            @enderror
+                        </div>
+                        <input type="hidden" name="image_1_compressed" id="image_1_compressed">
+                        <input type="hidden" name="image_2_compressed" id="image_2_compressed">
+                        <input type="hidden" name="image_3_compressed" id="image_3_compressed">
+                        <input type="hidden" name="image_4_compressed" id="image_4_compressed">
 
-                        <!-- error message untuk image_1 -->
-                        @error('image_1')
-                            <div class="alert alert-danger mt-2">
-                                {{ $message }}
-                            </div>
-                        @enderror
-                    </div>
-                    <div class="form-group mb-3">
-                        <label class="font-weight-bold">Foto 2</label>
-                        <input type="file" class="form-control @error('image_2') is-invalid @enderror" name="image_2">
+                <script>
+                    function previewImage(inputId, previewId) {
+                        document.getElementById(inputId).addEventListener('change', function() {
+                            const file = this.files[0];
+                            if (file) {
+                                const reader = new FileReader();
+                                reader.onload = async function(event) {
+                                    const compressedDataUrl = await compressImage(event.target.result);
+                                    const imgElement = document.createElement('img');
+                                    imgElement.src = compressedDataUrl;
+                                    imgElement.style.maxWidth = '300px';
+                                    document.getElementById(previewId).innerHTML = '';
+                                    document.getElementById(previewId).appendChild(imgElement);
 
-                        <!-- error message untuk image_2 -->
-                        @error('image_2')
-                            <div class="alert alert-danger mt-2">
-                                {{ $message }}
-                            </div>
-                        @enderror
-                    </div>
-                    <div class="form-group mb-3">
-                        <label class="font-weight-bold">Foto 3</label>
-                        <input type="file" class="form-control @error('image_3') is-invalid @enderror" name="image_3">
+                                    document.getElementById(inputId + '_compressed').value = compressedDataUrl;
+                                }
+                                reader.readAsDataURL(file);
+                            }
+                        });
+                    }
 
-                        <!-- error message untuk image_3 -->
-                        @error('image_3')
-                            <div class="alert alert-danger mt-2">
-                                {{ $message }}
-                            </div>
-                        @enderror
-                    </div>
-                    <div class="form-group mb-3">
-                        <label class="font-weight-bold">Foto 4</label>
-                        <input type="file" class="form-control @error('image_4') is-invalid @enderror" name="image_4">
+                    function compressImage(dataUrl, quality = 0.7) {
+                        const canvas = document.createElement('canvas');
+                        const img = new Image();
+                        img.src = dataUrl;
+                        return new Promise((resolve) => {
+                            img.onload = () => {
+                                canvas.width = img.width * quality;
+                                canvas.height = img.height * quality;
+                                const ctx = canvas.getContext('2d');
+                                ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+                                resolve(canvas.toDataURL('image/jpeg', quality));
+                            };
+                        });
+                    }
 
-                        <!-- error message untuk image_4 -->
-                        @error('image_4')
-                            <div class="alert alert-danger mt-2">
-                                {{ $message }}
-                            </div>
-                        @enderror
+                    previewImage('image_1', 'imagePreview1');
+                    previewImage('image_2', 'imagePreview2');
+                    previewImage('image_3', 'imagePreview3');
+                    previewImage('image_4', 'imagePreview4');
+                </script>
+
 
                 <button type="submit" class="btn btn-md btn-primary me-3 mt-3">SAVE</button>
                 <button type="reset" class="btn btn-md btn-warning mt-3">RESET</button>
