@@ -48,8 +48,10 @@
                                                 <td>{{ $penggeledahan->sajam }}</td>
                                                 <td>{{ $penggeledahan->hp }}</td>
                                                 <td>{{ $penggeledahan->narkoba }}</td>
-                                                <td>{{ $penggeledahan->hasil_razia }}</td>
-                                                {{-- <td>{{ $penggeledahan->koordinat }}</td> --}}
+                                                <td class="text-center">
+                                                    <img src="{{ asset('/storage/Penggeledahans/'.$penggeledahan->image_1) }}" class="rounded" style="width: 150px">
+                                                </td>
+                                                {{-- <td>{{ $penggeledahan->hasil_razia }}</td> --}}
                                                 <td class="text-center">
                                                     <form onsubmit="return confirm('Apakah Anda Yakin ?');" action="{{ route('penggeledahans.destroy', $penggeledahan->id) }}" method="POST">
                                                         <a href="{{ route('penggeledahans.show', $penggeledahan->id) }}" class="btn btn-sm btn-primary">
@@ -94,7 +96,7 @@
                 </div>
             </div>
 
-    
+
 
     <script>
         //message with sweetalert

@@ -209,13 +209,17 @@ class PenggeledahanController extends Controller
         //get Penggeledahan by ID
         $Penggeledahan = Penggeledahan::findOrFail($id);
 
-        //delete image
-        Storage::delete('public/Penggeledahans/'. $Penggeledahan->image);
+        //delete images
+        Storage::delete('public/Penggeledahans/'. $Penggeledahan->image_1);
+        Storage::delete('public/Penggeledahans/'. $Penggeledahan->image_2);
+        Storage::delete('public/Penggeledahans/'. $Penggeledahan->image_3);
+        Storage::delete('public/Penggeledahans/'. $Penggeledahan->image_4);
 
         //delete Penggeledahan
         $Penggeledahan->delete();
 
         //redirect to index
-        return redirect()->route('Penggeledahans.index')->with(['success' => 'Data Berhasil Dihapus!']);
+        return redirect()->route('penggeledahans.index')->with(['success' => 'Data Berhasil Dihapus!']);
     }
+
 }
