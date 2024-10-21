@@ -62,8 +62,8 @@ class ProductController extends Controller
 
         //upload image
         $image = $request->file('image');
-        $image->storeAs('public/products', $image->hashName());
-
+        $image->storeAs('products', $image->hashName(), 'public');
+        
         //create product
         Product::create([
             'image'         => $image->hashName(),
@@ -72,6 +72,7 @@ class ProductController extends Controller
             'price'         => $request->price,
             'stock'         => $request->stock
         ]);
+        
 
         //redirect to index
         return redirect()->route('products.index')->with(['success' => 'Data Berhasil Disimpan!']);

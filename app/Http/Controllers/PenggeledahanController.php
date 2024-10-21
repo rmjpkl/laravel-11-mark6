@@ -50,69 +50,62 @@ class PenggeledahanController extends Controller
      * @return RedirectResponse
      */
     public function store(Request $request): RedirectResponse
-    {
-        // dd($request);
-        //validate form
-        $request->validate([
-            'rupam'                      => 'required',
-            'blok'                       => 'required',
-            'kamar'                      => 'required',
-            'hari'                       => 'required',
-            'tanggal'                    => 'required',
-            'jam_mulai'                  => 'required',
-            'jam_akhir'                  => 'required',
-            'petugas'                    => 'required',
-            'sajam'                      => 'required',
-            'hp'                         => 'required',
-            'narkoba'                    => 'required',
-            'hasil_razia'                => 'required',
-            'image_1_compressed'         => 'required|string',
-            'image_2_compressed'         => 'required|string',
-            'image_3_compressed'         => 'required|string',
-            'image_4_compressed'         => 'required|string',
-        ]);
+{
+    // dd($request);
 
-        // Function to store the base64 image
-        function storeBase64Image($base64Image, $path) {
-            $image_parts = explode(";base64,", $base64Image);
-            $image_type_aux = explode("image/", $image_parts[0]);
-            $image_type = $image_type_aux[1];
-            $image_base64 = base64_decode($image_parts[1]);
-            $fileName = uniqid() . '.'.$image_type;
-            Storage::put($path . '/' . $fileName, $image_base64);
-            return $fileName;
-        }
+    // Validate form
+    $request->validate([
+        'rupam'           => 'required',
+        'blok'            => 'required',
+        'kamar'           => 'required',
+        'hari'            => 'required',
+        'tanggal'         => 'required',
+        'jam_mulai'       => 'required',
+        'jam_akhir'       => 'required',
+        'petugas'         => 'required',
+        'sajam'           => 'required',
+        'hp'              => 'required',
+        'narkoba'         => 'required',
+        'hasil_razia'     => 'required',
+        'image_1'         => 'required',
+        'image_2'         => 'required',
+        'image_3'         => 'required',
+        'image_4'         => 'required',
+    ]);
 
-        // Save compressed images
-        $image1 = storeBase64Image($request->input('image_1_compressed'), 'public/Penggeledahans');
-        $image2 = storeBase64Image($request->input('image_2_compressed'), 'public/Penggeledahans');
-        $image3 = storeBase64Image($request->input('image_3_compressed'), 'public/Penggeledahans');
-        $image4 = storeBase64Image($request->input('image_4_compressed'), 'public/Penggeledahans');
+    // Handle image uploads with hashName
+    $image1 = $request->file('image_1')->store('public/penggeledahans', 'public');
+    // dd($image1);
+    $image2 = $request->file('image_2')->store('public/penggeledahans', 'public');
+    $image3 = $request->file('image_3')->store('public/penggeledahans', 'public');
+    $image4 = $request->file('image_4')->store('public/penggeledahans', 'public');
+    // dd($image1);
 
-        // Create Penggeledahan
-        Penggeledahan::create([
-            'image_1'         => $image1,
-            'image_2'         => $image2,
-            'image_3'         => $image3,
-            'image_4'         => $image4,
-            'rupam'           => $request->rupam,
-            'blok'            => $request->blok,
-            'kamar'           => $request->kamar,
-            'hari'            => $request->hari,
-            'tanggal'         => $request->tanggal,
-            'jam_mulai'       => $request->jam_mulai,
-            'jam_akhir'       => $request->jam_akhir,
-            'petugas'         => $request->petugas,
-            'sajam'           => $request->sajam,
-            'hp'              => $request->hp,
-            'narkoba'         => $request->narkoba,
-            'hasil_razia'     => $request->hasil_razia
-        ]);
+    // Create Penggeledahan
+    Penggeledahan::create([
+        'image_1'         => basename($image1),
+        'image_2'         => basename($image2),
+        'image_3'         => basename($image3),
+        'image_4'         => basename($image4),
+        'rupam'           => $request->rupam,
+        'blok'            => $request->blok,
+        'kamar'           => $request->kamar,
+        'hari'            => $request->hari,
+        'tanggal'         => $request->tanggal,
+        'jam_mulai'       => $request->jam_mulai,
+        'jam_akhir'       => $request->jam_akhir,
+        'petugas'         => $request->petugas,
+        'sajam'           => $request->sajam,
+        'hp'              => $request->hp,
+        'narkoba'         => $request->narkoba,
+        'hasil_razia'     => $request->hasil_razia
+    ]);
 
-        // Redirect to index
-        return redirect()->route('penggeledahans.index')->with(['success' => 'Data Berhasil Disimpan!']);
-    }
+    // Redirect to index
+    return redirect()->route('penggeledahans.index')->with(['success' => 'Data Berhasil Disimpan!']);
+}
 
+    
     /**
      * show
      *

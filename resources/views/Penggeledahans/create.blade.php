@@ -283,52 +283,31 @@
                                 </div>
                             @enderror
                         </div>
-                        <input type="hidden" name="image_1_compressed" id="image_1_compressed">
-                        <input type="hidden" name="image_2_compressed" id="image_2_compressed">
-                        <input type="hidden" name="image_3_compressed" id="image_3_compressed">
-                        <input type="hidden" name="image_4_compressed" id="image_4_compressed">
 
-                <script>
+
+                    <script>
                     function previewImage(inputId, previewId) {
                         document.getElementById(inputId).addEventListener('change', function() {
                             const file = this.files[0];
                             if (file) {
                                 const reader = new FileReader();
-                                reader.onload = async function(event) {
-                                    const compressedDataUrl = await compressImage(event.target.result);
+                                reader.onload = function(event) {
                                     const imgElement = document.createElement('img');
-                                    imgElement.src = compressedDataUrl;
+                                    imgElement.src = event.target.result;
                                     imgElement.style.maxWidth = '300px';
                                     document.getElementById(previewId).innerHTML = '';
                                     document.getElementById(previewId).appendChild(imgElement);
-
-                                    document.getElementById(inputId + '_compressed').value = compressedDataUrl;
                                 }
                                 reader.readAsDataURL(file);
                             }
                         });
                     }
-
-                    function compressImage(dataUrl, quality = 0.7) {
-                        const canvas = document.createElement('canvas');
-                        const img = new Image();
-                        img.src = dataUrl;
-                        return new Promise((resolve) => {
-                            img.onload = () => {
-                                canvas.width = img.width * quality;
-                                canvas.height = img.height * quality;
-                                const ctx = canvas.getContext('2d');
-                                ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
-                                resolve(canvas.toDataURL('image/jpeg', quality));
-                            };
-                        });
-                    }
-
                     previewImage('image_1', 'imagePreview1');
                     previewImage('image_2', 'imagePreview2');
                     previewImage('image_3', 'imagePreview3');
                     previewImage('image_4', 'imagePreview4');
                 </script>
+
 
 
                 <button type="submit" class="btn btn-md btn-primary me-3 mt-3">SAVE</button>
