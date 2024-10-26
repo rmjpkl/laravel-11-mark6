@@ -1,3 +1,4 @@
+{{-- @dd($Penggeledahans) --}}
 @extends('master')
 
 @section('konten')
@@ -43,13 +44,13 @@
                                                 <td>{{ $penggeledahan->blok }}</td>
                                                 <td>{{ $penggeledahan->kamar }}</td>
                                                 <td>{{ $penggeledahan->tanggal }}</td>
-                                                <td>{{ $penggeledahan->jam_mualia }} s/d {{ $penggeledahan->jam_akhir }} </td>
+                                                <td>{{ $penggeledahan->jam_mulai }} s/d {{ $penggeledahan->jam_akhir }} </td>
                                                 <td>{{ $penggeledahan->rupam }}</td>
                                                 <td>{{ $penggeledahan->sajam }}</td>
                                                 <td>{{ $penggeledahan->hp }}</td>
                                                 <td>{{ $penggeledahan->narkoba }}</td>
                                                 <td class="text-center">
-                                                    <img src="{{ asset('/storage/Penggeledahans/'.$penggeledahan->image_1) }}" class="rounded" style="width: 150px">
+                                                    <img src="{{ asset('/storage/penggeledahans/'.$penggeledahan->image_1) }}" class="rounded" style="width: 150px">
                                                 </td>
                                                 {{-- <td>{{ $penggeledahan->hasil_razia }}</td> --}}
                                                 <td class="text-center">

@@ -10,6 +10,11 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/locales/bootstrap-datepicker.id.min.js"></script>
 
+    {{-- untuk melakukan kompres foto --}}
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/compressorjs/1.0.6/compressor.min.js"></script>
+
+
 </head>
 
 <div class="container mt-5">
@@ -285,28 +290,43 @@
                         </div>
 
 
-                    <script>
-                    function previewImage(inputId, previewId) {
-                        document.getElementById(inputId).addEventListener('change', function() {
-                            const file = this.files[0];
-                            if (file) {
-                                const reader = new FileReader();
-                                reader.onload = function(event) {
-                                    const imgElement = document.createElement('img');
-                                    imgElement.src = event.target.result;
-                                    imgElement.style.maxWidth = '300px';
-                                    document.getElementById(previewId).innerHTML = '';
-                                    document.getElementById(previewId).appendChild(imgElement);
-                                }
-                                reader.readAsDataURL(file);
+                        <script>
+                            function previewImage(inputId, previewId) {
+                                document.getElementById(inputId).addEventListener('change', function() {
+                                    const file = this.files[0];
+                                    if (file) {
+                                        new Compressor(file, {
+                                            quality: 0.6, // Sesuaikan kualitas kompresi (0.0 - 1.0)
+                                            success(result) {
+                                                const reader = new FileReader();
+                                                reader.onload = function(event) {
+                                                    const imgElement = document.createElement('img');
+                                                    imgElement.src = event.target.result;
+                                                    imgElement.style.maxWidth = '300px';
+                                                    document.getElementById(previewId).innerHTML = '';
+                                                    document.getElementById(previewId).appendChild(imgElement);
+                            
+                                                    // Update file input dengan file terkompresi
+                                                    const dataTransfer = new DataTransfer();
+                                                    dataTransfer.items.add(new File([result], file.name));
+                                                    document.getElementById(inputId).files = dataTransfer.files;
+                                                };
+                                                reader.readAsDataURL(result);
+                                            },
+                                            error(err) {
+                                                console.error(err.message);
+                                            },
+                                        });
+                                    }
+                                });
                             }
-                        });
-                    }
-                    previewImage('image_1', 'imagePreview1');
-                    previewImage('image_2', 'imagePreview2');
-                    previewImage('image_3', 'imagePreview3');
-                    previewImage('image_4', 'imagePreview4');
-                </script>
+                            
+                            previewImage('image_1', 'imagePreview1');
+                            previewImage('image_2', 'imagePreview2');
+                            previewImage('image_3', 'imagePreview3');
+                            previewImage('image_4', 'imagePreview4');
+                            </script>
+                            
 
 
 

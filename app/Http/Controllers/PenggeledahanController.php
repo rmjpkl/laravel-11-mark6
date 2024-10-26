@@ -74,11 +74,11 @@ class PenggeledahanController extends Controller
     ]);
 
     // Handle image uploads with hashName
-    $image1 = $request->file('image_1')->store('public/penggeledahans', 'public');
+    $image1 = $request->file('image_1')->store('penggeledahans', 'public');
     // dd($image1);
-    $image2 = $request->file('image_2')->store('public/penggeledahans', 'public');
-    $image3 = $request->file('image_3')->store('public/penggeledahans', 'public');
-    $image4 = $request->file('image_4')->store('public/penggeledahans', 'public');
+    $image2 = $request->file('image_2')->store('penggeledahans', 'public');
+    $image3 = $request->file('image_3')->store('penggeledahans', 'public');
+    $image4 = $request->file('image_4')->store('penggeledahans', 'public');
     // dd($image1);
 
     // Create Penggeledahan
