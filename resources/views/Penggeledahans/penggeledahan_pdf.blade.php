@@ -23,8 +23,6 @@
         </table>
         <hr>
         <h2 style="text-align: center;" >LAPORAN ATENSI PIMPINAN</h2>
-
-        <br>
         Kepada,<br>
         Yth.<br>
         1 Bp. KAKANWIL Jawa Tengah<br>
@@ -32,24 +30,24 @@
 
         <ol type="I">
         <li>KEJADIAN</li>
-        Pelaksanaan razia/sidak Wisma Dahlia Kamar 3 pada Lapas Kelas IIB Batang.
+        Pelaksanaan razia/sidak Wisma {{ $penggeledahan->blok }} {{ $penggeledahan->kamar }} Lapas Kelas IIB Batang.
 
         <li style="margin-top: 10px;">URAIAN/PERISTIWA/KEJADIAN</li>
         <ol type="A">
-            <li>
+            <li style="margin-top: 5px;">
                 Pelaksanaan kegiatan penggeledahan/razia kamar hunian di Lapas Kelas IIB Batang dalam rangka menindaklanjuti:
                 <ol type="1">
                     <li>Surat Direktur Jenderal Pemasyarakatan Nomor: PAS-PR.02.02-57 tanggal 8 September 2021, hal penertiban jaringan listrik dan peningkatan kewaspadaan keamanan dan ketertiban.</li>
                     <li>Surat Direktur Jenderal Pemasyarakatan Nomor: PAS-PK.02.10.01-1147 tanggal 19 September 2021, hal langkah progressive sebagai tindak lanjut atas penertiban jaringan listrik, handphone dan peningkatan kewaspadaan keamanan dan ketertiban pada UPT Pemasyarakatan.</li>
                 </ol>
             </li>
-            <li>Pada hari ini, Sabtu, 26 Oktober 2024 mulai pukul 10:40 s/d 11:00 WIB. Tim penggeledahan Lapas Kelas IIB Batang melaksanakan razia/sidak dan pemeriksaan instalasi listrik di Wisma Dahlia Kamar 3.</li>
-            <li>Razia/sidak dan pemeriksaan instalasi listrik dilaksanakan sesuai perintah Ka. Lapas untuk meminimalisir benda/barang-barang larangan dan instalasi listrik yang berbahaya di dalam Lapas berupa seperti jaringan liar, stop kontak, HP, Narkoba dan SAJAM.</li>
-            <li>
+            <li style="margin-top: 5px;">Pada hari ini, {{ $penggeledahan->tangal_format_indonesia }} mulai pukul {{ $penggeledahan->jam_mulai }} s/d {{ $penggeledahan->jam_akhir }} WIB. Tim penggeledahan Lapas Kelas IIB Batang melaksanakan razia/sidak dan pemeriksaan instalasi listrik di Wisma {{ $penggeledahan->blok }} {{ $penggeledahan->kamar }}.</li>
+            <li style="margin-top: 5px;">Razia/sidak dan pemeriksaan instalasi listrik dilaksanakan sesuai perintah Ka. Lapas untuk meminimalisir benda/barang-barang larangan dan instalasi listrik yang berbahaya di dalam Lapas berupa seperti jaringan liar, stop kontak, HP, Narkoba dan SAJAM.</li>
+            <li style="margin-top: 5px;">
             Razia/penggeledahan diikuti:<br>
             Ka.Rupam, Waka.Rupam dan Anggota Jaga
             </li>
-            <li>
+            <li style="margin-top: 5px;">
                 Hasil razia/sidak dan pemeriksaan instalasi listrik petugas tidak menemukan benda/barang larangan berupa:
                 
                 <table>
@@ -58,25 +56,25 @@
                         <td>1.</td>
                         <td>Sajam</td>
                         <td>: </td>
-                        <td>NIHIL</td>
+                        <td>{{ $penggeledahan->sajam }}</td>
                       </tr>
                       <tr>
                         <td>2.</td>
                         <td>Hp</td>
                         <td>: </td>
-                        <td>NIHIL</td>
+                        <td>{{ $penggeledahan->hp }}</td>
                       </tr>
                       <tr>
                         <td>3.</td>
                         <td>Narkoba</td>
                         <td>: </td>
-                        <td>NIHIL</td>
+                        <td>{{ $penggeledahan->narkoba }}</td>
                       </tr>
                       <tr>
                         <td>4.</td>
                         <td>Hasil Razia Lainnya</td>
                         <td>: </td>
-                        <td>NIHIL</td>
+                        <td>{{ $penggeledahan->hasil_razia }}</td>
                       </tr>
                     </tbody>
                   </table>
@@ -87,11 +85,22 @@
 
         <li style="margin-top: 10px;">SARAN TINDAK LANJUT</li>
         <ol>
+            @if ($penggeledahan->hasil_razia != "NIHIL")
+            
+            <li>Barang bukti hasil razia/sidak dan pemeriksaan instalasi listrik diinventarisir dan didata.</li>
+            <li>Barang bukti hasil razia/sidak dan pemeriksaan instalasi listrik diamankan / dimusnahkan.</li>
+            <li>Ka. Lapas melaporkan pelaksanaan razia/sidak kepada Kakanwil Kemenkumham Jateng melalui Kepala Divisi Pemasyarakatan.</li>
+            <li>Pelaksanaan razia/sidak berjalan dengan aman, tertib dan lancar.</li>
+                
+            @else
+            
             <li>Tidak ada barang bukti hasil razia/sidak dan pemeriksaan instalasi listrik diinventarisir dan didata.</li>
             <li>Tidak ada barang bukti hasil razia/sidak dan pemeriksaan instalasi listrik diamankan / dimusnahkan.</li>
             <li>Ka. Lapas melaporkan pelaksanaan razia/sidak kepada Kakanwil Kemenkumham Jateng melalui Kepala Divisi Pemasyarakatan.</li>
             <li>Pelaksanaan razia/sidak berjalan dengan aman, tertib dan lancar.</li>
+            @endif
         </ol>
+        
 
         <li style="margin-top: 10px;">PENUTUP</li>
         Demikian laporan yang dapat kami sampaikan, selanjutnya mohon petunjuk dan arahan.
@@ -101,7 +110,7 @@
                 <td width="30%"></td>
                 <td width="30%"></td>
                 <td width="30%" align="center">
-                    Sabtu, 26 Oktober 2024<br>
+                    {{ $penggeledahan->tangal_format_indonesia }}<br>
                     Kepala Lapas Batang<br><br>
                     TTD<br><br>
                     Jose Quelo<br><br>
@@ -109,8 +118,7 @@
             </tr>
         </table>
         </ol>
-
-        
+       
         Tembusan Kepada Yth.:<br>
         Direktur Jenderal Pemasyarakatan<br>
         Cq. Direktur Pengamanan dan Intelijen Ditjen Pas
@@ -125,9 +133,9 @@
                 <td width="30%" align="left">
                     LAMPIRAN<br>
                     LAPORAN ATENSI PIMPINAN<br>
-                    Hari : Sabtu<br>
-                    Tanggal : 26 Oktober 2024<br>
-                    Pukul : 10.30 S/d 30<br>
+        
+                    Hari/ Tanggal : {{ $penggeledahan->tangal_format_indonesia }}<br>
+                    Pukul : {{ $penggeledahan->jam_mulai }} s/d {{ $penggeledahan->jam_akhir }} WIB<br>
                 </td>
             </tr>
         </table>

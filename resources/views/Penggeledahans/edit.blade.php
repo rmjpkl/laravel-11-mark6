@@ -75,51 +75,19 @@
                         </div>
 
 
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="form-group mb-3">
-                                    <label class="font-weight-bold">Hari</label>
-                                    <input type="text" class="form-control @error('hari') is-invalid @enderror" id="hari" name="hari" value="{{ old('hari', date('d F Y', strtotime($penggeledahan->tanggal))) }}" placeholder="Masukkan Judul Product">
-                                    @error('hari')
-                                        <div class="alert alert-danger mt-2">
-                                            {{ $message }}
-                                        </div>
-                                    @enderror
-                                    <script>
-                                        $(document).ready(function(){
-                                            function formatDate(date) {
-                                                var day = ("0" + date.getDate()).slice(-2);
-                                                var month = date.toLocaleString('id-ID', { month: 'long' });
-                                                var year = date.getFullYear();
-                                                return `${day} ${month} ${year}`;
-                                            }
-
-                                            $('#hari').datepicker({
-                                                format: 'DD',
-                                                language: 'id',
-                                                autoclose: true
-                                            }).on('changeDate', function() {
-                                                var selectedDate = $('#hari').datepicker('getDate');
-                                                var formattedDate = formatDate(selectedDate);
-                                                $('#tanggal').val(formattedDate);
-                                            });
-                                            $('#hari').datepicker('setDate', new Date('{{ $penggeledahan->tanggal }}'));
-                                        });
-                                    </script>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
+                        
+                           
                                 <div class="form-group mb-3">
                                     <label class="font-weight-bold">Tanggal</label>
-                                    <input type="text" class="form-control @error('tanggal') is-invalid @enderror" id="tanggal" name="tanggal" value="{{ old('tanggal', $penggeledahan->tanggal) }}" placeholder="Masukkan Judul Product" readonly>
+                                    <input type="date" class="form-control @error('tanggal') is-invalid @enderror" id="tanggal" name="tanggal" value="{{ old('tanggal', $penggeledahan->tanggal) }}" placeholder="Masukkan Judul Product">
                                     @error('tanggal')
                                         <div class="alert alert-danger mt-2">
                                             {{ $message }}
                                         </div>
                                     @enderror
                                 </div>
-                            </div>
-                        </div>
+                            
+                      
 
 
 

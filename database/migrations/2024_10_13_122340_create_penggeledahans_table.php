@@ -20,8 +20,7 @@ return new class extends Migration
             $table->string('rupam');
             $table->string('blok');
             $table->string('kamar');
-            $table->string('hari');
-            $table->string('tanggal');
+            $table->date('tanggal');
             $table->string('jam_mulai');
             $table->string('jam_akhir');
             $table->string('petugas');

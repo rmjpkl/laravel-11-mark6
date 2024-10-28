@@ -3,23 +3,29 @@
 namespace App\Http\Controllers;
 
 //import model Penggeledahan
-use App\Models\Penggeledahan;
+use Carbon\Carbon;
 
 //import return type View
-use Illuminate\View\View;
+use Dompdf\Dompdf;
 
 //import return type redirectResponse
-use Illuminate\Http\Request;
+use Illuminate\View\View;
 
 //import Http Request
-use Illuminate\Http\RedirectResponse;
+use Illuminate\Http\Request;
 
 //import Facades Storage
-use Illuminate\Support\Facades\Storage;
-
 use PDF; // Import class PDF
 
-use Dompdf\Dompdf;
+use App\Models\Penggeledahan;
+
+//import Http Request
+use Illuminate\Support\Facades\Auth;
+
+use Illuminate\Http\RedirectResponse;
+use Illuminate\Support\Facades\Storage;
+
+
 
 class PenggeledahanController extends Controller
 {
@@ -30,8 +36,16 @@ class PenggeledahanController extends Controller
      */
     public function index() : View
     {
-        //get all Penggeledahans
-        $Penggeledahans = Penggeledahan::latest()->paginate(10);
+
+        $user = Auth::user();
+        
+        if ($user->is_admin) {
+            // Jika admin, ambil semua data
+            $Penggeledahans = Penggeledahan::orderBy('created_at', 'desc')->get();
+        } else {
+            // Jika bukan admin, ambil data yang memiliki nilai rupam
+            $Penggeledahans = Penggeledahan::where('rupam', $user->rupam)->orderBy('created_at', 'desc')->get();
+        }
 
         //render view with Penggeledahans
         return view('Penggeledahans.index', compact('Penggeledahans'));
@@ -62,7 +76,6 @@ class PenggeledahanController extends Controller
         'rupam'           => 'required',
         'blok'            => 'required',
         'kamar'           => 'required',
-        'hari'            => 'required',
         'tanggal'         => 'required',
         'jam_mulai'       => 'required',
         'jam_akhir'       => 'required',
@@ -94,7 +107,6 @@ class PenggeledahanController extends Controller
         'rupam'           => $request->rupam,
         'blok'            => $request->blok,
         'kamar'           => $request->kamar,
-        'hari'            => $request->hari,
         'tanggal'         => $request->tanggal,
         'jam_mulai'       => $request->jam_mulai,
         'jam_akhir'       => $request->jam_akhir,
@@ -118,11 +130,18 @@ class PenggeledahanController extends Controller
      */
     public function show(string $id): View
     {
-        //get Penggeledahan by ID
+        // Set locale ke bahasa Indonesia
+        Carbon::setLocale('id');
+    
+        // Get Penggeledahan by ID
         $penggeledahan = Penggeledahan::findOrFail($id);
-
-        //render view with Penggeledahan
-        return view('Penggeledahans.show', compact('penggeledahan'));
+    
+        // Format tanggal menggunakan Carbon
+        $penggeledahan->tangal_format_indonesia = Carbon::parse($penggeledahan->tanggal)->translatedFormat('l, d F Y');
+    
+        // Render view with Penggeledahan
+        return view('Penggeledahans.penggeledahan_pdf', compact('penggeledahan'));
+    
     }
 
     /**
@@ -154,7 +173,6 @@ class PenggeledahanController extends Controller
         'rupam'           => 'required',
         'blok'            => 'required',
         'kamar'           => 'required',
-        'hari'            => 'required',
         'tanggal'         => 'required',
         'jam_mulai'       => 'required',
         'jam_akhir'       => 'required',
@@ -204,7 +222,6 @@ class PenggeledahanController extends Controller
         'rupam'           => $request->rupam,
         'blok'            => $request->blok,
         'kamar'           => $request->kamar,
-        'hari'            => $request->hari,
         'tanggal'         => $request->tanggal,
         'jam_mulai'       => $request->jam_mulai,
         'jam_akhir'       => $request->jam_akhir,
@@ -254,9 +271,21 @@ class PenggeledahanController extends Controller
     public function previewPdf($id)
     {
         $mpdf = new \Mpdf\Mpdf();
-        $penggeledahan = Penggeledahan::findOrFail($id);  
+         // Set locale ke bahasa Indonesia
+         Carbon::setLocale('id');
+    
+         // Get Penggeledahan by ID
+         $penggeledahan = Penggeledahan::findOrFail($id);
+     
+         // Format tanggal menggunakan Carbon
+         $penggeledahan->tangal_format_indonesia = Carbon::parse($penggeledahan->tanggal)->translatedFormat('l, d F Y');
+         
+         
         $mpdf->WriteHTML(view('Penggeledahans.penggeledahan_pdf', compact('penggeledahan')));
-        $mpdf->Output();
+        $filename = 'laporan_penggeledahan_lapas_batang' . $penggeledahan->rupam . '_' . 
+                     str_replace(' ', '_', $penggeledahan->hari) . '_' . 
+                     str_replace(' ', '_', $penggeledahan->tanggal) . '.pdf';
+        $mpdf->Output($filename, \Mpdf\Output\Destination::INLINE);
 
     }
 

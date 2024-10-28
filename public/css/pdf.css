@@ -2,7 +2,7 @@ body {
     text-align: justify;
     font-family: Arial, sans-serif;
     font-size: 12px; /* Tambahkan baris ini */
-    line-height: 1.4; /* Menambahkan spasi 1.5 */
+    line-height: 1.25; /* Menambahkan spasi 1.5 */
 }
 
 .content {

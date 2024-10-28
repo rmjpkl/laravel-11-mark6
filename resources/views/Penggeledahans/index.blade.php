@@ -46,33 +46,55 @@
                                                 <td>{{ $penggeledahan->tanggal }}</td>
                                                 <td>{{ $penggeledahan->jam_mulai }} s/d {{ $penggeledahan->jam_akhir }} </td>
                                                 <td>{{ $penggeledahan->rupam }}</td>
-                                                <td>{{ $penggeledahan->sajam }}</td>
+
+                                                <script>
+                                                    document.addEventListener('DOMContentLoaded', function () {
+                                                        function formatDate(dateString) {
+                                                            const date = new Date(dateString);
+                                                            const dayName = date.toLocaleString('id-ID', { weekday: 'long' });
+                                                            const day = ("0" + date.getDate()).slice(-2);
+                                                            const month = date.toLocaleString('id-ID', { month: 'long' });
+                                                            const year = date.getFullYear();
+                                                            return `${dayName}, ${day} ${month} ${year}`;
+                                                        }
+                                            
+                                                        const tanggal = "{{ $penggeledahan->tanggal }}";
+                                                        const formattedDate = formatDate(tanggal);
+                                                        document.getElementById('tanggal').textContent = formattedDate;
+                                                    });
+                                               </script>
+                                                
+
+                                                <td id="tanggal">
+
                                                 <td>{{ $penggeledahan->hp }}</td>
                                                 <td>{{ $penggeledahan->narkoba }}</td>
-                                                <td class="text-center">
+                                                {{-- <td class="text-center">
                                                     <img src="{{ asset('/storage/penggeledahans/'.$penggeledahan->image_1) }}" class="rounded" style="width: 150px">
-                                                </td>
-                                                {{-- <td>{{ $penggeledahan->hasil_razia }}</td> --}}
+                                                </td> --}}
+                                                <td>{{ $penggeledahan->hasil_razia }}</td>
                                                 <td class="text-center">
                                                     <form onsubmit="return confirm('Apakah Anda Yakin ?');" action="{{ route('penggeledahans.destroy', $penggeledahan->id) }}" method="POST">
                                                         <a href="{{ route('penggeledahans.previewPdf', $penggeledahan->id) }}" class="btn btn-sm btn-primary">
                                                             <i class="fas fa-eye"></i> <!-- FontAwesome icon for 'show' -->
                                                         </a>
-                                                        <a href="{{ route('penggeledahans.edit', $penggeledahan->id) }}" class="btn btn-sm btn-success">
-                                                            <i class="fas fa-edit"></i> <!-- FontAwesome icon for 'show' -->
-                                                        </a>
-
                                                         <a href="{{ route('penggeledahans.exportPdf', $penggeledahan->id) }}" class="btn btn-sm btn-warning">
                                                             <i class="fas fa-file-pdf"></i>
                                                         </a>
-                                                        
+                                                      
+                                                      
+                                                        {{-- jika user adalah admin atau tanggal sama dengan tanggal hari ini maka muncul button  --}}
                                                         @csrf
                                                         @method('DELETE')
-                                                        @if (Auth::check() && Auth::user()->is_admin == 1)
-                                                        <button type="submit" class="btn btn-sm btn-danger">
-                                                            <i class="fas fa-trash-alt"></i> <!-- FontAwesome icon for 'delete' -->
-                                                        </button>
+                                                        @if (Auth::check() && (Auth::user()->is_admin == 1 || \Carbon\Carbon::now()->format('Y-m-d') == $penggeledahan->tanggal))
+                                                            <a href="{{ route('penggeledahans.edit', $penggeledahan->id) }}" class="btn btn-sm btn-success">
+                                                                <i class="fas fa-edit"></i> <!-- Ikon FontAwesome untuk 'show' -->
+                                                            </a>
+                                                            <button type="submit" class="btn btn-sm btn-danger">
+                                                                <i class="fas fa-trash-alt"></i> <!-- Ikon FontAwesome untuk 'delete' -->
+                                                            </button>
                                                         @endif
+
                                                     </form>
 
                                                 </td>
