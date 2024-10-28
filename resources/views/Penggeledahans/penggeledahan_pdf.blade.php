@@ -8,32 +8,33 @@
 <body>
     <div class="content">
        
-    <table>
+        <table>
         <tr>
-        {{-- untuk export pdf gunakan public_path untuk tampilan html gunakan asset --}}
-        <td><img src="{{ asset('storage/logo/logo_pengayoman.png') }}" alt="Logo" clas="logo">
-            <td>
-                <p>
+        {{-- untuk export pdf gunakan public_path untuk tampilan html gunakan asset--}}
+         <td><img src="{{ asset('storage/logo/logo_pengayoman.png') }}" alt="Logo" style="width: 65px; height: auto;">
+            <td style="text-align: center; padding-right: 100px;">
                     KEMENTERIAN HUKUM DAN HAK ASASI MANUSIA RI<br>
                     KANTOR WILAYAH JAWA TENGAH<br>
                     LEMBAGA PEMASYARAKATAN KELAS IIB BATANG<br>
                     Jl. Raya Batang Km. 4,1 Kab. Batang<br>
-                    Telp. (0285) 4494300 Email: <a href="mailto:lapasbatang@gmail.com">lapasbatang@gmail.com</a>
-                </p>
+                    Telp. (0285) 4494300 Email: <a href="mailto:lapasbatang@gmail.com">lapasbatang@gmail.com</a>                
                 </td>
         </tr>
         </table>
-        <hr class="thick narrow-spacing">
-        <hr class="narrow-spacing">
-    </div>
+        <hr>
+        <h2 style="text-align: center;" >LAPORAN ATENSI PIMPINAN</h2>
 
-    <div class="content"  >
-        <h2 >LAPORAN ATENSI PIMPINAN</h2>
+        <br>
+        Kepada,<br>
+        Yth.<br>
+        1 Bp. KAKANWIL Jawa Tengah<br>
+        2 Bp. KADIVPAS Jawa Tengah<br>
 
-        <h3>I. PERISTIWA/KEJADIAN</h3>
-        <p>Pelaksanaan razia/sidak Wisma Dahlia Kamar 3 pada Lapas Kelas IIB Batang.</p>
+        <ol type="I">
+        <li>KEJADIAN</li>
+        Pelaksanaan razia/sidak Wisma Dahlia Kamar 3 pada Lapas Kelas IIB Batang.
 
-        <h3>II. URAIAN/PERISTIWA/KEJADIAN</h3>
+        <li style="margin-top: 10px;">URAIAN/PERISTIWA/KEJADIAN</li>
         <ol type="A">
             <li>
                 Pelaksanaan kegiatan penggeledahan/razia kamar hunian di Lapas Kelas IIB Batang dalam rangka menindaklanjuti:
@@ -46,7 +47,7 @@
             <li>Razia/sidak dan pemeriksaan instalasi listrik dilaksanakan sesuai perintah Ka. Lapas untuk meminimalisir benda/barang-barang larangan dan instalasi listrik yang berbahaya di dalam Lapas berupa seperti jaringan liar, stop kontak, HP, Narkoba dan SAJAM.</li>
             <li>
             Razia/penggeledahan diikuti:<br>
-                Ka.Rupam, Waka.Rupam dan Anggota Jaga
+            Ka.Rupam, Waka.Rupam dan Anggota Jaga
             </li>
             <li>
                 Hasil razia/sidak dan pemeriksaan instalasi listrik petugas tidak menemukan benda/barang larangan berupa:
@@ -84,7 +85,7 @@
             </li>
         </ol>
 
-        <h3>III. SARAN TINDAK LANJUT</h3>
+        <li style="margin-top: 10px;">SARAN TINDAK LANJUT</li>
         <ol>
             <li>Tidak ada barang bukti hasil razia/sidak dan pemeriksaan instalasi listrik diinventarisir dan didata.</li>
             <li>Tidak ada barang bukti hasil razia/sidak dan pemeriksaan instalasi listrik diamankan / dimusnahkan.</li>
@@ -92,15 +93,61 @@
             <li>Pelaksanaan razia/sidak berjalan dengan aman, tertib dan lancar.</li>
         </ol>
 
-        <h3>IV. PENUTUP</h3>
-        <p>Demikian laporan yang dapat kami sampaikan, selanjutnya mohon petunjuk dan arahan.</p>
+        <li style="margin-top: 10px;">PENUTUP</li>
+        Demikian laporan yang dapat kami sampaikan, selanjutnya mohon petunjuk dan arahan.
+        </ol>
+        <table width="100%" style="margin-top: 15px; margin-bottom: 25px;">
+            <tr>
+                <td width="30%"></td>
+                <td width="30%"></td>
+                <td width="30%" align="center">
+                    Sabtu, 26 Oktober 2024<br>
+                    Kepala Lapas Batang<br><br>
+                    TTD<br><br>
+                    Jose Quelo<br><br>
+                </td>
+            </tr>
+        </table>
+        </ol>
 
-        Sabtu, 26 Oktober 2024<br>
-        Kepala Lapas Batang<br><br>
-        Jose Quelo<br><br>
+        
         Tembusan Kepada Yth.:<br>
         Direktur Jenderal Pemasyarakatan<br>
-        Cq. Direktur Pengamanan dan Intelijen Ditjen Pas</p>
+        Cq. Direktur Pengamanan dan Intelijen Ditjen Pas
+        <br>
+        
+        
+        <div class="page-break"></div>
+        <table width="100%" style="margin-top: 15px; margin-bottom: 25px;">
+            <tr>
+                <td width="30%"></td>
+                <td width="30%"></td>
+                <td width="30%" align="left">
+                    LAMPIRAN<br>
+                    LAPORAN ATENSI PIMPINAN<br>
+                    Hari : Sabtu<br>
+                    Tanggal : 26 Oktober 2024<br>
+                    Pukul : 10.30 S/d 30<br>
+                </td>
+            </tr>
+        </table>
+        <h2 style="text-align: center;" >Dokumentasi</h2>
+
+        <div align="center">
+            <table class="table-container">
+                <tr>
+                    <td><img src="{{ asset('/storage/penggeledahans/'.$penggeledahan->image_1) }}" class="rounded"></td>
+                    <td><img src="{{ asset('/storage/penggeledahans/'.$penggeledahan->image_2) }}" class="rounded"></td>
+                </tr>
+                <tr>
+                    <td><img src="{{ asset('/storage/penggeledahans/'.$penggeledahan->image_3) }}" class="rounded"></td>
+                    <td><img src="{{ asset('/storage/penggeledahans/'.$penggeledahan->image_4) }}" class="rounded"></td>
+                </tr>
+            </table>
+        </div>
+    
     </div>
+
+       
 </body>
 </html>

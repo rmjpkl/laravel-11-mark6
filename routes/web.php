@@ -46,7 +46,7 @@ Route::middleware('auth')->group(function () {
     });
 
     Route::resource('/points', PointController::class);
-    Route::resource('/penggeledahans', PenggeledahanController::class);
+    
  
     Route::controller(ApelController::class)->group(function () {
         Route::get('/apels', 'index')->name('apel');
@@ -62,7 +62,7 @@ Route::middleware('auth')->group(function () {
 
     Route::resource('/pelanggarans', PelanggaranController::class);
 
-
+    Route::resource('/penggeledahans', PenggeledahanController::class);
     Route::get('/penggeledahans/{id}/export-pdf', [PenggeledahanController::class, 'exportPdf'])->name('penggeledahans.exportPdf');
     Route::get('/penggeledahans/{id}/preview-pdf', [PenggeledahanController::class, 'previewPdf'])->name('penggeledahans.previewPdf');
 

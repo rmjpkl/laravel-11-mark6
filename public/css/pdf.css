@@ -1,6 +1,8 @@
 body {
     text-align: justify;
     font-family: Arial, sans-serif;
+    font-size: 12px; /* Tambahkan baris ini */
+    line-height: 1.4; /* Menambahkan spasi 1.5 */
 }
 
 .content {
@@ -17,22 +19,13 @@ body {
     vertical-align: top; /* Sejajarkan teks ke atas dalam sel tabel */
 }
 
-.logo {
-    width: 150px; /* Sesuaikan lebar logo di sini */
-    height: auto; /* Tinggi akan menyesuaikan secara proporsional */
-}
-
 .thick {
-    border-top: 3px solid black;
+    border-top: 30px solid black;
 }
 
 .narrow-spacing {
     margin-top: 5px;
     margin-bottom: 5px;
-}
-
-h2 {
-    text-align: center;
 }
 
 ol {
@@ -43,13 +36,31 @@ p {
     text-indent: 50px;
 }
 
+.table-container {
+    width: 100%;
+    table-layout: fixed;
+}
+.table-container td {
+    width: 50%;
+    padding: 10px; /* Tambahkan padding untuk jarak antar gambar */
+    text-align: center; /* Gambar berada di tengah kolom */
+}
+.rounded {
+    width: 100%; /* Gambar akan mengambil lebar penuh kolom */
+    height: auto; /* Tinggi gambar disesuaikan proporsional */
+}
+
 /* Aturan untuk ukuran kertas F4 */
 @page {
     size: 210mm 330mm; /* Lebar x Tinggi */
-    margin: 20mm; /* Margin semua sisi */
+    margin: 10mm 20mm 20mm 20mm; /* Margin semua sisi */
+}
+
+.page-break {
+    page-break-before: always;
 }
 
 /* Opsional: Atur margin konten jika diperlukan */
-.content {
-    padding: 10mm;
-}
+/* .content {
+    padding: 50mm;
+} */
