@@ -61,6 +61,12 @@ Route::middleware('auth')->group(function () {
     });
 
     Route::resource('/pelanggarans', PelanggaranController::class);
+
+
+    Route::get('/penggeledahans/{id}/export-pdf', [PenggeledahanController::class, 'exportPdf'])->name('penggeledahans.exportPdf');
+    Route::get('/penggeledahans/{id}/preview-pdf', [PenggeledahanController::class, 'previewPdf'])->name('penggeledahans.previewPdf');
+
+
     Route::resource('/datawbps', DatawbpController::class);
     Route::post('/datawbps/import', [DatawbpController::class, 'import'])->name('datawbps.import');
 });

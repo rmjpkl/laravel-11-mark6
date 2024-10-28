@@ -296,13 +296,15 @@
                                     const file = this.files[0];
                                     if (file) {
                                         new Compressor(file, {
-                                            quality: 0.6, // Sesuaikan kualitas kompresi (0.0 - 1.0)
+                                            quality: 0.4, // Sesuaikan kualitas kompresi (0.0 - 1.0)
+                                            maxWidth: 00, // Lebar maksimum gambar
+                                            checkOrientation: true, 
                                             success(result) {
                                                 const reader = new FileReader();
                                                 reader.onload = function(event) {
                                                     const imgElement = document.createElement('img');
                                                     imgElement.src = event.target.result;
-                                                    imgElement.style.maxWidth = '300px';
+                                                    imgElement.style.maxWidth = '200px';
                                                     document.getElementById(previewId).innerHTML = '';
                                                     document.getElementById(previewId).appendChild(imgElement);
                             

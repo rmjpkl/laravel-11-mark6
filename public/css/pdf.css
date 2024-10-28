@@ -1,0 +1,55 @@
+body {
+    text-align: justify;
+    font-family: Arial, sans-serif;
+}
+
+.content {
+    margin: 0 auto;
+    width: 100%;
+}
+
+.content table {
+    width: 100%; /* Pastikan tabel menggunakan lebar penuh */
+    table-layout: fixed; /* Untuk distribusi lebar kolom yang merata */
+}
+
+.content table td {
+    vertical-align: top; /* Sejajarkan teks ke atas dalam sel tabel */
+}
+
+.logo {
+    width: 150px; /* Sesuaikan lebar logo di sini */
+    height: auto; /* Tinggi akan menyesuaikan secara proporsional */
+}
+
+.thick {
+    border-top: 3px solid black;
+}
+
+.narrow-spacing {
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+h2 {
+    text-align: center;
+}
+
+ol {
+    padding-left: 20px;
+}
+
+p {
+    text-indent: 50px;
+}
+
+/* Aturan untuk ukuran kertas F4 */
+@page {
+    size: 210mm 330mm; /* Lebar x Tinggi */
+    margin: 20mm; /* Margin semua sisi */
+}
+
+/* Opsional: Atur margin konten jika diperlukan */
+.content {
+    padding: 10mm;
+}
