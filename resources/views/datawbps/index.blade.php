@@ -1,6 +1,6 @@
 
 @extends('master')
-
+ 
 @section('konten')
     <div class="container mt-5">
         <div>
@@ -25,7 +25,13 @@
                                         cellspacing="0"
                                         width="100%"
                                     >
-                                    <a href="{{ route('datawbps.create') }}" class="btn btn-md btn-success mb-5 btn-block">UPLOAD DATA WBP</a>
+                                    <div>
+                                    <a href="{{ route('datawbps.create') }}" class="btn btn-md btn-success mb-2 btn-block">UPLOAD DATA WBP</a>
+                                    </div>
+                                    <div>
+
+                                    <a href="{{ route('datawbps.updateDariSpreadsheet') }}" class="btn btn-md btn-primary mb-2 btn-block">Updat Data dari Spreadsheet</a>
+                                    </div>
                                     <thead class="table-dark">
                                         <tr>
                                             <th scope="col">NAMA</th>
@@ -34,7 +40,6 @@
                                             <th scope="col">TANGGAL MASUK</th>
                                             <th scope="col">STATUS</th>
                                             <th scope="col">crated_at</th>
-                                            {{-- <th scope="col" style="width: 20%">ACTIONS</th> --}}
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -46,22 +51,7 @@
                                                 <td>{{ $datawbp->tanggal_masuk }}</td>
                                                 <td>{{ $datawbp->status }}</td>
                                                 <td>{{ $datawbp->created_at }}</td>
-                                                {{-- <td class="text-center">
-                                                    <form onsubmit="return confirm('Apakah Anda Yakin ?');" action="{{ route('datawbps.destroy', $datawbp->id) }}" method="POST">
-                                                        <a href="{{ route('datawbps.show', $datawbp->id) }}" class="btn btn-sm btn-primary">
-                                                            <i class="fas fa-eye"></i> <!-- FontAwesome icon for 'show' -->
-                                                        </a>
-                                                        @csrf
-                                                        @method('DELETE')
-                                                        @if (Auth::check() && Auth::user()->is_admin == 1)
-                                                        <button type="submit" class="btn btn-sm btn-danger">
-                                                            <i class="fas fa-trash-alt"></i> <!-- FontAwesome icon for 'delete' -->
-                                                        </button>
-                                                        @endif
-                                                    </form>
-
-                                                </td> --}}
-                                            </tr>
+                                              </tr>
                                         @empty
                                             <div class="alert alert-danger">
                                                 Data trollings belum Tersedia.

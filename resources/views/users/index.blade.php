@@ -5,7 +5,7 @@
 @section('konten')
     <div class="container mt-5">
         <div>
-            <h2 class="text-center my-5">Tabel Trolling</h2>
+            <h2 class="text-center my-5">Tabel Users</h2>
         </div>
         <div class="row">
             <div class="col-md-12">

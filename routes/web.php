@@ -67,8 +67,10 @@ Route::middleware('auth')->group(function () {
     Route::get('/penggeledahans/{id}/preview-pdf', [PenggeledahanController::class, 'previewPdf'])->name('penggeledahans.previewPdf');
 
 
-    Route::resource('/datawbps', DatawbpController::class);
+    Route::get('/datawbps', [DatawbpController::class, 'index'])->name('datawbps.index');
+    Route::get('/datawbps/create', [DatawbpController::class, 'create'])->name('datawbps.create');
     Route::post('/datawbps/import', [DatawbpController::class, 'import'])->name('datawbps.import');
+    Route::get('/datawbps/updateDariSpreadsheet', [DatawbpController::class, 'updateDariSpreadsheet'])->name('datawbps.updateDariSpreadsheet');
 });
 
 Route::get('/hash-passwords', function () {

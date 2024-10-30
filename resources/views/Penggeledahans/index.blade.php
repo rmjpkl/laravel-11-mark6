@@ -5,7 +5,7 @@
     <div class="container-fluid">
         <div>
             <h2 class="text-center my-5">Tabel penggeledahan</h2>
-        </div>
+          </div>
                 <div class="card border-0 shadow-sm rounded">
                     <div class="card-body">
                         <head>
