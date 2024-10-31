@@ -68,7 +68,9 @@
                     </script>
                 </div>
 
+
                 <div class="row">
+
                     <div class="col-md-4">
                         <div class="form-group mb-2">
                             <h5 class="text-center">A. ANGGREK</h5>
@@ -79,59 +81,38 @@
                                         <th>TH</th>
                                         <th>NP</th>
                                         <th>JML</th>
-                                        <th>KAP</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <td>1</td>
-                                        <td>1</td>
-                                        <td>1</td>
-                                        <td>1</td>
-                                        <td>1</td>
-                                    </tr>
-                                    <tr>
-                                        <td>2</td>
-                                        <td>2</td>
-                                        <td>2</td>
-                                        <td>2</td>
-                                        <td>2</td>
-                                    </tr>
-                                    <tr>
-                                        <td>3</td>
-                                        <td>3</td>
-                                        <td>3</td>
-                                        <td>3</td>
-                                        <td>3</td>
-                                    </tr>
-                                    <tr>
-                                        <td>4</td>
-                                        <td>4</td>
-                                        <td>4</td>
-                                        <td>4</td>
-                                        <td>4</td>
-                                    </tr>
-                                    <tr>
-                                        <td>5</td>
-                                        <td>5</td>
-                                        <td>5</td>
-                                        <td>5</td>
-                                        <td>5</td>
-                                    </tr>
+                                    @for ($i = 1; $i <= 5; $i++)
+                                        @php
+                                            $lokasi = 'A.' . $i;
+                                        @endphp
+                                        <tr>
+                                            <td>{{ $i }}</td>
+                                            <td>{{ $jumlahData[$lokasi]['T'] }}</td>
+                                            <td>{{ $jumlahData[$lokasi]['N'] }}</td>
+                                            <td>{{ $jumlahData[$lokasi]['total'] }}</td>
+                                            <!-- Gantilah nilai 1 dengan nilai kapasitas yang sesuai jika tersedia -->
+                                        </tr>
+                                    @endfor
+                                </tbody>
                                 <tfoot class="table-info">
                                     <tr>
                                         <th>TOTAL</th>
-                                        <th>TH</th>
-                                        <th>NP</th>
-                                        <th>JML</th>
-                                        <th>KAP</th>
+                                        <th>{{ array_sum(array_map(function ($item) {return $item['T'];},array_filter($jumlahData,function ($item, $key) {return strpos($key, 'A.') === 0;},ARRAY_FILTER_USE_BOTH))) }}
+                                        </th>
+                                        <th>{{ array_sum(array_map(function ($item) {return $item['N'];},array_filter($jumlahData,function ($item, $key) {return strpos($key, 'A.') === 0;},ARRAY_FILTER_USE_BOTH))) }}
+                                        </th>
+                                        <th>{{ array_sum(array_map(function ($item) {return $item['total'];},array_filter($jumlahData,function ($item, $key) {return strpos($key, 'A.') === 0;},ARRAY_FILTER_USE_BOTH))) }}
+                                        </th>
                                     </tr>
                                 </tfoot>
-                                </tbody>
                             </table>
                         </div>
                     </div>
 
+                    <!-- Table B -->
                     <div class="col-md-4">
                         <div class="form-group mb-2">
                             <h5 class="text-center">B. BAUGENVILE</h5>
@@ -142,123 +123,31 @@
                                         <th>TH</th>
                                         <th>NP</th>
                                         <th>JML</th>
-                                        <th>KAP</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <td>1</td>
-                                        <td>1</td>
-                                        <td>1</td>
-                                        <td>1</td>
-                                        <td>1</td>
-                                    </tr>
-                                    <tr>
-                                        <td>2</td>
-                                        <td>2</td>
-                                        <td>2</td>
-                                        <td>2</td>
-                                        <td>2</td>
-                                    </tr>
-                                    <tr>
-                                        <td>3</td>
-                                        <td>3</td>
-                                        <td>3</td>
-                                        <td>3</td>
-                                        <td>3</td>
-                                    </tr>
-                                    <tr>
-                                        <td>4</td>
-                                        <td>4</td>
-                                        <td>4</td>
-                                        <td>4</td>
-                                        <td>4</td>
-                                    </tr>
-                                    <tr>
-                                        <td>5</td>
-                                        <td>5</td>
-                                        <td>5</td>
-                                        <td>5</td>
-                                        <td>5</td>
-                                    </tr>
-                                    <tr>
-                                        <td>6</td>
-                                        <td>6</td>
-                                        <td>6</td>
-                                        <td>6</td>
-                                        <td>6</td>
-                                    </tr>
-                                    <tr>
-                                        <td>7</td>
-                                        <td>7</td>
-                                        <td>7</td>
-                                        <td>7</td>
-                                        <td>7</td>
-                                    </tr>
-                                    <tr>
-                                        <td>8</td>
-                                        <td>8</td>
-                                        <td>8</td>
-                                        <td>8</td>
-                                        <td>8</td>
-                                    </tr>
-                                    <tr>
-                                        <td>9</td>
-                                        <td>9</td>
-                                        <td>9</td>
-                                        <td>9</td>
-                                        <td>9</td>
-                                    </tr>
-                                    <tr>
-                                        <td>10</td>
-                                        <td>10</td>
-                                        <td>10</td>
-                                        <td>10</td>
-                                        <td>10</td>
-                                    </tr>
-                                    <tr>
-                                        <td>11</td>
-                                        <td>11</td>
-                                        <td>11</td>
-                                        <td>11</td>
-                                        <td>11</td>
-                                    </tr>
-                                    <tr>
-                                        <td>12</td>
-                                        <td>12</td>
-                                        <td>12</td>
-                                        <td>12</td>
-                                        <td>12</td>
-                                    </tr>
-                                    <tr>
-                                        <td>13</td>
-                                        <td>13</td>
-                                        <td>13</td>
-                                        <td>13</td>
-                                        <td>13</td>
-                                    </tr>
-                                    <tr>
-                                        <td>14</td>
-                                        <td>14</td>
-                                        <td>14</td>
-                                        <td>14</td>
-                                        <td>14</td>
-                                    </tr>
-                                    <tr>
-                                        <td>15</td>
-                                        <td>15</td>
-                                        <td>15</td>
-                                        <td>15</td>
-                                        <td>15</td>
-                                    </tr>
+                                    @for ($i = 1; $i <= 15; $i++)
+                                        @php
+                                            $lokasi = 'B.' . $i;
+                                        @endphp
+                                        <tr>
+                                            <td>{{ $i }}</td>
+                                            <td>{{ $jumlahData[$lokasi]['T'] }}</td>
+                                            <td>{{ $jumlahData[$lokasi]['N'] }}</td>
+                                            <td>{{ $jumlahData[$lokasi]['total'] }}</td>
+                                            <!-- Gantilah nilai 1 dengan nilai kapasitas yang sesuai jika tersedia -->
+                                        </tr>
+                                    @endfor
                                 </tbody>
                                 <tfoot class="table-primary">
                                     <tr>
                                         <th>TOTAL</th>
-                                        <th>TH</th>
-                                        <th>NP</th>
-                                        <th>JML</th>
-                                        <th>KAP</th>
+                                        <th>{{ array_sum(array_map(function ($item) {return $item['T'];},array_filter($jumlahData,function ($item, $key) {return strpos($key, 'B.') === 0;},ARRAY_FILTER_USE_BOTH))) }}
+                                        </th>
+                                        <th>{{ array_sum(array_map(function ($item) {return $item['N'];},array_filter($jumlahData,function ($item, $key) {return strpos($key, 'B.') === 0;},ARRAY_FILTER_USE_BOTH))) }}
+                                        </th>
+                                        <th>{{ array_sum(array_map(function ($item) {return $item['total'];},array_filter($jumlahData,function ($item, $key) {return strpos($key, 'B.') === 0;},ARRAY_FILTER_USE_BOTH))) }}
+                                        </th>
                                     </tr>
                                 </tfoot>
                             </table>
@@ -266,6 +155,7 @@
                     </div>
 
 
+                    <!-- Table C -->
                     <div class="col-md-4">
                         <div class="form-group mb-2">
                             <h5 class="text-center">C. CLAUDIA</h5>
@@ -276,126 +166,42 @@
                                         <th>TH</th>
                                         <th>NP</th>
                                         <th>JML</th>
-                                        <th>KAP</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <td>1</td>
-                                        <td>1</td>
-                                        <td>1</td>
-                                        <td>1</td>
-                                        <td>1</td>
-                                    </tr>
-                                    <tr>
-                                        <td>2</td>
-                                        <td>2</td>
-                                        <td>2</td>
-                                        <td>2</td>
-                                        <td>2</td>
-                                    </tr>
-                                    <tr>
-                                        <td>3</td>
-                                        <td>3</td>
-                                        <td>3</td>
-                                        <td>3</td>
-                                        <td>3</td>
-                                    </tr>
-                                    <tr>
-                                        <td>4</td>
-                                        <td>4</td>
-                                        <td>4</td>
-                                        <td>4</td>
-                                        <td>4</td>
-                                    </tr>
-                                    <tr>
-                                        <td>5</td>
-                                        <td>5</td>
-                                        <td>5</td>
-                                        <td>5</td>
-                                        <td>5</td>
-                                    </tr>
-                                    <tr>
-                                        <td>6</td>
-                                        <td>6</td>
-                                        <td>6</td>
-                                        <td>6</td>
-                                        <td>6</td>
-                                    </tr>
-                                    <tr>
-                                        <td>7</td>
-                                        <td>7</td>
-                                        <td>7</td>
-                                        <td>7</td>
-                                        <td>7</td>
-                                    </tr>
-                                    <tr>
-                                        <td>8</td>
-                                        <td>8</td>
-                                        <td>8</td>
-                                        <td>8</td>
-                                        <td>8</td>
-                                    </tr>
-                                    <tr>
-                                        <td>9</td>
-                                        <td>9</td>
-                                        <td>9</td>
-                                        <td>9</td>
-                                        <td>9</td>
-                                    </tr>
-                                    <tr>
-                                        <td>10</td>
-                                        <td>10</td>
-                                        <td>10</td>
-                                        <td>10</td>
-                                        <td>10</td>
-                                    </tr>
-                                    <tr>
-                                        <td>11</td>
-                                        <td>11</td>
-                                        <td>11</td>
-                                        <td>11</td>
-                                        <td>11</td>
-                                    </tr>
-                                    <tr>
-                                        <td>12</td>
-                                        <td>12</td>
-                                        <td>12</td>
-                                        <td>12</td>
-                                        <td>12</td>
-                                    </tr>
-                                    <tr>
-                                        <td>13</td>
-                                        <td>13</td>
-                                        <td>13</td>
-                                        <td>13</td>
-                                        <td>13</td>
-                                    </tr>
-                                    <tr>
-                                        <td>14</td>
-                                        <td>14</td>
-                                        <td>14</td>
-                                        <td>14</td>
-                                        <td>14</td>
-                                    </tr>
-
+                                    @for ($i = 1; $i <= 14; $i++)
+                                        @php
+                                            $lokasi = 'C.' . $i;
+                                        @endphp
+                                        <tr>
+                                            <td>{{ $i }}</td>
+                                            <td>{{ $jumlahData[$lokasi]['T'] }}</td>
+                                            <td>{{ $jumlahData[$lokasi]['N'] }}</td>
+                                            <td>{{ $jumlahData[$lokasi]['total'] }}</td>
+                                            <!-- Gantilah nilai 1 dengan nilai kapasitas yang sesuai jika tersedia -->
+                                        </tr>
+                                    @endfor
+                                </tbody>
                                 <tfoot class="table-success">
                                     <tr>
                                         <th>TOTAL</th>
-                                        <th>TH</th>
-                                        <th>NP</th>
-                                        <th>JML</th>
-                                        <th>KAP</th>
+                                        <th>{{ array_sum(array_map(function ($item) {return $item['T'];},array_filter($jumlahData,function ($item, $key) {return strpos($key, 'C.') === 0;},ARRAY_FILTER_USE_BOTH))) }}
+                                        </th>
+                                        <th>{{ array_sum(array_map(function ($item) {return $item['N'];},array_filter($jumlahData,function ($item, $key) {return strpos($key, 'C.') === 0;},ARRAY_FILTER_USE_BOTH))) }}
+                                        </th>
+                                        <th>{{ array_sum(array_map(function ($item) {return $item['total'];},array_filter($jumlahData,function ($item, $key) {return strpos($key, 'C.') === 0;},ARRAY_FILTER_USE_BOTH))) }}
+                                        </th>
                                     </tr>
                                 </tfoot>
-                                </tbody>
                             </table>
                         </div>
                     </div>
+
                 </div>
 
 
                 <div class="row">
+                    <!-- Table D -->
                     <div class="col-md-4">
                         <div class="form-group mb-2">
                             <h5 class="text-center">D. DAHLIA</h5>
@@ -406,129 +212,39 @@
                                         <th>TH</th>
                                         <th>NP</th>
                                         <th>JML</th>
-                                        <th>KAP</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <td>1</td>
-                                        <td>1</td>
-                                        <td>1</td>
-                                        <td>1</td>
-                                        <td>1</td>
-                                    </tr>
-                                    <tr>
-                                        <td>2</td>
-                                        <td>2</td>
-                                        <td>2</td>
-                                        <td>2</td>
-                                        <td>2</td>
-                                    </tr>
-                                    <tr>
-                                        <td>3</td>
-                                        <td>3</td>
-                                        <td>3</td>
-                                        <td>3</td>
-                                        <td>3</td>
-                                    </tr>
-                                    <tr>
-                                        <td>4</td>
-                                        <td>4</td>
-                                        <td>4</td>
-                                        <td>4</td>
-                                        <td>4</td>
-                                    </tr>
-                                    <tr>
-                                        <td>5</td>
-                                        <td>5</td>
-                                        <td>5</td>
-                                        <td>5</td>
-                                        <td>5</td>
-                                    </tr>
-                                    <tr>
-                                        <td>6</td>
-                                        <td>6</td>
-                                        <td>6</td>
-                                        <td>6</td>
-                                        <td>6</td>
-                                    </tr>
-                                    <tr>
-                                        <td>7</td>
-                                        <td>7</td>
-                                        <td>7</td>
-                                        <td>7</td>
-                                        <td>7</td>
-                                    </tr>
-                                    <tr>
-                                        <td>8</td>
-                                        <td>8</td>
-                                        <td>8</td>
-                                        <td>8</td>
-                                        <td>8</td>
-                                    </tr>
-                                    <tr>
-                                        <td>9</td>
-                                        <td>9</td>
-                                        <td>9</td>
-                                        <td>9</td>
-                                        <td>9</td>
-                                    </tr>
-                                    <tr>
-                                        <td>10</td>
-                                        <td>10</td>
-                                        <td>10</td>
-                                        <td>10</td>
-                                        <td>10</td>
-                                    </tr>
-                                    <tr>
-                                        <td>11</td>
-                                        <td>11</td>
-                                        <td>11</td>
-                                        <td>11</td>
-                                        <td>11</td>
-                                    </tr>
-                                    <tr>
-                                        <td>12</td>
-                                        <td>12</td>
-                                        <td>12</td>
-                                        <td>12</td>
-                                        <td>12</td>
-                                    </tr>
-                                    <tr>
-                                        <td>13</td>
-                                        <td>13</td>
-                                        <td>13</td>
-                                        <td>13</td>
-                                        <td>13</td>
-                                    </tr>
-                                    <tr>
-                                        <td>14</td>
-                                        <td>14</td>
-                                        <td>14</td>
-                                        <td>14</td>
-                                        <td>14</td>
-                                    </tr>
-                                    <tr>
-                                        <td>15</td>
-                                        <td>15</td>
-                                        <td>15</td>
-                                        <td>15</td>
-                                        <td>15</td>
-                                    </tr>
+                                    @for ($i = 1; $i <= 15; $i++)
+                                        @php
+                                            $lokasi = 'D.' . $i;
+                                        @endphp
+                                        <tr>
+                                            <td>{{ $i }}</td>
+                                            <td>{{ $jumlahData[$lokasi]['T'] }}</td>
+                                            <td>{{ $jumlahData[$lokasi]['N'] }}</td>
+                                            <td>{{ $jumlahData[$lokasi]['total'] }}</td>
+                                            <!-- Gantilah nilai 1 dengan nilai kapasitas yang sesuai jika tersedia -->
+                                        </tr>
+                                    @endfor
+                                </tbody>
                                 <tfoot class="table-warning">
                                     <tr>
                                         <th>TOTAL</th>
-                                        <th>TH</th>
-                                        <th>NP</th>
-                                        <th>JML</th>
-                                        <th>KAP</th>
+                                        <th>{{ array_sum(array_map(function ($item) {return $item['T'];},array_filter($jumlahData,function ($item, $key) {return strpos($key, 'D.') === 0;},ARRAY_FILTER_USE_BOTH))) }}
+                                        </th>
+                                        <th>{{ array_sum(array_map(function ($item) {return $item['N'];},array_filter($jumlahData,function ($item, $key) {return strpos($key, 'D.') === 0;},ARRAY_FILTER_USE_BOTH))) }}
+                                        </th>
+                                        <th>{{ array_sum(array_map(function ($item) {return $item['total'];},array_filter($jumlahData,function ($item, $key) {return strpos($key, 'D.') === 0;},ARRAY_FILTER_USE_BOTH))) }}
+                                        </th>
                                     </tr>
                                 </tfoot>
-                                </tbody>
                             </table>
                         </div>
                     </div>
 
+
+                    <!-- Table E -->
                     <div class="col-md-4">
                         <div class="form-group mb-2">
                             <h5 class="text-center">E. EDELWEIS</h5>
@@ -539,124 +255,39 @@
                                         <th>TH</th>
                                         <th>NP</th>
                                         <th>JML</th>
-                                        <th>KAP</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <td>1</td>
-                                        <td>1</td>
-                                        <td>1</td>
-                                        <td>1</td>
-                                        <td>1</td>
-                                    </tr>
-                                    <tr>
-                                        <td>2</td>
-                                        <td>2</td>
-                                        <td>2</td>
-                                        <td>2</td>
-                                        <td>2</td>
-                                    </tr>
-                                    <tr>
-                                        <td>3</td>
-                                        <td>3</td>
-                                        <td>3</td>
-                                        <td>3</td>
-                                        <td>3</td>
-                                    </tr>
-                                    <tr>
-                                        <td>4</td>
-                                        <td>4</td>
-                                        <td>4</td>
-                                        <td>4</td>
-                                        <td>4</td>
-                                    </tr>
-                                    <tr>
-                                        <td>5</td>
-                                        <td>5</td>
-                                        <td>5</td>
-                                        <td>5</td>
-                                        <td>5</td>
-                                    </tr>
-                                    <tr>
-                                        <td>6</td>
-                                        <td>6</td>
-                                        <td>6</td>
-                                        <td>6</td>
-                                        <td>6</td>
-                                    </tr>
-                                    <tr>
-                                        <td>7</td>
-                                        <td>7</td>
-                                        <td>7</td>
-                                        <td>7</td>
-                                        <td>7</td>
-                                    </tr>
-                                    <tr>
-                                        <td>8</td>
-                                        <td>8</td>
-                                        <td>8</td>
-                                        <td>8</td>
-                                        <td>8</td>
-                                    </tr>
-                                    <tr>
-                                        <td>9</td>
-                                        <td>9</td>
-                                        <td>9</td>
-                                        <td>9</td>
-                                        <td>9</td>
-                                    </tr>
-                                    <tr>
-                                        <td>10</td>
-                                        <td>10</td>
-                                        <td>10</td>
-                                        <td>10</td>
-                                        <td>10</td>
-                                    </tr>
-                                    <tr>
-                                        <td>11</td>
-                                        <td>11</td>
-                                        <td>11</td>
-                                        <td>11</td>
-                                        <td>11</td>
-                                    </tr>
-                                    <tr>
-                                        <td>12</td>
-                                        <td>12</td>
-                                        <td>12</td>
-                                        <td>12</td>
-                                        <td>12</td>
-                                    </tr>
-                                    <tr>
-                                        <td>13</td>
-                                        <td>13</td>
-                                        <td>13</td>
-                                        <td>13</td>
-                                        <td>13</td>
-                                    </tr>
-                                    <tr>
-                                        <td>14</td>
-                                        <td>14</td>
-                                        <td>14</td>
-                                        <td>14</td>
-                                        <td>14</td>
-                                    </tr>
-
+                                    @for ($i = 1; $i <= 14; $i++)
+                                        @php
+                                            $lokasi = 'E.' . $i;
+                                        @endphp
+                                        <tr>
+                                            <td>{{ $i }}</td>
+                                            <td>{{ $jumlahData[$lokasi]['T'] }}</td>
+                                            <td>{{ $jumlahData[$lokasi]['N'] }}</td>
+                                            <td>{{ $jumlahData[$lokasi]['total'] }}</td>
+                                            <!-- Gantilah nilai 1 dengan nilai kapasitas yang sesuai jika tersedia -->
+                                        </tr>
+                                    @endfor
+                                </tbody>
                                 <tfoot class="table-danger">
                                     <tr>
                                         <th>TOTAL</th>
-                                        <th>TH</th>
-                                        <th>NP</th>
-                                        <th>JML</th>
-                                        <th>KAP</th>
+                                        <th>{{ array_sum(array_map(function ($item) {return $item['T'];},array_filter($jumlahData,function ($item, $key) {return strpos($key, 'E.') === 0;},ARRAY_FILTER_USE_BOTH))) }}
+                                        </th>
+                                        <th>{{ array_sum(array_map(function ($item) {return $item['N'];},array_filter($jumlahData,function ($item, $key) {return strpos($key, 'E.') === 0;},ARRAY_FILTER_USE_BOTH))) }}
+                                        </th>
+                                        <th>{{ array_sum(array_map(function ($item) {return $item['total'];},array_filter($jumlahData,function ($item, $key) {return strpos($key, 'E.') === 0;},ARRAY_FILTER_USE_BOTH))) }}
+                                        </th>
                                     </tr>
                                 </tfoot>
-                                </tbody>
                             </table>
                         </div>
                     </div>
 
 
+                    <!-- Table F -->
                     <div class="col-md-4">
                         <div class="form-group mb-2">
                             <h5 class="text-center">F. FLAMBOYAN</h5>
@@ -667,104 +298,66 @@
                                         <th>TH</th>
                                         <th>NP</th>
                                         <th>JML</th>
-                                        <th>KAP</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <td>1</td>
-                                        <td>1</td>
-                                        <td>1</td>
-                                        <td>1</td>
-                                        <td>1</td>
-                                    </tr>
-                                    <tr>
-                                        <td>2</td>
-                                        <td>2</td>
-                                        <td>2</td>
-                                        <td>2</td>
-                                        <td>2</td>
-                                    </tr>
-                                    <tr>
-                                        <td>3</td>
-                                        <td>3</td>
-                                        <td>3</td>
-                                        <td>3</td>
-                                        <td>3</td>
-                                    </tr>
-                                    <tr>
-                                        <td>4</td>
-                                        <td>4</td>
-                                        <td>4</td>
-                                        <td>4</td>
-                                        <td>4</td>
-                                    </tr>
-                                    <tr>
-                                        <td>5</td>
-                                        <td>5</td>
-                                        <td>5</td>
-                                        <td>5</td>
-                                        <td>5</td>
-                                    </tr>
-                                    <tr>
-                                        <td>6</td>
-                                        <td>6</td>
-                                        <td>6</td>
-                                        <td>6</td>
-                                        <td>6</td>
-                                    </tr>
-                                    <tr>
-                                        <td>7</td>
-                                        <td>7</td>
-                                        <td>7</td>
-                                        <td>7</td>
-                                        <td>7</td>
-                                    </tr>
-                                    <tr>
-                                        <td>8</td>
-                                        <td>8</td>
-                                        <td>8</td>
-                                        <td>8</td>
-                                        <td>8</td>
-                                    </tr>
-
+                                    @for ($i = 1; $i <= 8; $i++)
+                                        @php
+                                            $lokasi = 'F.' . $i;
+                                        @endphp
+                                        <tr>
+                                            <td>{{ $i }}</td>
+                                            <td>{{ $jumlahData[$lokasi]['T'] }}</td>
+                                            <td>{{ $jumlahData[$lokasi]['N'] }}</td>
+                                            <td>{{ $jumlahData[$lokasi]['total'] }}</td>
+                                            <!-- Gantilah nilai 1 dengan nilai kapasitas yang sesuai jika tersedia -->
+                                        </tr>
+                                    @endfor
+                                </tbody>
                                 <tfoot class="table-dark">
                                     <tr>
                                         <th>TOTAL</th>
-                                        <th>TH</th>
-                                        <th>NP</th>
-                                        <th>JML</th>
-                                        <th>KAP</th>
+                                        <th>{{ array_sum(array_map(function ($item) {return $item['T'];},array_filter($jumlahData,function ($item, $key) {return strpos($key, 'F.') === 0;},ARRAY_FILTER_USE_BOTH))) }}
+                                        </th>
+                                        <th>{{ array_sum(array_map(function ($item) {return $item['N'];},array_filter($jumlahData,function ($item, $key) {return strpos($key, 'F.') === 0;},ARRAY_FILTER_USE_BOTH))) }}
+                                        </th>
+                                        <th>{{ array_sum(array_map(function ($item) {return $item['total'];},array_filter($jumlahData,function ($item, $key) {return strpos($key, 'F.') === 0;},ARRAY_FILTER_USE_BOTH))) }}
+                                        </th>
                                     </tr>
                                 </tfoot>
-                                </tbody>
                             </table>
                         </div>
 
                         <div class="form-group mb-2">
-                            <h5 class="text-center">KETERANGAN</h5>
+                            <h5 class="text-center">JUMLAH KESELURUHAN</h5>
                             <table class="table table-bordered table-striped table-jumlahtotal">
                                 <tbody>
                                     <tr>
                                         <td>Tahanan</td>
-                                        <td>1</td>
+                                        <td>{{ array_sum(array_map(function ($item) {return $item['T'];}, $jumlahData)) }}
+                                        </td>
                                     </tr>
                                     <tr>
                                         <td>Narapidana</td>
-                                        <td>1</td>
+                                        <td>{{ array_sum(array_map(function ($item) {return $item['N'];}, $jumlahData)) }}
+                                        </td>
                                     </tr>
                                     <tr>
                                         <td>Jumlah</td>
-                                        <td>1</td>
+                                        <td>{{ array_sum(array_map(function ($item) {return $item['total'];}, $jumlahData)) }}
+                                        </td>
                                     </tr>
                                 </tbody>
                             </table>
                         </div>
-
                     </div>
+                </div>
 
 
-                    <div class="col-md-4">
+
+
+                <div class="row">
+                    <div class="col-md-5">
                         <div class="form-group mb-2">
                             <h5 class="text-center">JUMLAH PER BLOK</h5>
                             <table class="table table-bordered table-striped">
@@ -777,57 +370,35 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <td>A</td>
-                                        <td>A</td>
-                                        <td>A</td>
-                                        <td>A</td>
-                                    </tr>
-                                    <tr>
-                                        <td>B</td>
-                                        <td>B</td>
-                                        <td>B</td>
-                                        <td>B</td>
-                                    </tr>
-                                    <tr>
-                                        <td>C</td>
-                                        <td>C</td>
-                                        <td>C</td>
-                                        <td>C</td>
-                                    </tr>
-                                    <tr>
-                                        <td>D</td>
-                                        <td>D</td>
-                                        <td>D</td>
-                                        <td>D</td>
-                                    </tr>
-                                    <tr>
-                                        <td>E</td>
-                                        <td>E</td>
-                                        <td>E</td>
-                                        <td>E</td>
-                                    </tr>
-                                    <tr>
-                                        <td>F</td>
-                                        <td>F</td>
-                                        <td>F</td>
-                                        <td>F</td>
-                                    </tr>
-
+                                    @foreach (['A', 'B', 'C', 'D', 'E', 'F'] as $block)
+                                        <tr>
+                                            <td>{{ $block }}</td>
+                                            <td>{{ array_sum(array_map(function ($item) {return $item['T'];},array_filter($jumlahData,function ($item, $key) use ($block) {return strpos($key, "{$block}.") === 0;},ARRAY_FILTER_USE_BOTH))) }}
+                                            </td>
+                                            <td>{{ array_sum(array_map(function ($item) {return $item['N'];},array_filter($jumlahData,function ($item, $key) use ($block) {return strpos($key, "{$block}.") === 0;},ARRAY_FILTER_USE_BOTH))) }}
+                                            </td>
+                                            <td>{{ array_sum(array_map(function ($item) {return $item['total'];},array_filter($jumlahData,function ($item, $key) use ($block) {return strpos($key, "{$block}.") === 0;},ARRAY_FILTER_USE_BOTH))) }}
+                                            </td>
+                                        </tr>
+                                    @endforeach
+                                </tbody>
                                 <tfoot class="table-success">
                                     <tr>
                                         <th>TOTAL</th>
-                                        <th>TH</th>
-                                        <th>NP</th>
-                                        <th>JML</th>
+                                        <th>{{ array_sum(array_map(function ($item) {return $item['T'];}, $jumlahData)) }}
+                                        </th>
+                                        <th>{{ array_sum(array_map(function ($item) {return $item['N'];}, $jumlahData)) }}
+                                        </th>
+                                        <th>{{ array_sum(array_map(function ($item) {return $item['total'];}, $jumlahData)) }}
+                                        </th>
                                     </tr>
                                 </tfoot>
-                                </tbody>
                             </table>
                         </div>
-
                     </div>
-                    <div class="col-md-8">
+
+
+                    <div class="col-md-6">
                         <div class="form-group mb-2">
                             <h5 class="text-center">KETERANGAN</h5>
                             <table class="table table-bordered table-striped">
@@ -888,8 +459,16 @@
                                 </tbody>
                             </table>
                         </div>
+
+
+
+
+
                     </div>
+
                 </div>
+
+
             </div>
         </div>
     </div>
