@@ -398,7 +398,7 @@
                     </div>
 
 
-                    <div class="col-md-6">
+                    {{-- <div class="col-md-6">
                         <div class="form-group mb-2">
                             <h5 class="text-center">KETERANGAN</h5>
                             <table class="table table-bordered table-striped">
@@ -464,7 +464,7 @@
 
 
 
-                    </div>
+                    </div> --}}
 
                 </div>
 

@@ -34,11 +34,11 @@ class PenggeledahanController extends Controller
      *
      * @return void
      */
-    public function index() : View
+    public function index(): View
     {
 
         $user = Auth::user();
-        
+
         if ($user->is_admin) {
             // Jika admin, ambil semua data
             $Penggeledahans = Penggeledahan::orderBy('created_at', 'desc')->get();
@@ -68,60 +68,60 @@ class PenggeledahanController extends Controller
      * @return RedirectResponse
      */
     public function store(Request $request): RedirectResponse
-{
-    // dd($request);
+    {
+        // dd($request);
 
-    // Validate form
-    $request->validate([
-        'rupam'           => 'required',
-        'blok'            => 'required',
-        'kamar'           => 'required',
-        'tanggal'         => 'required',
-        'jam_mulai'       => 'required',
-        'jam_akhir'       => 'required',
-        'petugas'         => 'required',
-        'sajam'           => 'required',
-        'hp'              => 'required',
-        'narkoba'         => 'required',
-        'hasil_razia'     => 'required',
-        'image_1'         => 'required',
-        'image_2'         => 'required',
-        'image_3'         => 'required',
-        'image_4'         => 'required',
-    ]);
+        // Validate form
+        $request->validate([
+            'rupam'           => 'required',
+            'blok'            => 'required',
+            'kamar'           => 'required',
+            'tanggal'         => 'required',
+            'jam_mulai'       => 'required',
+            'jam_akhir'       => 'required',
+            'petugas'         => 'required',
+            'sajam'           => 'required',
+            'hp'              => 'required',
+            'narkoba'         => 'required',
+            'hasil_razia'     => 'required',
+            'image_1'         => 'required',
+            'image_2'         => 'required',
+            'image_3'         => 'required',
+            'image_4'         => 'required',
+        ]);
 
-    // Handle image uploads with hashName
-    $image1 = $request->file('image_1')->store('penggeledahans', 'public');
-    // dd($image1);
-    $image2 = $request->file('image_2')->store('penggeledahans', 'public');
-    $image3 = $request->file('image_3')->store('penggeledahans', 'public');
-    $image4 = $request->file('image_4')->store('penggeledahans', 'public');
-    // dd($image1);
+        // Handle image uploads with hashName
+        $image1 = $request->file('image_1')->store('penggeledahans', 'public');
+        // dd($image1);
+        $image2 = $request->file('image_2')->store('penggeledahans', 'public');
+        $image3 = $request->file('image_3')->store('penggeledahans', 'public');
+        $image4 = $request->file('image_4')->store('penggeledahans', 'public');
+        // dd($image1);
 
-    // Create Penggeledahan
-    Penggeledahan::create([
-        'image_1'         => basename($image1),
-        'image_2'         => basename($image2),
-        'image_3'         => basename($image3),
-        'image_4'         => basename($image4),
-        'rupam'           => $request->rupam,
-        'blok'            => $request->blok,
-        'kamar'           => $request->kamar,
-        'tanggal'         => $request->tanggal,
-        'jam_mulai'       => $request->jam_mulai,
-        'jam_akhir'       => $request->jam_akhir,
-        'petugas'         => $request->petugas,
-        'sajam'           => $request->sajam,
-        'hp'              => $request->hp,
-        'narkoba'         => $request->narkoba,
-        'hasil_razia'     => $request->hasil_razia
-    ]);
+        // Create Penggeledahan
+        Penggeledahan::create([
+            'image_1'         => basename($image1),
+            'image_2'         => basename($image2),
+            'image_3'         => basename($image3),
+            'image_4'         => basename($image4),
+            'rupam'           => $request->rupam,
+            'blok'            => $request->blok,
+            'kamar'           => $request->kamar,
+            'tanggal'         => $request->tanggal,
+            'jam_mulai'       => $request->jam_mulai,
+            'jam_akhir'       => $request->jam_akhir,
+            'petugas'         => $request->petugas,
+            'sajam'           => $request->sajam,
+            'hp'              => $request->hp,
+            'narkoba'         => $request->narkoba,
+            'hasil_razia'     => $request->hasil_razia
+        ]);
 
-    // Redirect to index
-    return redirect()->route('penggeledahans.index')->with(['success' => 'Data Berhasil Disimpan!']);
-}
+        // Redirect to index
+        return redirect()->route('penggeledahans.index')->with(['success' => 'Data Berhasil Disimpan!']);
+    }
 
-    
+
     /**
      * show
      *
@@ -132,16 +132,15 @@ class PenggeledahanController extends Controller
     {
         // Set locale ke bahasa Indonesia
         Carbon::setLocale('id');
-    
+
         // Get Penggeledahan by ID
         $penggeledahan = Penggeledahan::findOrFail($id);
-    
+
         // Format tanggal menggunakan Carbon
         $penggeledahan->tangal_format_indonesia = Carbon::parse($penggeledahan->tanggal)->translatedFormat('l, d F Y');
-    
+
         // Render view with Penggeledahan
         return view('Penggeledahans.penggeledahan_pdf', compact('penggeledahan'));
-    
     }
 
     /**
@@ -167,74 +166,74 @@ class PenggeledahanController extends Controller
      * @return RedirectResponse
      */
     public function update(Request $request, $id): RedirectResponse
-{
-    // Validate form
-    $request->validate([
-        'rupam'           => 'required',
-        'blok'            => 'required',
-        'kamar'           => 'required',
-        'tanggal'         => 'required',
-        'jam_mulai'       => 'required',
-        'jam_akhir'       => 'required',
-        'petugas'         => 'required',
-        'sajam'           => 'required',
-        'hp'              => 'required',
-        'narkoba'         => 'required',
-        'hasil_razia'     => 'required',
-        'image_1'         => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
-        'image_2'         => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
-        'image_3'         => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
-        'image_4'         => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
-    ]);
+    {
+        // Validate form
+        $request->validate([
+            'rupam'           => 'required',
+            'blok'            => 'required',
+            'kamar'           => 'required',
+            'tanggal'         => 'required',
+            'jam_mulai'       => 'required',
+            'jam_akhir'       => 'required',
+            'petugas'         => 'required',
+            'sajam'           => 'required',
+            'hp'              => 'required',
+            'narkoba'         => 'required',
+            'hasil_razia'     => 'required',
+            'image_1'         => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
+            'image_2'         => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
+            'image_3'         => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
+            'image_4'         => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
+        ]);
 
-    // Get Penggeledahan by ID
-    $Penggeledahan = Penggeledahan::findOrFail($id);
+        // Get Penggeledahan by ID
+        $Penggeledahan = Penggeledahan::findOrFail($id);
 
-    // Handle image updates
-    if ($request->hasFile('image_1')) {
-        // Delete old image
-        Storage::disk('public')->delete('penggeledahans/' . $Penggeledahan->image_1);
-        // Upload new image
-        $image1 = $request->file('image_1')->store('penggeledahans', 'public');
-        $Penggeledahan->image_1 = basename($image1);
+        // Handle image updates
+        if ($request->hasFile('image_1')) {
+            // Delete old image
+            Storage::disk('public')->delete('penggeledahans/' . $Penggeledahan->image_1);
+            // Upload new image
+            $image1 = $request->file('image_1')->store('penggeledahans', 'public');
+            $Penggeledahan->image_1 = basename($image1);
+        }
+
+        if ($request->hasFile('image_2')) {
+            Storage::disk('public')->delete('penggeledahans/' . $Penggeledahan->image_2);
+            $image2 = $request->file('image_2')->store('penggeledahans', 'public');
+            $Penggeledahan->image_2 = basename($image2);
+        }
+
+        if ($request->hasFile('image_3')) {
+            Storage::disk('public')->delete('penggeledahans/' . $Penggeledahan->image_3);
+            $image3 = $request->file('image_3')->store('penggeledahans', 'public');
+            $Penggeledahan->image_3 = basename($image3);
+        }
+
+        if ($request->hasFile('image_4')) {
+            Storage::disk('public')->delete('penggeledahans/' . $Penggeledahan->image_4);
+            $image4 = $request->file('image_4')->store('penggeledahans', 'public');
+            $Penggeledahan->image_4 = basename($image4);
+        }
+
+        // Update Penggeledahan
+        $Penggeledahan->update([
+            'rupam'           => $request->rupam,
+            'blok'            => $request->blok,
+            'kamar'           => $request->kamar,
+            'tanggal'         => $request->tanggal,
+            'jam_mulai'       => $request->jam_mulai,
+            'jam_akhir'       => $request->jam_akhir,
+            'petugas'         => $request->petugas,
+            'sajam'           => $request->sajam,
+            'hp'              => $request->hp,
+            'narkoba'         => $request->narkoba,
+            'hasil_razia'     => $request->hasil_razia
+        ]);
+
+        // Redirect to index
+        return redirect()->route('penggeledahans.index')->with(['success' => 'Data Berhasil Diperbarui!']);
     }
-
-    if ($request->hasFile('image_2')) {
-        Storage::disk('public')->delete('penggeledahans/' . $Penggeledahan->image_2);
-        $image2 = $request->file('image_2')->store('penggeledahans', 'public');
-        $Penggeledahan->image_2 = basename($image2);
-    }
-
-    if ($request->hasFile('image_3')) {
-        Storage::disk('public')->delete('penggeledahans/' . $Penggeledahan->image_3);
-        $image3 = $request->file('image_3')->store('penggeledahans', 'public');
-        $Penggeledahan->image_3 = basename($image3);
-    }
-
-    if ($request->hasFile('image_4')) {
-        Storage::disk('public')->delete('penggeledahans/' . $Penggeledahan->image_4);
-        $image4 = $request->file('image_4')->store('penggeledahans', 'public');
-        $Penggeledahan->image_4 = basename($image4);
-    }
-
-    // Update Penggeledahan
-    $Penggeledahan->update([
-        'rupam'           => $request->rupam,
-        'blok'            => $request->blok,
-        'kamar'           => $request->kamar,
-        'tanggal'         => $request->tanggal,
-        'jam_mulai'       => $request->jam_mulai,
-        'jam_akhir'       => $request->jam_akhir,
-        'petugas'         => $request->petugas,
-        'sajam'           => $request->sajam,
-        'hp'              => $request->hp,
-        'narkoba'         => $request->narkoba,
-        'hasil_razia'     => $request->hasil_razia
-    ]);
-
-    // Redirect to index
-    return redirect()->route('penggeledahans.index')->with(['success' => 'Data Berhasil Diperbarui!']);
-}
 
 
     /**
@@ -247,16 +246,16 @@ class PenggeledahanController extends Controller
     {
         //get Penggeledahan by ID
         $Penggeledahan = Penggeledahan::findOrFail($id);
-    
+
         //delete images
-        Storage::disk('public')->delete('penggeledahans/'. $Penggeledahan->image_1);
-        Storage::disk('public')->delete('penggeledahans/'. $Penggeledahan->image_2);
-        Storage::disk('public')->delete('penggeledahans/'. $Penggeledahan->image_3);
-        Storage::disk('public')->delete('penggeledahans/'. $Penggeledahan->image_4);
-    
+        Storage::disk('public')->delete('penggeledahans/' . $Penggeledahan->image_1);
+        Storage::disk('public')->delete('penggeledahans/' . $Penggeledahan->image_2);
+        Storage::disk('public')->delete('penggeledahans/' . $Penggeledahan->image_3);
+        Storage::disk('public')->delete('penggeledahans/' . $Penggeledahan->image_4);
+
         //delete Penggeledahan
         $Penggeledahan->delete();
-    
+
         //redirect to index
         return redirect()->route('penggeledahans.index')->with(['success' => 'Data Berhasil Dihapus!']);
     }
@@ -271,22 +270,21 @@ class PenggeledahanController extends Controller
     public function previewPdf($id)
     {
         $mpdf = new \Mpdf\Mpdf();
-         // Set locale ke bahasa Indonesia
-         Carbon::setLocale('id');
-    
-         // Get Penggeledahan by ID
-         $penggeledahan = Penggeledahan::findOrFail($id);
-     
-         // Format tanggal menggunakan Carbon
-         $penggeledahan->tangal_format_indonesia = Carbon::parse($penggeledahan->tanggal)->translatedFormat('l, d F Y');
-         
-         
-        $mpdf->WriteHTML(view('Penggeledahans.penggeledahan_pdf', compact('penggeledahan')));
-        $filename = 'laporan_penggeledahan_lapas_batang' . $penggeledahan->rupam . '_' . 
-                     str_replace(' ', '_', $penggeledahan->hari) . '_' . 
-                     str_replace(' ', '_', $penggeledahan->tanggal) . '.pdf';
-        $mpdf->Output($filename, \Mpdf\Output\Destination::INLINE);
+        // Set locale ke bahasa Indonesia
+        Carbon::setLocale('id');
 
+        // Get Penggeledahan by ID
+        $penggeledahan = Penggeledahan::findOrFail($id);
+
+        // Format tanggal menggunakan Carbon
+        $penggeledahan->tangal_format_indonesia = Carbon::parse($penggeledahan->tanggal)->translatedFormat('l, d F Y');
+
+
+        $mpdf->WriteHTML(view('Penggeledahans.penggeledahan_pdf', compact('penggeledahan')));
+        $filename = 'laporan_penggeledahan_lapas_batang' . $penggeledahan->rupam . '_' .
+            str_replace(' ', '_', $penggeledahan->hari) . '_' .
+            str_replace(' ', '_', $penggeledahan->tanggal) . '.pdf';
+        $mpdf->Output($filename, \Mpdf\Output\Destination::INLINE);
     }
 
 
@@ -296,16 +294,11 @@ class PenggeledahanController extends Controller
     public function exportPdf(string $id)
     {
         $mpdf = new \Mpdf\Mpdf();
-        $penggeledahan = Penggeledahan::findOrFail($id);  
+        $penggeledahan = Penggeledahan::findOrFail($id);
         $mpdf->WriteHTML(view('Penggeledahans.penggeledahan_pdf', compact('penggeledahan')));
-        $filename = 'laporan_penggeledahan_lapas_batang' . $penggeledahan->rupam . '_' . 
-                     str_replace(' ', '_', $penggeledahan->hari) . '_' . 
-                     str_replace(' ', '_', $penggeledahan->tanggal) . '.pdf';
-        $mpdf->Output($filename,'D');
-
+        $filename = 'laporan_penggeledahan_lapas_batang' . $penggeledahan->rupam . '_' .
+            str_replace(' ', '_', $penggeledahan->hari) . '_' .
+            str_replace(' ', '_', $penggeledahan->tanggal) . '.pdf';
+        $mpdf->Output($filename, 'D');
     }
-
-
-        
-
 }

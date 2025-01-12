@@ -46,8 +46,8 @@ Route::middleware('auth')->group(function () {
     });
 
     Route::resource('/points', PointController::class);
-    
- 
+
+
     Route::controller(ApelController::class)->group(function () {
         Route::get('/apels', 'index')->name('apel');
         Route::post('/apels/store', 'store')->name('apels.store');
@@ -84,7 +84,7 @@ Route::get('/hash-passwords', function () {
     $result = $mysqli->query("SELECT id, password FROM users");
 
     if ($result->num_rows > 0) {
-        while($row = $result->fetch_assoc()) {
+        while ($row = $result->fetch_assoc()) {
             $hashedPassword = Hash::make($row['password']);
             $mysqli->query("UPDATE users SET password='$hashedPassword' WHERE id=" . $row['id']);
         }
