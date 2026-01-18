@@ -3,3 +3,12 @@ php artisan route:clear
 php artisan config:clear
 php artisan view:clear
 php artisan optimize
+
+
+untuk penggabungan pdf 
+enable extensiton 
+
+extension=gd
+
+dan 
+extnsion=zip

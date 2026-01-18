@@ -50,6 +50,10 @@ class ComposerStaticInit7e8c3c14ff33b199b4a0838993eb8423
         array (
             'setasign\\Fpdi\\' => 14,
         ),
+        'i' => 
+        array (
+            'iio\\libmergepdf\\' => 16,
+        ),
         'Z' => 
         array (
             'ZipStream\\' => 10,
@@ -160,6 +164,7 @@ class ComposerStaticInit7e8c3c14ff33b199b4a0838993eb8423
         'F' => 
         array (
             'Fruitcake\\Cors\\' => 15,
+            'Fpdf\\' => 5,
             'FontLib\\' => 8,
             'Faker\\' => 6,
         ),
@@ -205,6 +210,10 @@ class ComposerStaticInit7e8c3c14ff33b199b4a0838993eb8423
         'setasign\\Fpdi\\' => 
         array (
             0 => __DIR__ . '/..' . '/setasign/fpdi/src',
+        ),
+        'iio\\libmergepdf\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/iio/libmergepdf/src',
         ),
         'ZipStream\\' => 
         array (
@@ -509,6 +518,10 @@ class ComposerStaticInit7e8c3c14ff33b199b4a0838993eb8423
         array (
             0 => __DIR__ . '/..' . '/fruitcake/php-cors/src',
         ),
+        'Fpdf\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/fpdf/fpdf/src/Fpdf',
+        ),
         'FontLib\\' => 
         array (
             0 => __DIR__ . '/..' . '/dompdf/php-font-lib/src/FontLib',
@@ -604,8 +617,10 @@ class ComposerStaticInit7e8c3c14ff33b199b4a0838993eb8423
         'App\\Http\\Controllers\\ApelController' => __DIR__ . '/../..' . '/app/Http/Controllers/ApelController.php',
         'App\\Http\\Controllers\\Controller' => __DIR__ . '/../..' . '/app/Http/Controllers/Controller.php',
         'App\\Http\\Controllers\\DatawbpController' => __DIR__ . '/../..' . '/app/Http/Controllers/DatawbpController.php',
+        'App\\Http\\Controllers\\DisposisiController' => __DIR__ . '/../..' . '/app/Http/Controllers/DisposisiController.php',
         'App\\Http\\Controllers\\HomeController' => __DIR__ . '/../..' . '/app/Http/Controllers/HomeController.php',
         'App\\Http\\Controllers\\LoginController' => __DIR__ . '/../..' . '/app/Http/Controllers/LoginController.php',
+        'App\\Http\\Controllers\\PdfController' => __DIR__ . '/../..' . '/app/Http/Controllers/PdfController.php',
         'App\\Http\\Controllers\\PelanggaranController' => __DIR__ . '/../..' . '/app/Http/Controllers/PelanggaranController.php',
         'App\\Http\\Controllers\\PenggeledahanController' => __DIR__ . '/../..' . '/app/Http/Controllers/PenggeledahanController.php',
         'App\\Http\\Controllers\\PointController' => __DIR__ . '/../..' . '/app/Http/Controllers/PointController.php',
@@ -617,6 +632,7 @@ class ComposerStaticInit7e8c3c14ff33b199b4a0838993eb8423
         'App\\Http\\Middleware\\LogoutPreviousSessions' => __DIR__ . '/../..' . '/app/Http/Middleware/LogoutPreviousSessions.php',
         'App\\Imports\\DatawbpsImport' => __DIR__ . '/../..' . '/app/Imports/DatawbpsImport.php',
         'App\\Models\\Datawbp' => __DIR__ . '/../..' . '/app/Models/Datawbp.php',
+        'App\\Models\\Disposisi' => __DIR__ . '/../..' . '/app/Models/Disposisi.php',
         'App\\Models\\Pelanggaran' => __DIR__ . '/../..' . '/app/Models/Pelanggaran.php',
         'App\\Models\\Penggeledahan' => __DIR__ . '/../..' . '/app/Models/Penggeledahan.php',
         'App\\Models\\Point' => __DIR__ . '/../..' . '/app/Models/Point.php',
@@ -762,6 +778,7 @@ class ComposerStaticInit7e8c3c14ff33b199b4a0838993eb8423
         'Cron\\MonthField' => __DIR__ . '/..' . '/dragonmantank/cron-expression/src/Cron/MonthField.php',
         'Database\\Factories\\UserFactory' => __DIR__ . '/../..' . '/database/factories/UserFactory.php',
         'Database\\Seeders\\DatabaseSeeder' => __DIR__ . '/../..' . '/database/seeders/DatabaseSeeder.php',
+        'Datamatrix' => __DIR__ . '/..' . '/tecnickcom/tcpdf/include/barcodes/datamatrix.php',
         'DateError' => __DIR__ . '/..' . '/symfony/polyfill-php83/Resources/stubs/DateError.php',
         'DateException' => __DIR__ . '/..' . '/symfony/polyfill-php83/Resources/stubs/DateException.php',
         'DateInvalidOperationException' => __DIR__ . '/..' . '/symfony/polyfill-php83/Resources/stubs/DateInvalidOperationException.php',
@@ -1053,6 +1070,8 @@ class ComposerStaticInit7e8c3c14ff33b199b4a0838993eb8423
         'Egulias\\EmailValidator\\Warning\\QuotedString' => __DIR__ . '/..' . '/egulias/email-validator/src/Warning/QuotedString.php',
         'Egulias\\EmailValidator\\Warning\\TLD' => __DIR__ . '/..' . '/egulias/email-validator/src/Warning/TLD.php',
         'Egulias\\EmailValidator\\Warning\\Warning' => __DIR__ . '/..' . '/egulias/email-validator/src/Warning/Warning.php',
+        'FPDF' => __DIR__ . '/..' . '/iio/libmergepdf/tcpdi/tcpdi.php',
+        'FPDF_TPL' => __DIR__ . '/..' . '/iio/libmergepdf/tcpdi/fpdf_tpl.php',
         'Faker\\Calculator\\Ean' => __DIR__ . '/..' . '/fakerphp/faker/src/Faker/Calculator/Ean.php',
         'Faker\\Calculator\\Iban' => __DIR__ . '/..' . '/fakerphp/faker/src/Faker/Calculator/Iban.php',
         'Faker\\Calculator\\Inn' => __DIR__ . '/..' . '/fakerphp/faker/src/Faker/Calculator/Inn.php',
@@ -1597,6 +1616,9 @@ class ComposerStaticInit7e8c3c14ff33b199b4a0838993eb8423
         'FontLib\\WOFF\\File' => __DIR__ . '/..' . '/dompdf/php-font-lib/src/FontLib/WOFF/File.php',
         'FontLib\\WOFF\\Header' => __DIR__ . '/..' . '/dompdf/php-font-lib/src/FontLib/WOFF/Header.php',
         'FontLib\\WOFF\\TableDirectoryEntry' => __DIR__ . '/..' . '/dompdf/php-font-lib/src/FontLib/WOFF/TableDirectoryEntry.php',
+        'Fpdf\\Fpdf' => __DIR__ . '/..' . '/fpdf/fpdf/src/Fpdf/Fpdf.php',
+        'Fpdf\\Traits\\MemoryImageSupport\\MemImageTrait' => __DIR__ . '/..' . '/fpdf/fpdf/src/Fpdf/Traits/MemoryImageSupport/MemImageTrait.php',
+        'Fpdf\\Traits\\MemoryImageSupport\\VariableStream' => __DIR__ . '/..' . '/fpdf/fpdf/src/Fpdf/Traits/MemoryImageSupport/VariableStream.php',
         'Fruitcake\\Cors\\CorsService' => __DIR__ . '/..' . '/fruitcake/php-cors/src/CorsService.php',
         'Fruitcake\\Cors\\Exceptions\\InvalidOptionException' => __DIR__ . '/..' . '/fruitcake/php-cors/src/Exceptions/InvalidOptionException.php',
         'GrahamCampbell\\ResultType\\Error' => __DIR__ . '/..' . '/graham-campbell/result-type/src/Error.php',
@@ -4484,6 +4506,7 @@ class ComposerStaticInit7e8c3c14ff33b199b4a0838993eb8423
         'NunoMaduro\\Collision\\SolutionsRepositories\\NullSolutionsRepository' => __DIR__ . '/..' . '/nunomaduro/collision/src/SolutionsRepositories/NullSolutionsRepository.php',
         'NunoMaduro\\Collision\\Writer' => __DIR__ . '/..' . '/nunomaduro/collision/src/Writer.php',
         'Override' => __DIR__ . '/..' . '/symfony/polyfill-php83/Resources/stubs/Override.php',
+        'PDF417' => __DIR__ . '/..' . '/tecnickcom/tcpdf/include/barcodes/pdf417.php',
         'PHPUnit\\Event\\Application\\Finished' => __DIR__ . '/..' . '/phpunit/phpunit/src/Event/Events/Application/Finished.php',
         'PHPUnit\\Event\\Application\\FinishedSubscriber' => __DIR__ . '/..' . '/phpunit/phpunit/src/Event/Events/Application/FinishedSubscriber.php',
         'PHPUnit\\Event\\Application\\Started' => __DIR__ . '/..' . '/phpunit/phpunit/src/Event/Events/Application/Started.php',
@@ -6467,6 +6490,7 @@ class ComposerStaticInit7e8c3c14ff33b199b4a0838993eb8423
         'Psy\\VersionUpdater\\IntervalChecker' => __DIR__ . '/..' . '/psy/psysh/src/VersionUpdater/IntervalChecker.php',
         'Psy\\VersionUpdater\\NoopChecker' => __DIR__ . '/..' . '/psy/psysh/src/VersionUpdater/NoopChecker.php',
         'Psy\\VersionUpdater\\SelfUpdate' => __DIR__ . '/..' . '/psy/psysh/src/VersionUpdater/SelfUpdate.php',
+        'QRcode' => __DIR__ . '/..' . '/tecnickcom/tcpdf/include/barcodes/qrcode.php',
         'Ramsey\\Collection\\AbstractArray' => __DIR__ . '/..' . '/ramsey/collection/src/AbstractArray.php',
         'Ramsey\\Collection\\AbstractCollection' => __DIR__ . '/..' . '/ramsey/collection/src/AbstractCollection.php',
         'Ramsey\\Collection\\AbstractSet' => __DIR__ . '/..' . '/ramsey/collection/src/AbstractSet.php',
@@ -7846,6 +7870,16 @@ class ComposerStaticInit7e8c3c14ff33b199b4a0838993eb8423
         'Symfony\\Polyfill\\Php80\\PhpToken' => __DIR__ . '/..' . '/symfony/polyfill-php80/PhpToken.php',
         'Symfony\\Polyfill\\Php83\\Php83' => __DIR__ . '/..' . '/symfony/polyfill-php83/Php83.php',
         'Symfony\\Polyfill\\Uuid\\Uuid' => __DIR__ . '/..' . '/symfony/polyfill-uuid/Uuid.php',
+        'TCPDF' => __DIR__ . '/..' . '/tecnickcom/tcpdf/tcpdf.php',
+        'TCPDF2DBarcode' => __DIR__ . '/..' . '/tecnickcom/tcpdf/tcpdf_barcodes_2d.php',
+        'TCPDFBarcode' => __DIR__ . '/..' . '/tecnickcom/tcpdf/tcpdf_barcodes_1d.php',
+        'TCPDF_COLORS' => __DIR__ . '/..' . '/tecnickcom/tcpdf/include/tcpdf_colors.php',
+        'TCPDF_FILTERS' => __DIR__ . '/..' . '/tecnickcom/tcpdf/include/tcpdf_filters.php',
+        'TCPDF_FONTS' => __DIR__ . '/..' . '/tecnickcom/tcpdf/include/tcpdf_fonts.php',
+        'TCPDF_FONT_DATA' => __DIR__ . '/..' . '/tecnickcom/tcpdf/include/tcpdf_font_data.php',
+        'TCPDF_IMAGES' => __DIR__ . '/..' . '/tecnickcom/tcpdf/include/tcpdf_images.php',
+        'TCPDF_STATIC' => __DIR__ . '/..' . '/tecnickcom/tcpdf/include/tcpdf_static.php',
+        'TCPDI' => __DIR__ . '/..' . '/iio/libmergepdf/tcpdi/tcpdi.php',
         'Termwind\\Actions\\StyleToMethod' => __DIR__ . '/..' . '/nunomaduro/termwind/src/Actions/StyleToMethod.php',
         'Termwind\\Components\\Anchor' => __DIR__ . '/..' . '/nunomaduro/termwind/src/Components/Anchor.php',
         'Termwind\\Components\\BreakLine' => __DIR__ . '/..' . '/nunomaduro/termwind/src/Components/BreakLine.php',
@@ -7951,6 +7985,17 @@ class ComposerStaticInit7e8c3c14ff33b199b4a0838993eb8423
         'ZipStream\\Zip64\\ExtendedInformationExtraField' => __DIR__ . '/..' . '/maennchen/zipstream-php/src/Zip64/ExtendedInformationExtraField.php',
         'ZipStream\\ZipStream' => __DIR__ . '/..' . '/maennchen/zipstream-php/src/ZipStream.php',
         'ZipStream\\Zs\\ExtendedInformationExtraField' => __DIR__ . '/..' . '/maennchen/zipstream-php/src/Zs/ExtendedInformationExtraField.php',
+        'iio\\libmergepdf\\Driver\\DefaultDriver' => __DIR__ . '/..' . '/iio/libmergepdf/src/Driver/DefaultDriver.php',
+        'iio\\libmergepdf\\Driver\\DriverInterface' => __DIR__ . '/..' . '/iio/libmergepdf/src/Driver/DriverInterface.php',
+        'iio\\libmergepdf\\Driver\\Fpdi2Driver' => __DIR__ . '/..' . '/iio/libmergepdf/src/Driver/Fpdi2Driver.php',
+        'iio\\libmergepdf\\Driver\\TcpdiDriver' => __DIR__ . '/..' . '/iio/libmergepdf/src/Driver/TcpdiDriver.php',
+        'iio\\libmergepdf\\Exception' => __DIR__ . '/..' . '/iio/libmergepdf/src/Exception.php',
+        'iio\\libmergepdf\\Merger' => __DIR__ . '/..' . '/iio/libmergepdf/src/Merger.php',
+        'iio\\libmergepdf\\Pages' => __DIR__ . '/..' . '/iio/libmergepdf/src/Pages.php',
+        'iio\\libmergepdf\\PagesInterface' => __DIR__ . '/..' . '/iio/libmergepdf/src/PagesInterface.php',
+        'iio\\libmergepdf\\Source\\FileSource' => __DIR__ . '/..' . '/iio/libmergepdf/src/Source/FileSource.php',
+        'iio\\libmergepdf\\Source\\RawSource' => __DIR__ . '/..' . '/iio/libmergepdf/src/Source/RawSource.php',
+        'iio\\libmergepdf\\Source\\SourceInterface' => __DIR__ . '/..' . '/iio/libmergepdf/src/Source/SourceInterface.php',
         'setasign\\Fpdi\\FpdfTpl' => __DIR__ . '/..' . '/setasign/fpdi/src/FpdfTpl.php',
         'setasign\\Fpdi\\FpdfTplTrait' => __DIR__ . '/..' . '/setasign/fpdi/src/FpdfTplTrait.php',
         'setasign\\Fpdi\\FpdfTrait' => __DIR__ . '/..' . '/setasign/fpdi/src/FpdfTrait.php',
@@ -8002,6 +8047,7 @@ class ComposerStaticInit7e8c3c14ff33b199b4a0838993eb8423
         'setasign\\Fpdi\\Tcpdf\\Fpdi' => __DIR__ . '/..' . '/setasign/fpdi/src/Tcpdf/Fpdi.php',
         'setasign\\Fpdi\\Tfpdf\\FpdfTpl' => __DIR__ . '/..' . '/setasign/fpdi/src/Tfpdf/FpdfTpl.php',
         'setasign\\Fpdi\\Tfpdf\\Fpdi' => __DIR__ . '/..' . '/setasign/fpdi/src/Tfpdf/Fpdi.php',
+        'tcpdi_parser' => __DIR__ . '/..' . '/iio/libmergepdf/tcpdi/tcpdi_parser.php',
         'voku\\helper\\ASCII' => __DIR__ . '/..' . '/voku/portable-ascii/src/voku/helper/ASCII.php',
     );
 

@@ -25,7 +25,7 @@ class UserController extends Controller
      *
      * @return void
      */
-    public function index() : View
+    public function index(): View
     {
         //get all Users
         $users = User::all();
@@ -71,7 +71,7 @@ class UserController extends Controller
         // $image->storeAs('public/Users', $image->hashName());
 
         //create User
-        User::create([
+        user::create([
             'name'        => $request->name,
             'username'    => $request->username,
             'password'    => Hash::make($request->password),
@@ -123,40 +123,40 @@ class UserController extends Controller
      */
     public function update(Request $request, $id): RedirectResponse
     {
-    // Validate form
-    $request->validate([
-        'name'        => 'required|min:5',
-        'username'    => 'required|min:5',
-        'rupam'       => 'required|min:5',
-        'jabatan'     => 'required|min:5',
-        'is_admin'    => 'required|min:1'
-    ]);
+        // Validate form
+        $request->validate([
+            'name'        => 'required|min:5',
+            'username'    => 'required|min:5',
+            'rupam'       => 'required|min:5',
+            'jabatan'     => 'required|min:5',
+            'is_admin'    => 'required|min:1'
+        ]);
 
 
-    // Get User by ID
-    $User = User::findOrFail($id);
+        // Get User by ID
+        $User = User::findOrFail($id);
 
-    // Prepare data for update
-    $data = [
-        'name'        => $request->name,
-        'username'    => $request->username,
-        'rupam'       => $request->rupam,
-        'jabatan'     => $request->jabatan,
-        'is_admin'    => $request->is_admin
-    ];
+        // Prepare data for update
+        $data = [
+            'name'        => $request->name,
+            'username'    => $request->username,
+            'rupam'       => $request->rupam,
+            'jabatan'     => $request->jabatan,
+            'is_admin'    => $request->is_admin
+        ];
 
-    // Check if password is provided
-    if ($request->filled('password')) {
-        $data['password'] = Hash::make($request->password);
+        // Check if password is provided
+        if ($request->filled('password')) {
+            $data['password'] = Hash::make($request->password);
+        }
+
+        // Update User
+        // dd($request);
+        $User->update($data);
+
+        // Redirect to index
+        return redirect()->route('users.index')->with(['success' => 'Data Berhasil Diubah!']);
     }
-
-    // Update User
-    // dd($request);
-    $User->update($data);
-
-    // Redirect to index
-    return redirect()->route('users.index')->with(['success' => 'Data Berhasil Diubah!']);
-}
 
 
     /**

@@ -4,6 +4,7 @@ use App\Models\User;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\PdfController;
 use App\Http\Controllers\ApelController;
 use App\Http\Controllers\HomeController;
 use App\Http\Middleware\AdminMiddleware;
@@ -11,10 +12,12 @@ use App\Http\Controllers\LoginController;
 use App\Http\Controllers\PointController;
 use App\Http\Controllers\DatawbpController;
 use App\Http\Controllers\TrollingController;
+use App\Http\Controllers\DisposisiController;
 use App\Http\Controllers\PelanggaranController;
-use App\Http\Controllers\PenggeledahanController;
 use App\Http\Controllers\SpreadsheetController;
 use App\Http\Middleware\LogoutPreviousSessions;
+use App\Http\Controllers\PenggeledahanController;
+use App\Http\Controllers\HpController;
 
 /*
 |--------------------------------------------------------------------------
@@ -32,6 +35,9 @@ Route::controller(LoginController::class)->group(function () {
     Route::post('actionlogin', 'actionlogin')->name('actionlogin')->middleware(LogoutPreviousSessions::class);
     Route::get('actionlogout', 'actionlogout')->name('actionlogout')->middleware('auth');
 });
+
+Route::get('/generate-pdf/{id}', [PdfController::class, 'generateAndMergePdf']);
+
 
 Route::middleware('auth')->group(function () {
     Route::get('home', [HomeController::class, 'index'])->name('home');
@@ -71,11 +77,22 @@ Route::middleware('auth')->group(function () {
     Route::get('/datawbps/create', [DatawbpController::class, 'create'])->name('datawbps.create');
     Route::post('/datawbps/import', [DatawbpController::class, 'import'])->name('datawbps.import');
     Route::get('/datawbps/updateDariSpreadsheet', [DatawbpController::class, 'updateDariSpreadsheet'])->name('datawbps.updateDariSpreadsheet');
+
+
+
+
+    Route::get('/hp', [HpController::class, 'index'])->name('hp.index');
+    Route::get('/hp/create', [HpController::class, 'create'])->name('hp.create');
+    Route::post('/hp/import', [HpController::class, 'import'])->name('hp.import');
+    Route::get('/hp/updateDariSpreadsheet', [HpController::class, 'updateDariSpreadsheet'])->name('hp.updateDariSpreadsheet');
+
+
+    Route::resource('/disposisis', DisposisiController::class);
 });
 
 Route::get('/hash-passwords', function () {
     // Koneksi ke database
-    $mysqli = new mysqli("localhost", "root", "", "db_laravel11");
+    $mysqli = new mysqli("localhost", "root", "", "kplm9434_db_laravel11");
     // Cek koneksi
     if ($mysqli->connect_error) {
         die("Koneksi gagal: " . $mysqli->connect_error);
