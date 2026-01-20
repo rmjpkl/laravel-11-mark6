@@ -5,17 +5,10 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Hp extends Model
+class HpScore extends Model
 {
     use HasFactory;
     protected $guarded = [];
-    
-    public function images()
-    {
-        return $this->hasMany(Image::class, 'hp_no', 'no');
-    }
 }
-
-
 
 

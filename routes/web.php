@@ -18,6 +18,8 @@ use App\Http\Controllers\SpreadsheetController;
 use App\Http\Middleware\LogoutPreviousSessions;
 use App\Http\Controllers\PenggeledahanController;
 use App\Http\Controllers\HpController;
+use App\Http\Controllers\HpScoreController;
+use App\Http\Controllers\ImagesController;
 
 /*
 |--------------------------------------------------------------------------
@@ -37,6 +39,17 @@ Route::controller(LoginController::class)->group(function () {
 });
 
 Route::get('/generate-pdf/{id}', [PdfController::class, 'generateAndMergePdf']);
+
+Route::middleware(['auth'])->group(function () {
+    Route::get('/images', [ImagesController::class, 'index'])->name('images.index');
+    Route::get('/images/create', [ImagesController::class, 'create'])->name('images.create');
+    Route::post('/images', [ImagesController::class, 'store'])->name('images.store');
+    Route::get('/images/{id}', [ImagesController::class, 'show'])->name('images.show');
+    Route::get('/images/{id}/edit', [ImagesController::class, 'edit'])->name('images.edit');
+    Route::put('/images/{id}', [ImagesController::class, 'update'])->name('images.update');
+    Route::delete('/images/{id}', [ImagesController::class, 'destroy'])->name('images.destroy');
+});
+
 
 
 Route::middleware('auth')->group(function () {
@@ -85,6 +98,19 @@ Route::middleware('auth')->group(function () {
     Route::get('/hp/create', [HpController::class, 'create'])->name('hp.create');
     Route::post('/hp/import', [HpController::class, 'import'])->name('hp.import');
     Route::get('/hp/updateDariSpreadsheet', [HpController::class, 'updateDariSpreadsheet'])->name('hp.updateDariSpreadsheet');
+
+
+
+
+
+        // Menampilkan semua data skor HP
+        Route::get('/hp-scores', [HpScoreController::class, 'index'])->name('hp_scores.index');
+        // Form upload/import skor HP
+        Route::get('/hp-scores/create', [HpScoreController::class, 'create'])->name('hp_scores.create');
+        // Proses import CSV skor HP
+        Route::post('/hp-scores/import', [HpScoreController::class, 'import'])->name('hp_scores.import');
+        // Update data skor HP dari Spreadsheet
+        Route::get('/hp-scores/updateDariSpreadsheet', [HpScoreController::class, 'updateDariSpreadsheet'])->name('hp_scores.updateDariSpreadsheet');
 
 
     Route::resource('/disposisis', DisposisiController::class);
